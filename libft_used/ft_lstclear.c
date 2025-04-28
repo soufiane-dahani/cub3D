@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/04/28 11:20:28 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/04/28 10:51:12 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int main()
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-    printf("hadi lbidaya o mazal mazal \n");
-    return 0;
+	t_list	*one;
+	t_list	*two;
+
+	if (!lst || !del)
+		return ;
+	one = *lst;
+	while (one != NULL)
+	{
+		two = one->next;
+		del(one->content);
+		free(one);
+		one = two;
+	}
+	*lst = NULL;
 }
