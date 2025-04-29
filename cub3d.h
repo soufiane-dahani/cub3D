@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/04/28 10:57:27 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/04/29 11:40:43 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
+typedef struct s_map
+{
+	int rows;
+	int cols;
+}	t_map;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	int			win_width;
+	int			win_height;
+	char		**map;
+	int			rows;
+	int			cols;
+}	t_game;
+
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
@@ -44,7 +61,7 @@ int     ft_strncmp(const char *s1, const char *s2, size_t n);
 char    *ft_strndup(const char *s, size_t n);
 t_list	*mem_alloc(size_t size);
 void	*ft_malloc(size_t size, short option);
-
-
+int		parse_map(const char *file_path);
+int		handle_init_errors(int error_type);
 
 #endif

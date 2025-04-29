@@ -6,7 +6,7 @@
 #    By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 12:11:50 by sodahani          #+#    #+#              #
-#    Updated: 2025/04/28 11:28:00 by sodahani         ###   ########.fr        #
+#    Updated: 2025/04/29 11:41:08 by sodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 # Project files
 TARGET = cub3D
 SRC = cub3d.c libft_used/ft_split.c libft_used/ft_strjoin.c libft_used/ft_strlen.c libft_used/ft_lstadd_back.c libft_used/ft_lstclear.c \
-	 libft_used/ft_lstnew.c parsing/malloc.c libft_used/ft_strncmp.c parsing/main.c 
+	 libft_used/ft_lstnew.c parsing/malloc.c libft_used/ft_strncmp.c parsing/main.c parsing/map.c
 
 OBJ = $(SRC:.c=.o)
 
