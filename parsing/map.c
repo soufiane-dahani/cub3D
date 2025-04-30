@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/04/29 11:42:45 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:08:24 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	search_cub(const char *file_path)
 		&& file_path[len - 2] == 'u' && file_path[len - 1] == 'b');
 }
 
-int parse_map(const char *file_path)
+int parse_map(const char *file_path, t_game *game)
 {
     if (!search_cub(file_path))
     {
@@ -33,5 +33,7 @@ int parse_map(const char *file_path)
 			write(STDERR_FILENO, "Error: \nFile should be .cub\n", 28);
 		return (-1);
     }
+    game->fd = open(file_path, O_RDONLY);
+    printf("%d\n" ,game->fd);
     return 0;
 }

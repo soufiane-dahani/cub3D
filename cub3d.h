@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/04/29 11:40:43 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/04/29 11:56:11 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
+
 
 
 # define FT_ALLOC 1
@@ -29,11 +31,6 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
-typedef struct s_map
-{
-	int rows;
-	int cols;
-}	t_map;
 
 typedef struct s_game
 {
@@ -44,6 +41,7 @@ typedef struct s_game
 	char		**map;
 	int			rows;
 	int			cols;
+	int			fd;
 }	t_game;
 
 
@@ -61,7 +59,7 @@ int     ft_strncmp(const char *s1, const char *s2, size_t n);
 char    *ft_strndup(const char *s, size_t n);
 t_list	*mem_alloc(size_t size);
 void	*ft_malloc(size_t size, short option);
-int		parse_map(const char *file_path);
+int		parse_map(const char *file_path, t_game *game);
 int		handle_init_errors(int error_type);
 
 #endif
