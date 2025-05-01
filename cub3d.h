@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/04/29 11:56:11 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:56:17 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
-
+# include "get_next_line.h"
 
 
 # define FT_ALLOC 1
 # define FT_CLEAR 0
+# define MAX_LINES 30
 
 
 typedef struct s_list
@@ -61,5 +62,6 @@ t_list	*mem_alloc(size_t size);
 void	*ft_malloc(size_t size, short option);
 int		parse_map(const char *file_path, t_game *game);
 int		handle_init_errors(int error_type);
-
+void	ft_putstr_fd(char *str, int fd);
+void	read_map_lines(t_game *game);
 #endif
