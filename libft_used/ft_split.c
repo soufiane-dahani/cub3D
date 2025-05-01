@@ -63,7 +63,7 @@ static char	*ft_strdup_spl(char *src, char *charset)
 
 	i = 0;
 	sir = ft_strlen_spl(src, charset);
-	yas = ft_malloc (sizeof(char) * (sir + 1), FT_ALLOC);
+	yas = ft_malloc(sizeof(char) * (sir + 1), FT_ALLOC);
 	if (!yas)
 		return (NULL);
 	while (i < sir)
