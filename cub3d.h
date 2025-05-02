@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 17:30:09 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 21:11:05 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_game
 	int				win_width;
 	int				win_height;
 	char			**map;
+	char			**map_section;
 	int				rows;
 	int				cols;
 	int				fd;
@@ -77,5 +78,6 @@ size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 char				*ft_strtrim(char const *s1, char const *set);
 void				extract_number(char *str, t_game *game, int number);
 void				check_xpm(t_game *game);
+void				map_section(t_game *game);
 
 #endif

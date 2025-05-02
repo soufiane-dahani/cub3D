@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 20:20:31 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 21:10:19 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ void	read_map_lines(t_game *game)
 		game->map[i] = get_next_line(game->fd);
 	}
 	validate_configuration_lines(game);
-	printf("%d\n", game->ceiling_color[0]);
-	printf("%d\n", game->ceiling_color[1]);
-	printf("%d\n", game->ceiling_color[2]);
-	printf("%d\n", game->floor_color[0]);
-	printf("%d\n", game->floor_color[1]);
-	printf("%d\n", game->floor_color[2]);
 	i = 0;
 	while (game->map[i] != NULL)
 	{
@@ -93,5 +87,6 @@ int	parse_map(const char *file_path, t_game *game)
 		return (-1);
 	}
 	read_map_lines(game);
+	map_section(game);
 	return (0);
 }
