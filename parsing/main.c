@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 17:26:11 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 22:56:49 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	handle_init_errors(int error_type)
 	else if (error_type == 2)
 		write(STDERR_FILENO, "Error: \nFailed to parse map\n", 28);
 	else if (error_type == 3)
-		write(STDERR_FILENO, "Error: \nInvalid map\n", 20);
+		ft_putstr_fd("Error: \nDuplicate configuration element\n", 2);
 	else if (error_type == 4)
 		write(STDERR_FILENO, "Error: \nMLX initialization failed\n", 31);
 	exit(1);
