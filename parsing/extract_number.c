@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/01 23:39:22 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:44:07 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 
 static void	validate_color_components(char **components)
 {
-	int	i;
+	int		i;
+	char	*trimmed;
 
 	i = 0;
 	while (components[i] != NULL)
 	{
-		is_all_digits(ft_strtrim(components[i], " \n\r\t"));
+		trimmed = ft_strtrim(components[i], " \n\r\t");
+		if (!is_all_digits(trimmed))
+		{
+			ft_putstr_fd("Error: \nNot a number\n", 2);
+			ft_malloc(0, FT_CLEAR);
+			exit(1);
+		}
 		i++;
 	}
 	if (i != 3)
@@ -29,7 +36,17 @@ static void	validate_color_components(char **components)
 static void	set_color_values(t_game *game, char **components, int type)
 {
 	int	*color_array;
+	int	i;
 
+	i = 0;
+	while (components[i])
+		i++;
+	if (i != 3)
+	{
+		ft_putstr_fd("Error: \nRGB must have exactly 3 values\n", 2);
+		ft_malloc(0, FT_CLEAR);
+		exit(1);
+	}
 	if (type == 1)
 		color_array = game->floor_color;
 	else

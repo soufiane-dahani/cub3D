@@ -76,6 +76,6 @@ int					is_all_digits(const char *str);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 char				*ft_strtrim(char const *s1, char const *set);
 void				extract_number(char *str, t_game *game, int number);
-void	check_xpm(t_game *game);
+void				check_xpm(t_game *game);
 
 #endif

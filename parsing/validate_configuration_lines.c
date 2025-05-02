@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 19:46:54 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:49:03 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,13 @@ static void	process_config_line(t_game *game, int *config_count, char *line)
 	}
 }
 
-
 void	validate_configuration_lines(t_game *game)
 {
 	int	config_count;
 	int	i;
-	// int j;
 
 	config_count = 0;
 	i = 0;
-	// j = 1;
 	while (config_count < 6 && game->map[i])
 	{
 		if (is_empty_line(game->map[i]))
@@ -69,10 +66,4 @@ void	validate_configuration_lines(t_game *game)
 		i++;
 	}
 	check_xpm(game);
-	// if (config_count != 6)
-	// {
-	// 	ft_putstr_fd("Error: \nDuplicates\n", 2);
-	// 	ft_malloc(0, FT_CLEAR);
-	// 	exit(1);
-	// }
 }
