@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 19:59:58 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:20:31 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*extract_path(char *str)
 	char	*res;
 	char	*res2;
 
-	res = ft_malloc(ft_strlen(str) - 2, FT_ALLOC);
+	res = ft_malloc(ft_strlen(str), FT_ALLOC);
 	i = 2;
 	j = 0;
 	while (str[i] != '\0')
@@ -41,6 +41,7 @@ char	*extract_path(char *str)
 		i++;
 		j++;
 	}
+	res[j] = '\0';
 	res2 = ft_strtrim(res, " \n");
 	return (res2);
 }
