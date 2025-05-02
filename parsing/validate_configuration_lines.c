@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 17:31:07 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:46:54 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	handle_color_line(char *line, t_game *game, int type, int *count)
 
 static void	process_config_line(t_game *game, int *config_count, char *line)
 {
+	while (*line == ' ' || *line == '\t' || *line == '\r')
+		line++;
 	if (!ft_strncmp(line, "NO ", 3))
 		handle_texture_line(line, &game->north_texture, config_count);
 	else if (!ft_strncmp(line, "SO ", 3))

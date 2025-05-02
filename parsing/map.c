@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/01 23:40:04 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:59:58 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*extract_path(char *str)
 	int		i;
 	int		j;
 	char	*res;
+	char	*res2;
 
 	res = ft_malloc(ft_strlen(str) - 2, FT_ALLOC);
 	i = 2;
@@ -40,7 +41,8 @@ char	*extract_path(char *str)
 		i++;
 		j++;
 	}
-	return (res);
+	res2 = ft_strtrim(res, " \n");
+	return (res2);
 }
 
 void	read_map_lines(t_game *game)
