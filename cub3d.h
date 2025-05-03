@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 23:16:52 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/03 19:01:44 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_game
 	char			*east_texture;
 	int				floor_color[3];
 	int				ceiling_color[3];
-
+	int				map_start_index;
 }					t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -80,5 +80,10 @@ void				extract_number(char *str, t_game *game, int number);
 void				check_xpm(t_game *game);
 void				map_section(t_game *game);
 int ft_strcmp(const char *s1, const char *s2);
-
+int	is_config_identifier(char *line);
+void	handle_texture_line(char *line, char **texture, int *count);
+void	handle_color_line(char *line, t_game *game, int type, int *count);
+void	process_no_so(t_game *game, int *config_count, char *line, int *flags);
+int	process_config_lines(t_game *game, int *config_flags);
+void	validate_configuration_lines(t_game *game);
 #endif
