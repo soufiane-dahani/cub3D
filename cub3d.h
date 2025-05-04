@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/04 18:31:58 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/04 20:03:38 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,9 @@ typedef struct s_list
 
 typedef struct s_game
 {
-	void			*mlx;
-	void			*win;
-	int				win_width;
-	int				win_height;
 	char			**map;
 	char			**map_section;
-	int				rows;
-	int				cols;
+	char			**map_copy;
 	int				fd;
 	char			*north_texture;
 	char			*south_texture;
@@ -49,9 +44,13 @@ typedef struct s_game
 	int				ceiling_color[3];
 	int				map_start_index;
 	int				max_len;
-	int				player_x;
-	int				player_y;
+	float			player_x;
+	float			player_y;
 	char			player_char;
+	float			dir_x;
+    float			dir_y;
+	float 			plane_x;
+    float 			plane_y;
 }					t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -93,4 +92,6 @@ void				process_no_so(t_game *game, int *config_count, char *line,
 int					process_config_lines(t_game *game, int *config_flags);
 void				validate_configuration_lines(t_game *game);
 void				set_up_map(t_game *game);
+void flood_fill(char **map, int y, int x);
+void	set_player_direction(t_game *game);
 #endif

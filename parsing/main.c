@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/04 12:13:07 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:01:31 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	handle_init_errors(int error_type)
 	else if (error_type == 4)
 		ft_putstr_fd("Error: \nUndefined char\n",2);
 	else if (error_type == 5)
-		ft_putstr_fd("Error: \nPlayer position\n",2);
+		ft_putstr_fd("Error: \nNo player found\n",2);
+	else if (error_type == 6)
+		ft_putstr_fd("Error: \nMap not closed\n",2);
 	exit(1);
 }
 

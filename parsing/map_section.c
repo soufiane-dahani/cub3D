@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/04 18:31:21 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/04 20:07:14 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,26 @@ static void	fill_new_line(char *new_line, char *old_line, int max_len)
 }
 
 
-static void	prepare_map(t_game *game)
+static void prepare_map(t_game *game)
 {
-	int		i;
-	int		max_len;
+	int		i = 0;
+	int		max_len = game->max_len;
 	char	*new_line;
+	char	*copy_line;
 
-	i = 0;
-	max_len = game->max_len;
 	while (game->map_section[i] != NULL)
 	{
 		new_line = ft_malloc(sizeof(char) * (max_len + 1), FT_ALLOC);
 		fill_new_line(new_line, game->map_section[i], max_len);
 		game->map_section[i] = new_line;
+
+		copy_line = ft_malloc(sizeof(char) * (max_len + 1), FT_ALLOC);
+		ft_strlcpy(copy_line, new_line, max_len + 1);
+		game->map_copy[i] = copy_line;
+
 		i++;
 	}
+	game->map_copy[i] = NULL;
 }
 
 void	map_section(t_game *game)
@@ -107,10 +112,24 @@ void	map_section(t_game *game)
 	game->max_len = 0;
 	check_count(game);
 	prepare_map(game);
+	flood_fill(game->map_copy, game->player_y, game->player_x);
+	set_player_direction(game);
 	i = 0;
+	while (game->map_copy[i] != NULL)
+	{
+		printf("%s", game->map_copy[i]);
+		i++;
+	}
+	i = 0;
+	printf("\n\n");
 	while (game->map_section[i] != NULL)
 	{
 		printf("%s", game->map_section[i]);
 		i++;
 	}
+	printf("\n\n");
+	printf("%f\n", game->dir_x);
+	printf("%f\n", game->dir_y);
+	printf("%f\n", game->plane_x);
+	printf("%f\n", game->plane_y);
 }
