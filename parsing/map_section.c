@@ -6,71 +6,85 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/04 15:35:12 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:31:21 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	set_up_map(t_game *game)
-{
-	int	i;
-	int	len;
 
-	len = 0;
-	while (game->map[game->map_start_index + len] != NULL)
-		len++;
-	while (len > 0 && is_empty_line(game->map[game->map_start_index + len - 1]))
-		len--;
-	i = 0;
-	game->map_section = ft_malloc(sizeof(char *) * (len + 1), FT_ALLOC);
-	while (i < len)
+
+static int	validate_map_char(char c, t_game *game, int row, int col)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		game->map_section[i] = ft_malloc(ft_strlen(game->map[game->map_start_index
-					+ i]) + 1, FT_ALLOC);
-		ft_strlcpy(game->map_section[i], game->map[game->map_start_index + i],
-				ft_strlen(game->map[game->map_start_index + i]) + 1);
-		i++;
+		game->player_x = col;
+		game->player_y = row;
+		game->player_char = c;
+		return (1);
 	}
-	game->map_section[i] = NULL;
+	else if (c != '0' && c != '1' && c != ' ')
+		handle_init_errors(4);
+	return (0);
 }
 
 static void	check_count(t_game *game)
 {
-	int		i;
-	int		j;
-	int		found;
-	int		len;
-	char	c;
+	int	row;
+	int	col;
+	int	player_count;
+	int	len;
 
-	i = 0;
-	found = 0;
-	while (game->map_section[i] != NULL)
+	row = 0;
+	player_count = 0;
+	while (game->map_section[row] != NULL)
 	{
-		j = 0;
-		len = ft_strlen(game->map_section[i]);
+		col = 0;
+		len = ft_strlen(game->map_section[row]);
 		if (len > game->max_len)
 			game->max_len = len;
-		while (game->map_section[i][j] != '\n')
+		while (game->map_section[row][col] != '\n')
 		{
-			c = game->map_section[i][j];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				found++;
-			else if (c != '0' && c != '1' && c != ' ')
-				handle_init_errors(4);
-			j++;
+			player_count += validate_map_char(game->map_section[row][col],
+			game,
+			row,
+			col);
+			col++;
 		}
-		i++;
+		row++;
 	}
-	if (found != 1)
+	if (player_count != 1)
 		handle_init_errors(5);
 }
+
+static void	fill_new_line(char *new_line, char *old_line, int max_len)
+{
+	int	j;
+	int	len;
+
+	j = 0;
+	len = ft_strlen(old_line);
+	while (j < len && old_line[j] != '\n')
+	{
+		if (old_line[j] == ' ')
+			new_line[j] = 'X';
+		else
+			new_line[j] = old_line[j];
+		j++;
+	}
+	while (j < max_len)
+	{
+		new_line[j] = 'X';
+		j++;
+	}
+	new_line[j - 1] = '\n';
+	new_line[j] = '\0';
+}
+
 
 static void	prepare_map(t_game *game)
 {
 	int		i;
-	int		j;
-	int		len;
 	int		max_len;
 	char	*new_line;
 
@@ -78,24 +92,8 @@ static void	prepare_map(t_game *game)
 	max_len = game->max_len;
 	while (game->map_section[i] != NULL)
 	{
-		len = ft_strlen(game->map_section[i]);
 		new_line = ft_malloc(sizeof(char) * (max_len + 1), FT_ALLOC);
-		j = 0;
-		while (j < len && game->map_section[i][j] != '\n')
-		{
-			if (game->map_section[i][j] == ' ')
-				new_line[j] = 'X';
-			else
-				new_line[j] = game->map_section[i][j];
-			j++;
-		}
-		while (j < max_len)
-		{
-			new_line[j] = 'X';
-			j++;
-		}
-		new_line[j - 1] = '\n';
-		new_line[j] = '\0';
+		fill_new_line(new_line, game->map_section[i], max_len);
 		game->map_section[i] = new_line;
 		i++;
 	}
