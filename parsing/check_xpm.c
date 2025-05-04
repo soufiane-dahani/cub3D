@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 20:50:42 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/04 15:13:23 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	is_empty_line(char *str)
 {
-	if (str[0] == '\n')
+	int i;
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '\n')
 		return (1);
 	else
 		return (0);

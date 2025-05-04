@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/02 22:56:49 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:13:07 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ void	handle_init_errors(int error_type)
 {
 	ft_malloc(0, FT_CLEAR);
 	if (error_type == 1)
-		write(STDERR_FILENO, "Error: \nInvalid arguments\n", 24);
+		ft_putstr_fd("Error: \nInvalid arguments\n", 2);
 	else if (error_type == 2)
-		write(STDERR_FILENO, "Error: \nFailed to parse map\n", 28);
+		ft_putstr_fd("Error: \nFailed to parse map\n", 2);
 	else if (error_type == 3)
 		ft_putstr_fd("Error: \nDuplicate configuration element\n", 2);
 	else if (error_type == 4)
-		write(STDERR_FILENO, "Error: \nMLX initialization failed\n", 31);
+		ft_putstr_fd("Error: \nUndefined char\n",2);
+	else if (error_type == 5)
+		ft_putstr_fd("Error: \nPlayer position\n",2);
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/03 19:01:44 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:29:28 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_game
 	int				floor_color[3];
 	int				ceiling_color[3];
 	int				map_start_index;
+	int				max_len;
 }					t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
