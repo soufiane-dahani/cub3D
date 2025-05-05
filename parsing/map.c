@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/03 19:13:31 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/05 11:14:06 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	parse_map(const char *file_path, t_game *game)
 			write(STDERR_FILENO, "Error: \nFile should be .cub\n", 28);
 		return (-1);
 	}
-	if ((game->fd = open(file_path, O_RDONLY)) == -1)
+	game->fd = open(file_path, O_RDONLY);
+	if (game->fd == -1)
 	{
 		perror("open failed");
 		return (-1);

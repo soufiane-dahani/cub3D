@@ -15,11 +15,11 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif
+# include "cub3d.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "cub3d.h"
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);

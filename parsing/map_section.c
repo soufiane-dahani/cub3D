@@ -6,13 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/05 10:33:18 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/05 11:19:35 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-
 
 static int	validate_map_char(char c, t_game *game, int row, int col)
 {
@@ -23,7 +21,8 @@ static int	validate_map_char(char c, t_game *game, int row, int col)
 		game->player_char = c;
 		return (1);
 	}
-	else if (c != '0' && c != '1' && c != ' ' && c !=  'D' && c !=  'O' && c !=  'K' && c !=  'A')
+	else if (c != '0' && c != '1' && c != ' ' && c != 'D' && c != 'O'
+		&& c != 'K' && c != 'A')
 		handle_init_errors(4);
 	return (0);
 }
@@ -46,9 +45,9 @@ static void	check_count(t_game *game)
 		while (game->map_section[row][col] != '\n')
 		{
 			player_count += validate_map_char(game->map_section[row][col],
-			game,
-			row,
-			col);
+					game,
+					row,
+					col);
 			col++;
 		}
 		row++;
@@ -81,24 +80,23 @@ static void	fill_new_line(char *new_line, char *old_line, int max_len)
 	new_line[j] = '\0';
 }
 
-
-static void prepare_map(t_game *game)
+static void	prepare_map(t_game *game)
 {
-	int		i = 0;
-	int		max_len = game->max_len;
+	int		i;
+	int		max_len;
 	char	*new_line;
 	char	*copy_line;
 
+	i = 0;
+	max_len = game->max_len;
 	while (game->map_section[i] != NULL)
 	{
 		new_line = ft_malloc(sizeof(char) * (max_len + 1), FT_ALLOC);
 		fill_new_line(new_line, game->map_section[i], max_len);
 		game->map_section[i] = new_line;
-
 		copy_line = ft_malloc(sizeof(char) * (max_len + 1), FT_ALLOC);
 		ft_strlcpy(copy_line, new_line, max_len + 1);
 		game->map_copy[i] = copy_line;
-
 		i++;
 	}
 	game->map_copy[i] = NULL;

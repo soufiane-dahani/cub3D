@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/04 20:05:32 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/05 11:18:22 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@ void	set_up_map(t_game *game)
 {
 	int	i;
 	int	len;
+	int	map_idx;
 
 	len = 0;
-	while (game->map[game->map_start_index + len] != NULL)
+	map_idx = game->map_start_index;
+	while (game->map[map_idx + len] != NULL)
 		len++;
-	while (len > 0 && is_empty_line(game->map[game->map_start_index + len - 1]))
+	while (len > 0 && is_empty_line(game->map[map_idx + len - 1]))
 		len--;
 	i = 0;
 	game->map_section = ft_malloc(sizeof(char *) * (len + 1), FT_ALLOC);
 	game->map_copy = ft_malloc(sizeof(char *) * (len + 1), FT_ALLOC);
 	while (i < len)
 	{
-		game->map_section[i] = ft_malloc(ft_strlen(game->map[game->map_start_index
-					+ i]) + 1, FT_ALLOC);
-		ft_strlcpy(game->map_section[i], game->map[game->map_start_index + i],
-				ft_strlen(game->map[game->map_start_index + i]) + 1);
+		game->map_section[i] = ft_malloc(
+				ft_strlen(game->map[map_idx + i]) + 1, FT_ALLOC);
+		ft_strlcpy(game->map_section[i], game->map[map_idx + i],
+			ft_strlen(game->map[map_idx + i]) + 1);
 		i++;
 	}
 	game->map_section[i] = NULL;
@@ -54,6 +56,7 @@ void	flood_fill(char **map, int y, int x)
 	flood_fill(map, y, x - 1);
 	flood_fill(map, y, x + 1);
 }
+
 void	set_player_direction_vector(t_game *game)
 {
 	if (game->player_char == 'N')

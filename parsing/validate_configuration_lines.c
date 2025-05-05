@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/05 10:45:06 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/05 11:15:01 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	process_no_so(t_game *game, int *config_count, char *line, int *flags)
 
 void	check_duplicate_textures(t_game *game)
 {
-	if (ft_strcmp(game->north_texture, game->south_texture) == 0 ||
-		ft_strcmp(game->north_texture, game->west_texture) == 0 ||
-		ft_strcmp(game->north_texture, game->east_texture) == 0 ||
-		ft_strcmp(game->south_texture, game->west_texture) == 0 ||
-		ft_strcmp(game->south_texture, game->east_texture) == 0 ||
-		ft_strcmp(game->west_texture, game->east_texture) == 0)
+	if (ft_strcmp(game->north_texture, game->south_texture) == 0
+		|| ft_strcmp(game->north_texture, game->west_texture) == 0
+		|| ft_strcmp(game->north_texture, game->east_texture) == 0
+		|| ft_strcmp(game->south_texture, game->west_texture) == 0
+		|| ft_strcmp(game->south_texture, game->east_texture) == 0
+		|| ft_strcmp(game->west_texture, game->east_texture) == 0)
 	{
 		ft_putstr_fd("Error: \nDuplicate texture files are not allowed\n", 2);
 		ft_malloc(0, FT_CLEAR);

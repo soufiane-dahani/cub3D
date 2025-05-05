@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/05 11:01:19 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/05 11:10:21 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ typedef struct s_game
 	char			*south_texture;
 	char			*west_texture;
 	char			*east_texture;
-	char			*DOOR_CLOSED;
-	char			*DOOR_OPEN;
-	char			*KEY;
-	char			*ANIM_0;
-	char			*ANIM_1;
+	char			*door_closed;
+	char			*door_open;
+	char			*key;
+	char			*anim_0;
+	char			*anim_1;
 	int				floor_color[3];
 	int				ceiling_color[3];
 	int				map_start_index;
@@ -53,9 +53,9 @@ typedef struct s_game
 	float			player_y;
 	char			player_char;
 	float			dir_x;
-    float			dir_y;
-	float 			plane_x;
-    float 			plane_y;
+	float			dir_y;
+	float			plane_x;
+	float			plane_y;
 }					t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -97,10 +97,13 @@ void				process_no_so(t_game *game, int *config_count, char *line,
 int					process_config_lines(t_game *game, int *config_flags);
 void				validate_configuration_lines(t_game *game);
 void				set_up_map(t_game *game);
-void flood_fill(char **map, int y, int x);
-void	set_player_direction(t_game *game);
-void	process_DOOR(t_game *game, int *config_count, char *line, int *flags);
-void	process_ANIM(t_game *game, int *config_count, char *line, int *flags);
-void	process_KEY(t_game *game, int *config_count, char *line, int *flags);
+void				flood_fill(char **map, int y, int x);
+void				set_player_direction(t_game *game);
+void				process_door(t_game *game, int *config_count, char *line,
+						int *flags);
+void				process_anim(t_game *game, int *config_count, char *line,
+						int *flags);
+void				process_key(t_game *game, int *config_count, char *line,
+						int *flags);
 
 #endif
