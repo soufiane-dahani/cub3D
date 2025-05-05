@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/03 19:11:33 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/05 11:00:35 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	process_f_c(t_game *game, int *config_count, char *line, int *flags)
 	}
 }
 
+
+
 static void	process_config_line2(t_game *game, int *config_count, char *line,
 		int *flags)
 {
@@ -57,6 +59,9 @@ static void	process_config_line2(t_game *game, int *config_count, char *line,
 	process_no_so(game, config_count, line, flags);
 	process_we_ea(game, config_count, line, flags);
 	process_f_c(game, config_count, line, flags);
+	process_KEY(game, config_count, line, flags);
+	process_ANIM(game, config_count, line, flags);
+	process_DOOR(game, config_count, line, flags);
 	if (!is_config_identifier(line) && *line && !is_empty_line(line))
 	{
 		ft_putstr_fd("Error: \nInvalid config line\n", 2);
@@ -69,7 +74,10 @@ int	is_config_identifier(char *line)
 {
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3) ||
 		!ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3) ||
-		!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
+		!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2) ||
+		!ft_strncmp(line, "DOOR_CLOSED ", 12) || !ft_strncmp(line, "DOOR_OPEN ", 10) || 
+		!ft_strncmp(line, "KEY ", 4) || !ft_strncmp(line, "ANIM_0 ", 7) ||
+		!ft_strncmp(line, "ANIM_1 ", 7))
 		return (1);
 	return (0);
 }

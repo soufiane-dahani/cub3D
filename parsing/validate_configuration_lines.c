@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/03 19:00:02 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:45:06 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ void	check_duplicate_textures(t_game *game)
 
 void	validate_configuration_lines(t_game *game)
 {
-	int	config_flags[6];
+	int	config_flags[11];
 	int	i;
 	int	j;
 
 	j = 0;
-	while (j < 6)
+	while (j < 11)
 		config_flags[j++] = 0;
 	i = process_config_lines(game, config_flags);
 	game->map_start_index = i;
 	j = 0;
-	while (j < 6)
+	while (j < 11)
 		if (config_flags[j++] != 1)
 			handle_init_errors(2);
 	check_duplicate_textures(game);
