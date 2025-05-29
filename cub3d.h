@@ -3,26 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: obarais <obarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/05 11:10:21 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:12:47 by obarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <math.h>
 # include "get_next_line.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
+#ifndef M_PI
+# define M_PI 3.14159265358979323846
+#endif
 # define FT_ALLOC 1
 # define FT_CLEAR 0
 # define MAX_LINES 100
+# define TILE 60
+# define MAP_WIDTH 800
+# define MAP_HEIGHT 600
+# define FOV (M_PI / 3)
 
 typedef struct s_list
 {
@@ -32,6 +41,8 @@ typedef struct s_list
 
 typedef struct s_game
 {
+	void			*mlx;
+	void			*win;
 	char			**map;
 	char			**map_section;
 	char			**map_copy;
@@ -56,6 +67,10 @@ typedef struct s_game
 	float			dir_y;
 	float			plane_x;
 	float			plane_y;
+	double			distances_x;
+	double			distances_y;
+	double			ray_angle;
+	double			angle;
 }					t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -105,5 +120,6 @@ void				process_anim(t_game *game, int *config_count, char *line,
 						int *flags);
 void				process_key(t_game *game, int *config_count, char *line,
 						int *flags);
+void				raycaster(t_game **game);
 
 #endif

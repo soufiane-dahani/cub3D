@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: obarais <obarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/04 19:01:31 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:50:58 by obarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char **av)
 		handle_init_errors(1);
 	else if (parse_map(av[1], game) == -1)
 		handle_init_errors(2);
+	raycaster(&game);
 	ft_malloc(0, FT_CLEAR);
 	return (0);
 }
