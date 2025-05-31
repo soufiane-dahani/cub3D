@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obarais <obarais@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/30 22:48:30 by obarais          ###   ########.fr       */
+/*   Updated: 2025/05/31 11:21:28 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,50 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_texture {
+	void	*img;        // Pointer to the image (from mlx_xpm_file_to_image)
+	char	*addr;       // Pointer to the pixel data
+	int		width;       // Width of the image in pixels
+	int		height;      // Height of the image in pixels
+	int		bpp;         // Bits per pixel
+	int		line_len;    // Number of bytes in one row
+	int		endian;      // Byte order
+}	t_texture;
+
 typedef struct s_game
 {
+	// MiniLibX
 	void			*mlx;
 	void			*win;
+
+	// Map and file
 	char			**map;
 	char			**map_section;
 	char			**map_copy;
 	int				fd;
+	int				map_start_index;
+	int				max_len;
+
+	// Player info
+	float			player_x;
+	float			player_y;
+	char			player_char;
+	float			dir_x;
+	float			dir_y;
+	float			plane_x;
+	float			plane_y;
+
+	// Rendering and raycasting
+	double			distances_x;
+	double			distances_y;
+	double			ray_angle;
+	double			angle;
+
+	// Colors
+	int				floor_color[3];
+	int				ceiling_color[3];
+
+	// Filepaths for XPMs (optional if loading from string earlier)
 	char			*north_texture;
 	char			*south_texture;
 	char			*west_texture;
@@ -56,22 +92,19 @@ typedef struct s_game
 	char			*key;
 	char			*anim_0;
 	char			*anim_1;
-	int				floor_color[3];
-	int				ceiling_color[3];
-	int				map_start_index;
-	int				max_len;
-	float			player_x;
-	float			player_y;
-	char			player_char;
-	float			dir_x;
-	float			dir_y;
-	float			plane_x;
-	float			plane_y;
-	double			distances_x;
-	double			distances_y;
-	double			ray_angle;
-	double			angle;
-}					t_game;
+
+	// Loaded texture data
+	t_texture		north_texture_data;
+	t_texture		south_texture_data;
+	t_texture		west_texture_data;
+	t_texture		east_texture_data;
+	t_texture		door_closed_data;
+	t_texture		door_open_data;
+	t_texture		key_data;
+	t_texture		anim_0_data;
+	t_texture		anim_1_data;
+
+}	t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstclear(t_list **lst, void (*del)(void *));
