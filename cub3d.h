@@ -6,7 +6,7 @@
 /*   By: obarais <obarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/30 22:48:30 by obarais          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:20:26 by obarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define FT_ALLOC 1
 # define FT_CLEAR 0
 # define MAX_LINES 100
-# define TILE 60
+# define TILE 64
 # define MAP_WIDTH 800
 # define MAP_HEIGHT 600
 # define FOV (M_PI / 3)
