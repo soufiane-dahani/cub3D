@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:04:06 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/01 23:39:49 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int	ft_isdigit(int c)
 {

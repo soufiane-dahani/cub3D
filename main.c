@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obarais <obarais@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/29 09:50:58 by obarais          ###   ########.fr       */
+/*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
+/*   Updated: 2025/06/12 13:57:32 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
-void	handle_init_errors(int error_type)
+void handle_init_errors(int error_type)
 {
 	ft_malloc(0, FT_CLEAR);
 	if (error_type == 1)
@@ -30,16 +30,16 @@ void	handle_init_errors(int error_type)
 	exit(1);
 }
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_game	*game;
+	t_game *game;
 
 	game = ft_malloc(sizeof(t_game), FT_ALLOC);
 	if (ac != 2)
 		handle_init_errors(1);
 	else if (parse_map(av[1], game) == -1)
 		handle_init_errors(2);
-	raycaster(&game);
+	raycasting(game);
 	ft_malloc(0, FT_CLEAR);
 	return (0);
 }

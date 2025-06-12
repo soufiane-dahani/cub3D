@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_section.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/05 11:19:35 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 static int	validate_map_char(char c, t_game *game, int row, int col)
 {

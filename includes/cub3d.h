@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obarais <obarais@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/31 18:26:30 by obarais          ###   ########.fr       */
+/*   Updated: 2025/06/12 14:16:33 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <math.h>
 # include "get_next_line.h"
-# include "minilibx-linux/mlx.h"
+# include "mlx.h"
 # include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>
@@ -63,21 +63,6 @@ typedef struct s_game
 	int				map_start_index;
 	int				max_len;
 
-	// Player info
-	float			player_x;
-	float			player_y;
-	char			player_char;
-	float			dir_x;
-	float			dir_y;
-	float			plane_x;
-	float			plane_y;
-
-	// Rendering and raycasting
-	double			distances_x;
-	double			distances_y;
-	double			ray_angle;
-	double			angle;
-
 	// Colors
 	int				floor_color[3];
 	int				ceiling_color[3];
@@ -93,17 +78,31 @@ typedef struct s_game
 	char			*anim_0;
 	char			*anim_1;
 
-	// Loaded texture data
-	t_texture		north_texture_data;
-	t_texture		south_texture_data;
-	t_texture		west_texture_data;
-	t_texture		east_texture_data;
-	t_texture		door_closed_data;
-	t_texture		door_open_data;
-	t_texture		key_data;
-	t_texture		anim_0_data;
-	t_texture		anim_1_data;
+	// Rendering and raycasting
+	double			distances_x;
+	double			distances_y;
+	double			ray_angle;
+	double			angle;
 
+	// Config
+	// t_texture	*no_texture;
+	// t_texture	*so_texture;
+	// t_texture	*we_texture;
+	// t_texture	*ea_texture;
+	// t_texture	*closed_door;
+	// t_texture	*open_door;
+	// t_texture	*key;
+	// t_texture	*anim_0;
+	// t_texture	*anim_1;
+
+	// Player info
+	float			player_x;
+	float			player_y;
+	char			player_char;
+	float			dir_x;
+	float			dir_y;
+	float			plane_x;
+	float			plane_y;
 }	t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -153,6 +152,6 @@ void				process_anim(t_game *game, int *config_count, char *line,
 						int *flags);
 void				process_key(t_game *game, int *config_count, char *line,
 						int *flags);
-void				raycaster(t_game **game);
+void				raycasting(t_game *game);
 
 #endif

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:51 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/01 23:25:21 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 static int	ft_check_set(char const c, char const *set)
 {
