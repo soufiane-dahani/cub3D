@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/13 15:07:50 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/13 18:03:10 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	key_hook(int keycode, t_game *game)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			// draw_map(game);
-			// draw_player(game);
 			cast_rays(game);
 		}
 	}
@@ -43,68 +41,52 @@ int	key_hook(int keycode, t_game *game)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			// draw_map(game);
-			// draw_player(game);
 			cast_rays(game);
-
 		}
 	}
 	else if (keycode == 119) // W
 	{
 		double new_x = game->player_x + game->pdx;
 		double new_y = game->player_y + game->pdy;
-		printf("new_x: %f, new_y: %f\n", new_x, new_y);
 		int new_tile_x = (int)(new_x / TILE_SIZE);
 		int new_tile_y = (int)(new_y / TILE_SIZE);
 		if (is_move_valid(game, new_x, new_y) && new_y > TILE_SIZE && game->map_section[new_tile_y][new_tile_x] != '1')
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			// draw_map(game);
-			// draw_player(game);
 			cast_rays(game);
-
 		}
 	}
 	else if (keycode == 115) // S
 	{
 		double new_x = game->player_x - game->pdx;
 		double new_y = game->player_y - game->pdy;
-		printf("new_x: %f, new_y: %f\n", new_x, new_y);
 		int new_tile_x = (int)(new_x / TILE_SIZE);
 		int new_tile_y = (int)(new_y / TILE_SIZE);
 		if (is_move_valid(game, new_x, new_y) && new_y < MAP_HEIGHT - TILE_SIZE && game->map_section[new_tile_y][new_tile_x] != '1')
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			// draw_map(game);
-			// draw_player(game);
 			cast_rays(game);
-
 		}
 	}
 	else if (keycode == 65363) // right arrow
 	{
-		game->player_angle += 0.5;
+		game->player_angle += 0.1;
 		normalize_angle(game->player_angle);
 		game->pdx = cos(game->player_angle) * 5;
 		game->pdy = sin(game->player_angle) * 5;
-		draw_map(game);
-		draw_player(game);
 		cast_rays(game);
-
 	}
 	else if (keycode == 65361)
 	{
-		game->player_angle -= 0.5;
+		game->player_angle -= 0.1;
 		normalize_angle(game->player_angle);
 		game->pdx = cos(game->player_angle) * 5;
 		game->pdy = sin(game->player_angle) * 5;
-		draw_map(game);
-		draw_player(game);
 		cast_rays(game);
 		
 	}
-	printf("player ( x, y ): ( %f, %f )\n", game->player_x, game->player_y);
+	// printf("player ( x, y ): ( %f, %f )\n", game->player_x, game->player_y);
 	return (0);
 }

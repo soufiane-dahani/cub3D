@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/13 15:07:31 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/13 19:13:27 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void put_pixels(t_game *game, int x, int y, int color)
 {
     int bpp, line_length, endian;
     char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
-    if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < MAP_HEIGHT)
+    if (x >= 0 && x <= SCREEN_WIDTH && y >= 0 && y <= MAP_HEIGHT)
     {
         int offset = (y * line_length) + (x * (bpp / 8));
         *(unsigned int *)(data + offset) = color;
@@ -49,21 +49,39 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 
 void draw_vertical_line(t_game *game, int x, int y_start, int y_end, int color)
 {
-    for (int y = y_start; y < y_end; y++) {
+    for (int y = y_start; y <= y_end; y++) {
         if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < MAP_HEIGHT)
             put_pixels(game, x, y, color);
     }
 }
 
+void draw_background_2(t_game *game)
+{
+    int x, y;
+    int floor_color = 0x222222;   // example floor color
+    int ceiling_color = 0x444444; // example ceiling color
 
+    for (y = 0; y < MAP_HEIGHT / 2; y++)
+    {
+        for (x = 0; x < SCREEN_WIDTH; x++)
+            put_pixels(game, x, y, ceiling_color);
+    }
+    for (y = MAP_HEIGHT / 2; y < MAP_HEIGHT; y++)
+    {
+        for (x = 0; x < SCREEN_WIDTH; x++)
+            put_pixels(game, x, y, floor_color);
+    }
+}
 void cast_rays(t_game *game)
 {
-	draw_background(game);
+	// draw_background(game);
+	draw_background_2(game);
+	
     double angle_step = game->fov / game->num_rays;
     int bpp, line_length, endian;
     char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
 
-    for (int i = 0; i < SCREEN_WIDTH - 1; i++)
+    for (int i = 0; i < SCREEN_WIDTH; i++)
     {
         double ray_angle = game->start_angle + i * angle_step;
         ray_angle = normalize_angle(ray_angle + game->player_angle);
@@ -116,9 +134,11 @@ void cast_rays(t_game *game)
 		// Draw vertical line at column `i` from draw_start to draw_end
 		int color = 0x7FFFD4;
         // Draw the ray using your draw_line function
-		// draw_line(game, (int)game->player_x + (TILE_SIZE / 4) / 2, (int)game->player_y + (TILE_SIZE / 4) / 2, (int)ray_x , (int)ray_y, color);
+		// draw_line(game, ((int)game->player_x / 4) + (TILE_SIZE / 4) / 2, ((int)game->player_y / 4) + (TILE_SIZE / 4) / 2, (int)ray_x , (int)ray_y, color);
 		draw_vertical_line(game, i , draw_start, draw_end, color);
     }
+	draw_map(game);
+	draw_player(game);
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 

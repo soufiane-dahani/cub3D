@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/13 15:09:30 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:25:27 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	draw_player(t_game *game)
     int bpp, line_length, endian;
     char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
 
-    int player_w = TILE_SIZE / 4;
-    int player_h = TILE_SIZE / 4;
-    int px = game->player_x;
-    int py = game->player_y;
+    int player_w = (TILE_SIZE / 4) / 4;
+    int player_h = (TILE_SIZE / 4) / 4;
+    int px = game->player_x / 4;
+    int py = game->player_y / 4;
 
     // Draw player as a square
     if (py >  TILE_SIZE / 4 && py < MAP_HEIGHT)
@@ -45,7 +45,7 @@ void	draw_player(t_game *game)
 
         // Draw direction line from the center of the player
         double angle = game->player_angle;
-        int line_length_px = TILE_SIZE; // Length of the direction line
+        int line_length_px = (TILE_SIZE / 4) / 3; // Length of the direction line
 
         int cx = px + player_w / 2;
         int cy = py + player_h / 2;
@@ -77,23 +77,22 @@ void	draw_map(t_game *game)
 	int bpp, line_length, endian;
     char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
 
-	draw_background(game);
+	// draw_background(game);
 	int map_x = 16;
 	int map_y = 8;
 	int x = 0;
 	int y = 0;
 	for (int i = 0; i < map_y; i++)
 	{
-		for (int j = 0; j < map_x; j++)
+		for (int j = 0; j < map_x ; j++)
 		{
 			if (game->map_section[i][j] == '1')
-				if (game->map_section[i][j + 1] == '1' || game->map_section[i][j - 1] == '1' || game->map_section[i - 1][j] == '1')
-					draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE , yellow);
-				
-				else
-					draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE - 1, yellow);
+				// if (game->map_section[i][j + 1] == '1' || game->map_section[i][j - 1] == '1' || game->map_section[i - 1][j] == '1')
+					draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4),  i * (TILE_SIZE / 4), (TILE_SIZE / 4) , yellow);
+				// else
+				// 	draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4),  i * (TILE_SIZE / 4), (TILE_SIZE / 4) - 1, yellow);
 			else
-				draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE - 1, 0x000000);
+				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4),  i * (TILE_SIZE / 4), (TILE_SIZE / 4) , 0x000000);
 			x+= TILE_SIZE - 16;
 		}
 		y+= TILE_SIZE - 16;
