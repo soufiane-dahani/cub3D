@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/13 03:49:09 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:09:30 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,13 @@ void	draw_map(t_game *game)
 		for (int j = 0; j < map_x; j++)
 		{
 			if (game->map_section[i][j] == '1')
-    			draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE, yellow);
+				if (game->map_section[i][j + 1] == '1' || game->map_section[i][j - 1] == '1' || game->map_section[i - 1][j] == '1')
+					draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE , yellow);
+				
+				else
+					draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE - 1, yellow);
 			else
-				draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE , 0x000000);
+				draw_tile(game, game->mlx, game->win, j * TILE_SIZE,  i * TILE_SIZE, TILE_SIZE - 1, 0x000000);
 			x+= TILE_SIZE - 16;
 		}
 		y+= TILE_SIZE - 16;

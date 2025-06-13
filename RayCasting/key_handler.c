@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/13 03:59:19 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:07:50 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	key_hook(int keycode, t_game *game)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			draw_map(game);
-			draw_player(game);
+			// draw_map(game);
+			// draw_player(game);
 			cast_rays(game);
 		}
 	}
@@ -43,8 +43,8 @@ int	key_hook(int keycode, t_game *game)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			draw_map(game);
-			draw_player(game);
+			// draw_map(game);
+			// draw_player(game);
 			cast_rays(game);
 
 		}
@@ -60,8 +60,8 @@ int	key_hook(int keycode, t_game *game)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			draw_map(game);
-			draw_player(game);
+			// draw_map(game);
+			// draw_player(game);
 			cast_rays(game);
 
 		}
@@ -77,8 +77,8 @@ int	key_hook(int keycode, t_game *game)
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
-			draw_map(game);
-			draw_player(game);
+			// draw_map(game);
+			// draw_player(game);
 			cast_rays(game);
 
 		}
@@ -86,8 +86,7 @@ int	key_hook(int keycode, t_game *game)
 	else if (keycode == 65363) // right arrow
 	{
 		game->player_angle += 0.5;
-		if (game->player_angle > 2 * M_PI)
-			game->player_angle -= 2 * M_PI;
+		normalize_angle(game->player_angle);
 		game->pdx = cos(game->player_angle) * 5;
 		game->pdy = sin(game->player_angle) * 5;
 		draw_map(game);
@@ -98,8 +97,7 @@ int	key_hook(int keycode, t_game *game)
 	else if (keycode == 65361)
 	{
 		game->player_angle -= 0.5;
-		if (game->player_angle < 0)
-			game->player_angle += 2 * M_PI;
+		normalize_angle(game->player_angle);
 		game->pdx = cos(game->player_angle) * 5;
 		game->pdy = sin(game->player_angle) * 5;
 		draw_map(game);

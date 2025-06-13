@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/13 04:12:06 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:07:31 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,26 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
     }
 }
 
+void draw_vertical_line(t_game *game, int x, int y_start, int y_end, int color)
+{
+    for (int y = y_start; y < y_end; y++) {
+        if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < MAP_HEIGHT)
+            put_pixels(game, x, y, color);
+    }
+}
+
+
 void cast_rays(t_game *game)
 {
+	draw_background(game);
     double angle_step = game->fov / game->num_rays;
     int bpp, line_length, endian;
     char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
 
-    for (int i = 0; i < game->num_rays; i++)
+    for (int i = 0; i < SCREEN_WIDTH - 1; i++)
     {
         double ray_angle = game->start_angle + i * angle_step;
-        ray_angle = normalize_angle(ray_angle);
+        ray_angle = normalize_angle(ray_angle + game->player_angle);
 
         // Ray starting position (player center in pixels)
         double ray_x = game->player_x + (TILE_SIZE / 4) / 2;
@@ -74,35 +84,40 @@ void cast_rays(t_game *game)
             int map_y = (int)(ray_y / TILE_SIZE);
             if (map_x < 0 || map_x >= 16 || map_y < 0 || map_y >= 8)
                 break;
-            ray_x += ray_dx * 0.5; // step size (2 pixels per step)
-            ray_y += ray_dy * 0.5;
-			// Check for wall hit
-
 			if (game->map_section[map_y][map_x] == '1')
-			{
-				// Wall hit
-				printf("Ray {%d} hit wall at (%d, %d)\n", i, map_x, map_y);
 				break;
-			}
-			ray_x += ray_dx * 2;
-			ray_y += ray_dy * 2;
-			
-			if (game->map_section[map_y][map_x] == '0')
+			else
 			{
-				// Empty space, continue stepping
-				// printf("Ray in empty space at (%d, %d)\n", map_x, map_y);
-				// ray_x += ray_dx * 5; // step size (2 pixels per step)
-				// ray_y += ray_dy * 5;
-			
+				ray_x += ray_dx * 1.5;
+            	ray_y += ray_dy * 1.5;
 				continue;
 			}
-			dof++;
-				
+			dof++;	
         }
-		
-        // Draw the ray using your draw_line function
+		double dx = ray_x - game->player_x;
+		double dy = ray_y - game->player_y;
+		double distance = sqrt(dx * dx + dy * dy);
+
+		// Fish-eye fix
+		distance *= cos(ray_angle - game->player_angle);
+		double screen_distance = SCREEN_WIDTH / (2.0 * tan(game->fov / 2.0));
+
+		// Wall height on screen
+		double wall_height = (TILE_SIZE * screen_distance) / distance;
+
+		// Clamp draw positions to screen height
+		int draw_start = (MAP_HEIGHT / 2) - (wall_height / 2);
+		int draw_end   = (MAP_HEIGHT / 2) + (wall_height / 2);
+
+		// Clamp to screen limits
+		if (draw_start < 0) draw_start = 0;
+		if (draw_end > MAP_HEIGHT) draw_end = MAP_HEIGHT;
+
+		// Draw vertical line at column `i` from draw_start to draw_end
 		int color = 0x7FFFD4;
-		draw_line(game, (int)game->player_x + (TILE_SIZE / 4) / 2, (int)game->player_y + (TILE_SIZE / 4) / 2, (int)ray_x , (int)ray_y, color);
+        // Draw the ray using your draw_line function
+		// draw_line(game, (int)game->player_x + (TILE_SIZE / 4) / 2, (int)game->player_y + (TILE_SIZE / 4) / 2, (int)ray_x , (int)ray_y, color);
+		draw_vertical_line(game, i , draw_start, draw_end, color);
     }
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
@@ -132,9 +147,7 @@ void raycasting(t_game *game)
 	game->fov = M_PI / 3;
 	game->start_angle = game->player_angle - (game->fov / 2);
 	game->end_angle = game->player_angle + (game->fov / 2);
-	game->num_rays = SCREEN_WIDTH / TILE_SIZE;
-	// game->player_x *= TILE_SIZE;
-	// game->player_y *= TILE_SIZE;
+	game->num_rays = SCREEN_WIDTH ;
 	printf("Player FOV Range: (%.6f, %.6f)\n", game->end_angle, game->start_angle);
 	printf("Player FOV: (%f, %f)\n", game->start_angle, game->end_angle);
 	printf("Player angle: %f\n", game->player_angle);
