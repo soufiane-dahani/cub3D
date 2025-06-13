@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/12 14:31:36 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/13 01:19:33 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
 # define FT_ALLOC 1
 # define FT_CLEAR 0
 # define MAX_LINES 100
-# define TILE 64
-# define MAP_WIDTH 800
-# define MAP_HEIGHT 600
-# define FOV (M_PI / 3)
+
+# define TILE_SIZE 64
+# define SCREEN_WIDTH 1024
+# define MAP_HEIGHT 512
 
 typedef struct s_list
 {
@@ -78,12 +75,6 @@ typedef struct s_game
 	char			*anim_0;
 	char			*anim_1;
 
-	// Rendering and raycasting
-	double			distances_x;
-	double			distances_y;
-	double			ray_angle;
-	double			angle;
-
 	// Config
 	// t_texture	*no_texture;
 	// t_texture	*so_texture;
@@ -96,13 +87,28 @@ typedef struct s_game
 	// t_texture	*anim_1;
 
 	// Player info
-	float			player_x;
-	float			player_y;
+	float			player_x; // player x pos on arr
+	float			player_y; // player y pos on arr
+	
 	char			player_char;
 	float			dir_x;
 	float			dir_y;
 	float			plane_x;
 	float			plane_y;
+
+	// Rendering and raycasting
+	double			start_angle;
+	double			end_angle;
+	int 			num_rays;
+	double			ray_angle;
+	double			player_angle;
+	double			fov;
+	double			pdx;
+	double			pdy;
+	int 				screen_width;
+	int 				screen_height;
+	void *img;
+
 }	t_game;
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -152,6 +158,19 @@ void				process_anim(t_game *game, int *config_count, char *line,
 						int *flags);
 void				process_key(t_game *game, int *config_count, char *line,
 						int *flags);
-void				raycasting(t_game *game);
 
+// RayCasting
+void				init_window(t_game *game);
+void				define_player_angle(t_game *game);
+double				normalize_angle(float angle);
+void				raycasting(t_game *game);
+void				put_pixel(char *data, int x, int y, int color, int line_length);
+void				draw_tile(t_game *game, void *mlx, void *win, int x,
+						int y, int size, int color);
+int					key_hook(int keycode, t_game *game);
+int					is_move_valid(t_game *game, int new_x, int new_y);
+void				draw_background(t_game *game);
+void				draw_player(t_game *game);
+void				draw_map(t_game *game);
+void				cast_rays(t_game *game);
 #endif

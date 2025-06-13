@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -g3
+CFLAGS =  -Iincludes -g3 #-Wall -Wextra -Werror
 
 # Project files
 TARGET = cub3D
@@ -8,7 +8,10 @@ SRC = raycasting/cub3d.c libft/ft_split.c libft/ft_strjoin.c libft/ft_strlen.c l
 	 libft/ft_lstnew.c parsing/malloc.c libft/ft_strncmp.c main.c parsing/map.c libft/ft_putstr_fd.c \
 	 libft/get_next_line.c libft/get_next_line_utils.c libft/ft_atoi.c libft/ft_strtrim.c parsing/validate_configuration_lines.c \
 	 parsing/extract_number.c parsing/check_xpm.c parsing/map_section.c parsing/validate_configuration_lines2.c parsing/map_section2.c \
-	 parsing/validate_configuration_lines3.c
+	 parsing/validate_configuration_lines3.c \
+	 raycasting/raycasting_utils.c \
+	 raycasting/mlx_init.c raycasting/image_utils.c raycasting/key_handler.c \
+	 raycasting/map_utils.c  raycasting/movement.c \
 
 
 OBJ = $(SRC:.c=.o)
