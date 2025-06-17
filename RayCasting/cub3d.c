@@ -6,15 +6,11 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/17 17:21:28 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/17 17:24:24 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void cast_ray(t_game *game)
-{
-}
 
 void put_pixels(t_game *game, int x, int y, int color)
 {
@@ -26,6 +22,7 @@ void put_pixels(t_game *game, int x, int y, int color)
 		*(unsigned int *)(data + offset) = color;
 	}
 }
+
 void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 {
 	float dx = x1 - x0;
@@ -72,6 +69,51 @@ void draw_background_2(t_game *game)
 			put_pixels(game, x, y, floor_color);
 	}
 }
+
+void cast_ray(t_game *game, double ray_angle, int i)
+{
+	// Ray starting position (player center in pixels)
+	double ray_x = game->player_x + (TILE_SIZE / 4) / 2;
+	double ray_y = game->player_y + (TILE_SIZE / 4) / 2;
+
+	// Ray direction
+	double ray_dx = cos(ray_angle);
+	double ray_dy = sin(ray_angle);
+
+	// Step until wall or out of bounds (simple DDA)
+	int dof = 0;
+	while (dof < 30)
+	{
+		int map_x = (int)(ray_x / TILE_SIZE);
+		int map_y = (int)(ray_y / TILE_SIZE);
+		if (map_x < 0 || map_x >= game->map_width || map_y < 0 || map_y >= game->map_height)
+			break;
+		if (game->map_section[map_y][map_x] == '1')
+			break;
+		else
+		{
+			ray_x += ray_dx * 1.5;
+			ray_y += ray_dy * 1.5;
+			continue;
+		}
+		dof++;
+	}
+	double dx = ray_x - game->player_x;
+	double dy = ray_y - game->player_y;
+	double distance = sqrt(dx * dx + dy * dy);
+
+	// Fish-eye fix
+	distance *= cos(ray_angle - game->player_angle);
+	double screen_distance = SCREEN_WIDTH / (2.0 * tan(game->fov / 2.0));
+
+	double wall_height = (TILE_SIZE * screen_distance) / distance;
+
+	int draw_start = (MAP_HEIGHT / 2) - (wall_height / 2);
+	int draw_end = (MAP_HEIGHT / 2) + (wall_height / 2);
+	int color = 0x7FFFD4;
+	draw_vertical_line(game, i, draw_start, draw_end, color);
+}
+
 void cast_rays(t_game *game)
 {
 	// draw_background(game);
@@ -86,46 +128,7 @@ void cast_rays(t_game *game)
 		double ray_angle = game->start_angle + i * angle_step;
 		ray_angle = normalize_angle(ray_angle + game->player_angle);
 
-		// Ray starting position (player center in pixels)
-		double ray_x = game->player_x + (TILE_SIZE / 4) / 2;
-		double ray_y = game->player_y + (TILE_SIZE / 4) / 2;
-
-		// Ray direction
-		double ray_dx = cos(ray_angle);
-		double ray_dy = sin(ray_angle);
-
-		// Step until wall or out of bounds (simple DDA)
-		int dof = 0;
-		while (dof < 30)
-		{
-			int map_x = (int)(ray_x / TILE_SIZE);
-			int map_y = (int)(ray_y / TILE_SIZE);
-			if (map_x < 0 || map_x >= game->map_width || map_y < 0 || map_y >= game->map_height)
-				break;
-			if (game->map_section[map_y][map_x] == '1')
-				break;
-			else
-			{
-				ray_x += ray_dx * 1.5;
-				ray_y += ray_dy * 1.5;
-				continue;
-			}
-			dof++;
-		}
-		double dx = ray_x - game->player_x;
-		double dy = ray_y - game->player_y;
-		double distance = sqrt(dx * dx + dy * dy);
-
-		// Fish-eye fix
-		distance *= cos(ray_angle - game->player_angle);
-		double screen_distance = SCREEN_WIDTH / (2.0 * tan(game->fov / 2.0));
-
-		double wall_height = (TILE_SIZE * screen_distance) / distance;
-
-		int draw_start = (MAP_HEIGHT / 2) - (wall_height / 2);
-		int draw_end = (MAP_HEIGHT / 2) + (wall_height / 2);
-		int color = 0x7FFFD4;
-		draw_vertical_line(game, i, draw_start, draw_end, color);
+		cast_ray(game, ray_angle, i);
 	}
 	draw_map(game);
 	draw_player(game);
