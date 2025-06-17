@@ -6,12 +6,11 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:23:13 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/12 22:31:09 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/17 15:21:08 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void init_window(t_game *game)
 {

@@ -63,7 +63,7 @@ bye:
 	@echo "\033[1;32m                                               					   \033[0m"
 	@echo "\033[1;32m	                                                                  \033[0m"
 
-run: $(TARGET)
+run:
 	./$(TARGET) maps/good/creepy.cub
 
 .PHONY: all clean fclean re banner bye run
