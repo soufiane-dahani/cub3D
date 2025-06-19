@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_configuration_lines3.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/19 19:39:06 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	process_door(t_game *game, int *config_count, char *line, int *flags)
 		if (flags[7])
 			handle_init_errors(3);
 		flags[7] = 1;
-		handle_texture_line(line, &game->door_closed, config_count);
+		handle_texture_line(line, &game->door_open, config_count);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/19 19:37:58 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ char	*extract_path(char *str)
 	char	*res2;
 
 	res = ft_malloc(ft_strlen(str), FT_ALLOC);
-	i = 2;
+	i = 0;
+	while (str[i] != '\0' && str[i] != ' ')
+		i++;	
 	j = 0;
 	while (str[i] != '\0')
 	{

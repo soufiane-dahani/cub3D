@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_section.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/19 19:30:28 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,21 +113,21 @@ void	map_section(t_game *game)
 	flood_fill(game->map_copy, game->player_y, game->player_x);
 	set_player_direction(game);
 	i = 0;
-	while (game->map_copy[i] != NULL)
-	{
-		printf("%s", game->map_copy[i]);
-		i++;
-	}
-	i = 0;
-	printf("\n\n");
-	while (game->map_section[i] != NULL)
-	{
-		printf("%s", game->map_section[i]);
-		i++;
-	}
-	printf("\n\n");
-	printf("%f\n", game->dir_x);
-	printf("%f\n", game->dir_y);
-	printf("%f\n", game->plane_x);
-	printf("%f\n", game->plane_y);
+	// while (game->map_copy[i] != NULL)
+	// {
+	// 	printf("%s", game->map_copy[i]);
+	// 	i++;
+	// }
+	// i = 0;
+	// printf("\n\n");
+	// while (game->map_section[i] != NULL)
+	// {
+	// 	printf("%s", game->map_section[i]);
+	// 	i++;
+	// }
+	// printf("\n\n");
+	// printf("%f\n", game->dir_x);
+	// printf("%f\n", game->dir_y);
+	// printf("%f\n", game->plane_x);
+	// printf("%f\n", game->plane_y);
 }
