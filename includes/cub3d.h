@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/17 17:01:24 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/19 10:40:42 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ typedef struct s_game
 	char *anim_1;
 
 	// Config
-	// t_texture	*no_texture;
-	// t_texture	*so_texture;
-	// t_texture	*we_texture;
-	// t_texture	*ea_texture;
-	// t_texture	*closed_door;
-	// t_texture	*open_door;
-	// t_texture	*key;
-	// t_texture	*anim_0;
-	// t_texture	*anim_1;
+	t_texture	no_texture;
+	t_texture	so_texture;
+	t_texture	we_texture;
+	t_texture	ea_texture;
+	t_texture	door_closed_texture;
+	t_texture	door_open_texture;
+	t_texture	key_texture;
+	t_texture	anim_0_texture;
+	t_texture	anim_1_texture;
 
 	// Player info
 	float player_x; // player x pos on arr

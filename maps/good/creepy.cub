@@ -1,7 +1,7 @@
-NO textures/simonkraft/respawn_anchor_side0.xpm
-EA textures/simonkraft/respawn_anchor_side2.xpm
-SO textures/simonkraft/respawn_anchor_side4.xpm
-WE textures/simonkraft/respawn_anchor_side3.xpm
+NO textures/north.xpm
+EA textures/east.xpm
+SO textures/south.xpm
+WE textures/west.xpm
 
 DOOR_CLOSED textures/bonus/door_closed.xpm
 DOOR_OPEN textures/bonus/door_open.xpm

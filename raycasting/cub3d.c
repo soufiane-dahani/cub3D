@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/17 17:24:24 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/19 10:46:15 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void raycasting(t_game *game)
 	printf("Player FOV: (%f, %f)\n", game->start_angle, game->end_angle);
 	printf("Player angle: %f\n", game->player_angle);
 	printf("Number of rays: %d\n", game->num_rays);
-
+	load_textures(game);
 	cast_rays(game);
 	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
 	// mlx_loop_hook(game->mlx, loop_hook, game);
