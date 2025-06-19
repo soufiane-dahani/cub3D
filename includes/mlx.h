@@ -33,6 +33,7 @@
 
 
 void	*mlx_init();
+
 /*
 **  needed before everything else.
 **  return (void *)0 if failed

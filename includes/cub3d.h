@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/19 10:40:42 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:18:28 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,11 @@ void draw_player(t_game *game);
 void draw_map(t_game *game);
 void cast_rays(t_game *game);
 void calculate_tile_position(t_game *game);
+
+
+
+
+// load textures
+void    load_textures(t_game *game);
 
 #endif
