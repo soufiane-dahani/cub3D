@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/19 12:18:28 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:37:30 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ typedef struct s_list
 
 typedef struct s_texture
 {
-	void *img;		// Pointer to the image (from mlx_xpm_file_to_image)
-	char *addr;		// Pointer to the pixel data
-	int width;		// Width of the image in pixels
-	int height;		// Height of the image in pixels
-	int bpp;			// Bits per pixel
-	int line_len; // Number of bytes in one row
-	int endian;		// Byte order
+	void *img;
+	char *addr;
+	int width;
+	int height;
+	int bpp;
+	int line_len;
+	int endian;
 } t_texture;
 
 typedef struct s_game
