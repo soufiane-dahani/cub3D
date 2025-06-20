@@ -1,17 +1,16 @@
-   WE                            textures/wolfenstein/grey_stone.xpm
-NO      textures/wolfenstein/purple_stone.xpm
+NO textures/north.xpm
+EA textures/east.xpm
+SO textures/south.xpm
+WE textures/west.xpm
 
+DOOR_CLOSED textures/bonus/door_closed.xpm
+DOOR_OPEN textures/bonus/door_open.xpm
+KEY         textures/bonus/key.xpm
+ANIM_0      textures/bonus/anim_0.xpm
+ANIM_1      textures/bonus/anim_1.xpm
 
-
-SO textures/wolfenstein/red_brick.xpm
-
-F      17,    38,     64
-
-EA textures/wolfenstein/wood.xpm
-
-
-
-C 218, 234, 235
+C 35,19,73
+F 15,6,40
 
 1111111111111111111111111
 10S0110000100000000000001

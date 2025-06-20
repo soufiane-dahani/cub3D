@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:26 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/17 16:49:28 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/20 15:24:32 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void calculate_tile_position(t_game *game)
 {
 	int i;
 	int j;
+	int max = 0;
 
 	i = 0;
 	while (game->map_section[i])
@@ -48,8 +49,10 @@ void calculate_tile_position(t_game *game)
 		{
 			j++;
 		}
+		if ( max < j)
+			max = j;
 		i++;
 	}
-	game->map_width = j;
+	game->map_width = max - 1;
 	game->map_height = i;
 }

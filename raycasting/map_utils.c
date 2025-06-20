@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/17 15:24:14 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/20 15:31:38 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void draw_map(t_game *game)
 	char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
 
 	// draw_background(game);
-	int map_x = 16;
-	int map_y = 8;
+	int map_x = game->map_width;
+	int map_y = game->map_height;
 	int x = 0;
 	int y = 0;
 	for (int i = 0; i < map_y; i++)

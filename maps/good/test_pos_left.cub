@@ -1,10 +1,16 @@
-NO textures/test/north.xpm
-SO textures/test/south.xpm
-WE textures/test/west.xpm
-EA textures/test/east.xpm
+NO textures/north.xpm
+EA textures/east.xpm
+SO textures/south.xpm
+WE textures/west.xpm
 
-F 20,20,20
-C 200,200,200
+DOOR_CLOSED textures/bonus/door_closed.xpm
+DOOR_OPEN textures/bonus/door_open.xpm
+KEY         textures/bonus/key.xpm
+ANIM_0      textures/bonus/anim_0.xpm
+ANIM_1      textures/bonus/anim_1.xpm
+
+C 35,19,73
+F 15,6,40
 
 111111111111111111111
 1W0000000000000000001

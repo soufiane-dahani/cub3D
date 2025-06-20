@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/19 10:46:15 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:10:45 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void cast_ray(t_game *game, double ray_angle, int i)
 	// Fish-eye fix
 	distance *= cos(ray_angle - game->player_angle);
 	double screen_distance = SCREEN_WIDTH / (2.0 * tan(game->fov / 2.0));
-
 	double wall_height = (TILE_SIZE * screen_distance) / distance;
 
 	int draw_start = (MAP_HEIGHT / 2) - (wall_height / 2);
@@ -120,9 +119,6 @@ void cast_rays(t_game *game)
 	draw_background_2(game);
 
 	double angle_step = game->fov / game->num_rays;
-	int bpp, line_length, endian;
-	char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
-
 	for (int i = 0; i < SCREEN_WIDTH; i++)
 	{
 		double ray_angle = game->start_angle + i * angle_step;

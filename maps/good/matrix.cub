@@ -1,10 +1,16 @@
-NO textures/matrix.xpm
-SO textures/matrix.xpm
-WE textures/matrix.xpm
-EA textures/matrix.xpm
+NO textures/north.xpm
+EA textures/east.xpm
+SO textures/south.xpm
+WE textures/west.xpm
 
-F 0,0,0
-C 0,0,0
+DOOR_CLOSED textures/bonus/door_closed.xpm
+DOOR_OPEN textures/bonus/door_open.xpm
+KEY         textures/bonus/key.xpm
+ANIM_0      textures/bonus/anim_0.xpm
+ANIM_1      textures/bonus/anim_1.xpm
+
+C 35,19,73
+F 15,6,40
 
 111111111111111111111
 101000001000000000001
