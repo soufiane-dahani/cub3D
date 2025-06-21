@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/21 17:19:08 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/21 20:44:31 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 #define FT_ALLOC 1
 #define FT_CLEAR 0
@@ -177,7 +181,8 @@ void draw_player(t_game *game);
 void draw_map(t_game *game);
 void cast_rays(t_game *game);
 void calculate_tile_position(t_game *game);
-
+void draw_map_walls(t_game *game);
+void draw_map_bg(t_game *game);
 // load textures
 void load_textures(t_game *game);
 

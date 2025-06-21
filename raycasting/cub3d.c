@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/21 18:04:49 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/21 20:47:44 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ void cast_ray(t_game *game, double ray_angle, int i)
 	int draw_end = (MAP_HEIGHT / 2) + (wall_height / 2);
 	int color = 0x7FFFD4;
 	draw_vertical_line(game, i, draw_start, draw_end, color);
+	// draw_line(game, (int)(game->player_x + (TILE_SIZE / 4) / 2), (int)(game->player_y + (TILE_SIZE / 4) / 2), (int)ray_x, (int)ray_y, 0xFF0000);
+
+	draw_line(game, ((int)(game->player_x + (TILE_SIZE / 4) / 2) / 4), ((int)(game->player_y + (TILE_SIZE / 4) / 2)) / 4, (int)ray_x / 4, (int)ray_y / 4, 0xFF0000);
 }
 
 void cast_rays(t_game *game)
@@ -119,22 +122,24 @@ void cast_rays(t_game *game)
 	draw_background_2(game);
 
 	double angle_step = game->fov / game->num_rays;
+	draw_map_bg(game);
 	for (int i = 0; i < SCREEN_WIDTH; i++)
 	{
 		double ray_angle = normalize_angle((game->start_angle + i * angle_step) + game->player_angle);
 
 		cast_ray(game, ray_angle, i);
 	}
-	draw_map(game);
+	draw_map_walls(game);
 	draw_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
 void raycasting(t_game *game)
 {
+
 	game->player_angle = 0.0;
-	define_player_angle(game);
 	calculate_tile_position(game);
+	define_player_angle(game);
 	game->player_x = game->player_x * TILE_SIZE;
 	game->player_y = game->player_y * TILE_SIZE;
 	init_window(game);
@@ -142,13 +147,15 @@ void raycasting(t_game *game)
 	draw_map(game);
 	draw_player(game);
 
-	printf("player_char: %c\n", game->player_char);
-	printf("player_x: %f\n", game->player_x);
-	printf("player_y: %f\n", game->player_y);
-	printf("dir_x: %f\n", game->dir_x);
-	printf("dir_y: %f\n", game->dir_y);
-	printf("plane_x: %f\n", game->plane_x);
-	printf("plane_y: %f\n", game->plane_y);
+	printf("Player char: %c | Angle: %f\n", game->player_char, game->player_angle);
+
+	// printf("player_char: %c\n", game->player_char);
+	// printf("player_x: %f\n", game->player_x);
+	// printf("player_y: %f\n", game->player_y);
+	// printf("dir_x: %f\n", game->dir_x);
+	// printf("dir_y: %f\n", game->dir_y);
+	// printf("plane_x: %f\n", game->plane_x);
+	// printf("plane_y: %f\n", game->plane_y);
 
 	game->fov = M_PI / 3;
 	game->player_angle = normalize_angle(game->player_angle);
@@ -157,10 +164,10 @@ void raycasting(t_game *game)
 	game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
 	game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
 	game->num_rays = SCREEN_WIDTH;
-	printf("Player FOV Range: (%.6f, %.6f)\n", game->end_angle, game->start_angle);
-	printf("Player FOV: (%f, %f)\n", game->start_angle, game->end_angle);
-	printf("Player angle: %f\n", game->player_angle);
-	printf("Number of rays: %d\n", game->num_rays);
+	// printf("Player FOV Range: (%.6f, %.6f)\n", game->end_angle, game->start_angle);
+	// printf("Player FOV: (%f, %f)\n", game->start_angle, game->end_angle);
+	// printf("Player angle: %f\n", game->player_angle);
+	// printf("Number of rays: %d\n", game->num_rays);
 	load_textures(game);
 	cast_rays(game);
 	mlx_hook(game->win, 2, 1L << 0, key_hook, game);

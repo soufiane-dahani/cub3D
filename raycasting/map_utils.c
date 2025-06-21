@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/20 15:31:38 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/21 20:44:27 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,30 @@ void draw_player(t_game *game)
 	}
 }
 
+void draw_map_walls(t_game *game)
+{
+	int yellow = 0xFFFF00;
+	int bpp, line_length, endian;
+	char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
+
+	// draw_background(game);
+	int map_x = game->map_width;
+	int map_y = game->map_height;
+	int x = 0;
+	int y = 0;
+	for (int i = 0; i < map_y; i++)
+	{
+		for (int j = 0; j < map_x; j++)
+		{
+			if (game->map_section[i][j] == '1')
+				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4), i * (TILE_SIZE / 4), (TILE_SIZE / 4), yellow);
+			x += TILE_SIZE - 16;
+		}
+		y += TILE_SIZE - 16;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+}
+
 void draw_map(t_game *game)
 {
 	int yellow = 0xFFFF00;
@@ -101,6 +125,30 @@ void draw_map(t_game *game)
 			// else
 			// 	draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4),  i * (TILE_SIZE / 4), (TILE_SIZE / 4) - 1, yellow);
 			else
+				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4), i * (TILE_SIZE / 4), (TILE_SIZE / 4), 0x000000);
+			x += TILE_SIZE - 16;
+		}
+		y += TILE_SIZE - 16;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+}
+
+void draw_map_bg(t_game *game)
+{
+	int yellow = 0xFFFF00;
+	int bpp, line_length, endian;
+	char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
+
+	// draw_background(game);
+	int map_x = game->map_width;
+	int map_y = game->map_height;
+	int x = 0;
+	int y = 0;
+	for (int i = 0; i < map_y; i++)
+	{
+		for (int j = 0; j < map_x; j++)
+		{
+			if (game->map_section[i][j] != '1')
 				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4), i * (TILE_SIZE / 4), (TILE_SIZE / 4), 0x000000);
 			x += TILE_SIZE - 16;
 		}
