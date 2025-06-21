@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/20 15:41:09 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/21 18:04:34 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int key_hook(int keycode, t_game *game)
 		double new_y = game->player_y - game->pdy;
 		int new_tile_x = (int)(new_x / TILE_SIZE);
 		int new_tile_y = (int)(new_y / TILE_SIZE);
-		if (is_move_valid(game, new_x, new_y) && new_y < MAP_HEIGHT - TILE_SIZE && game->map_section[new_tile_y][new_tile_x] != '1')
+		if (is_move_valid(game, new_x, new_y) && new_y > TILE_SIZE && game->map_section[new_tile_y][new_tile_x] != '1')
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/19 18:37:30 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:19:08 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ typedef struct s_game
 	char *anim_1;
 
 	// Config
-	t_texture	no_texture;
-	t_texture	so_texture;
-	t_texture	we_texture;
-	t_texture	ea_texture;
-	t_texture	door_closed_texture;
-	t_texture	door_open_texture;
-	t_texture	key_texture;
-	t_texture	anim_0_texture;
-	t_texture	anim_1_texture;
+	t_texture no_texture;
+	t_texture so_texture;
+	t_texture we_texture;
+	t_texture ea_texture;
+	t_texture door_closed_texture;
+	t_texture door_open_texture;
+	t_texture key_texture;
+	t_texture anim_0_texture;
+	t_texture anim_1_texture;
 
 	// Player info
 	float player_x; // player x pos on arr
@@ -165,7 +165,7 @@ void process_key(t_game *game, int *config_count, char *line,
 // RayCasting
 void init_window(t_game *game);
 void define_player_angle(t_game *game);
-double normalize_angle(float angle);
+double normalize_angle(double angle);
 void raycasting(t_game *game);
 void put_pixel(char *data, int x, int y, int color, int line_length);
 void draw_tile(t_game *game, void *mlx, void *win, int x,
@@ -178,10 +178,7 @@ void draw_map(t_game *game);
 void cast_rays(t_game *game);
 void calculate_tile_position(t_game *game);
 
-
-
-
 // load textures
-void    load_textures(t_game *game);
+void load_textures(t_game *game);
 
 #endif

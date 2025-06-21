@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/20 16:10:45 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/06/21 18:04:49 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,7 @@ void cast_rays(t_game *game)
 	double angle_step = game->fov / game->num_rays;
 	for (int i = 0; i < SCREEN_WIDTH; i++)
 	{
-		double ray_angle = game->start_angle + i * angle_step;
-		ray_angle = normalize_angle(ray_angle + game->player_angle);
+		double ray_angle = normalize_angle((game->start_angle + i * angle_step) + game->player_angle);
 
 		cast_ray(game, ray_angle, i);
 	}
@@ -133,6 +132,8 @@ void cast_rays(t_game *game)
 
 void raycasting(t_game *game)
 {
+	game->player_angle = 0.0;
+	define_player_angle(game);
 	calculate_tile_position(game);
 	game->player_x = game->player_x * TILE_SIZE;
 	game->player_y = game->player_y * TILE_SIZE;
@@ -149,12 +150,12 @@ void raycasting(t_game *game)
 	printf("plane_x: %f\n", game->plane_x);
 	printf("plane_y: %f\n", game->plane_y);
 
-	define_player_angle(game);
-	game->pdx = cos(game->player_angle) * 5; // Player delta x
-	game->pdy = sin(game->player_angle) * 5; // Player delta y
 	game->fov = M_PI / 3;
-	game->start_angle = game->player_angle - (game->fov / 2);
-	game->end_angle = game->player_angle + (game->fov / 2);
+	game->player_angle = normalize_angle(game->player_angle);
+	game->pdx = cos(game->player_angle); // Player delta x
+	game->pdy = sin(game->player_angle); // Player delta y
+	game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
+	game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
 	game->num_rays = SCREEN_WIDTH;
 	printf("Player FOV Range: (%.6f, %.6f)\n", game->end_angle, game->start_angle);
 	printf("Player FOV: (%f, %f)\n", game->start_angle, game->end_angle);
