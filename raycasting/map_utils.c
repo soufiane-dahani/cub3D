@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/22 14:10:54 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/23 18:50:29 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void draw_map(t_game *game)
 			// 	draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4),  i * (TILE_SIZE / 4), (TILE_SIZE / 4) - 1, yellow);
 			else
 				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 4), i * (TILE_SIZE / 4), (TILE_SIZE / 4), 0x000000);
-			x += TILE_SIZE - 16;
+			x += (TILE_SIZE / 4);
 		}
-		y += TILE_SIZE - 16;
+		y += (TILE_SIZE / 4);
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }

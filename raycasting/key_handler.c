@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/23 16:28:42 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/23 19:02:30 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int key_hook(int keycode, t_game *game)
 		double new_y = game->player_y + game->pdy;
 		int new_tile_x = (int)(new_x / TILE_SIZE);
 		int new_tile_y = (int)(new_y / TILE_SIZE);
-		if (is_move_valid(game, new_x, new_y) && new_y > TILE_SIZE + 8 && game->map_section[new_tile_y][new_tile_x] != '1')
+		if (is_move_valid(game, new_x, new_y) && new_y > TILE_SIZE && game->map_section[new_tile_y][new_tile_x] != '1')
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
@@ -63,7 +63,7 @@ int key_hook(int keycode, t_game *game)
 		double new_y = game->player_y - game->pdy;
 		int new_tile_x = (int)(new_x / TILE_SIZE);
 		int new_tile_y = (int)(new_y / TILE_SIZE);
-		if (is_move_valid(game, new_x, new_y) && new_y > TILE_SIZE + 8 && game->map_section[new_tile_y][new_tile_x] != '1')
+		if (is_move_valid(game, new_x, new_y) && new_y > TILE_SIZE && game->map_section[new_tile_y][new_tile_x] != '1')
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
@@ -73,7 +73,7 @@ int key_hook(int keycode, t_game *game)
 	else if (keycode == 65363) // right arrow
 	{
 		game->player_angle += 0.025;
-		normalize_angle(game->player_angle);
+		game->player_angle = normalize_angle(game->player_angle);
 		game->pdx = cos(game->player_angle);
 		game->pdy = sin(game->player_angle);
 		cast_rays(game);
@@ -81,11 +81,11 @@ int key_hook(int keycode, t_game *game)
 	else if (keycode == 65361)
 	{
 		game->player_angle -= 0.025;
-		normalize_angle(game->player_angle);
+		game->player_angle = normalize_angle(game->player_angle);
 		game->pdx = cos(game->player_angle);
 		game->pdy = sin(game->player_angle);
 		cast_rays(game);
 	}
-	// printf("player ( x, y ): ( %f, %f )\n", game->player_x, game->player_y);
+	printf("player ( x, y ): ( %f, %f )\n", game->player_x, game->player_y);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/23 18:31:04 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/23 18:51:33 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,8 @@ void raycasting(t_game *game)
 	game->player_angle = 0.0;
 	calculate_tile_position(game);
 	define_player_angle(game);
-	game->player_x = game->player_x * TILE_SIZE;
-	game->player_y = game->player_y * TILE_SIZE;
+	game->player_x = game->player_x * TILE_SIZE + 16;
+	game->player_y = game->player_y * TILE_SIZE + 16;
 	init_window(game);
 
 	draw_map(game);
