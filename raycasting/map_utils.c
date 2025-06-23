@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/21 20:44:27 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/22 14:10:54 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,44 +38,16 @@ void draw_player(t_game *game)
 	int px = game->player_x / 4;
 	int py = game->player_y / 4;
 
-	// Draw player as a square
 	if (py > TILE_SIZE / 4 && py < MAP_HEIGHT)
 	{
 		draw_tile(game, game->mlx, game->win, px, py, player_w, red);
 
-		// Draw direction line from the center of the player
-		double angle = game->player_angle;
-		int line_length_px = (TILE_SIZE / 4) / 3; // Length of the direction line
-
+		// for debug player direction
 		int cx = px + player_w / 2;
 		int cy = py + player_h / 2;
-		int x2 = cx + cos(angle) * line_length_px;
-		int y2 = cy + sin(angle) * line_length_px;
-
-		// Simple Bresenham's line algorithm
-		int dx = abs(x2 - cx), sx = cx < x2 ? 1 : -1;
-		int dy = -abs(y2 - cy), sy = cy < y2 ? 1 : -1;
-		int err = dx + dy, e2;
-
-		int x = cx, y = cy;
-		while (1)
-		{
-			put_pixel(data, x, y, red, line_length);
-			if (x == x2 && y == y2)
-				break;
-			e2 = 2 * err;
-			if (e2 >= dy)
-			{
-				err += dy;
-				x += sx;
-			}
-			if (e2 <= dx)
-			{
-				err += dx;
-				y += sy;
-			}
-		}
-
+		int look_x = cx + cos(game->player_angle) * 10;
+		int look_y = cy + sin(game->player_angle) * 10;
+		draw_line(game, cx, cy, look_x, look_y, 0x00FF00);
 		mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	}
 }

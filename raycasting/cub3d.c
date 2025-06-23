@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/21 20:47:44 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/23 13:58:41 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void draw_background_2(t_game *game)
 {
 	int x, y;
 	int floor_color = 0x222222;
-	int ceiling_color = 0x444444; // example ceiling color
+	int ceiling_color = 0x444444;
 
 	for (y = 0; y < MAP_HEIGHT / 2; y++)
 	{
@@ -73,8 +73,8 @@ void draw_background_2(t_game *game)
 void cast_ray(t_game *game, double ray_angle, int i)
 {
 	// Ray starting position (player center in pixels)
-	double ray_x = game->player_x + (TILE_SIZE / 4) / 2;
-	double ray_y = game->player_y + (TILE_SIZE / 4) / 2;
+	double ray_x = game->player_x;
+	double ray_y = game->player_y;
 
 	// Ray direction
 	double ray_dx = cos(ray_angle);
@@ -112,7 +112,6 @@ void cast_ray(t_game *game, double ray_angle, int i)
 	int color = 0x7FFFD4;
 	draw_vertical_line(game, i, draw_start, draw_end, color);
 	// draw_line(game, (int)(game->player_x + (TILE_SIZE / 4) / 2), (int)(game->player_y + (TILE_SIZE / 4) / 2), (int)ray_x, (int)ray_y, 0xFF0000);
-
 	draw_line(game, ((int)(game->player_x + (TILE_SIZE / 4) / 2) / 4), ((int)(game->player_y + (TILE_SIZE / 4) / 2)) / 4, (int)ray_x / 4, (int)ray_y / 4, 0xFF0000);
 }
 
@@ -123,10 +122,12 @@ void cast_rays(t_game *game)
 
 	double angle_step = game->fov / game->num_rays;
 	draw_map_bg(game);
-	for (int i = 0; i < SCREEN_WIDTH; i++)
+	game->start_angle = game->player_angle - (game->fov / 2);
+	for (int i = 0; i < game->num_rays; i++)
 	{
-		double ray_angle = normalize_angle((game->start_angle + i * angle_step) + game->player_angle);
-
+		// double ray_angle = normalize_angle(game->start_angle + (i * angle_step)) + game->player_angle;
+		double ray_angle = game->start_angle + (i * angle_step);
+		normalize_angle(ray_angle);
 		cast_ray(game, ray_angle, i);
 	}
 	draw_map_walls(game);
