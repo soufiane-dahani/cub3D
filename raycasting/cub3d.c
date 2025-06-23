@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/23 14:04:55 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/23 16:55:12 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,20 @@ void cast_ray(t_game *game, double ray_angle, int i)
 	{
 		int map_x = (int)(ray_x / TILE_SIZE);
 		int map_y = (int)(ray_y / TILE_SIZE);
+		if (map_x < 0)
+			map_x = (ray_x - 0.0001) / TILE_SIZE;
+		if (map_y < 0)
+			map_y = (ray_y - 0.0001) / TILE_SIZE;
+
 		if (map_x < 0 || map_x >= game->map_width || map_y < 0 || map_y >= game->map_height)
 			break;
 		if (game->map_section[map_y][map_x] == '1')
 			break;
 		else
 		{
-			ray_x += ray_dx * 1.5;
-			ray_y += ray_dy * 1.5;
+			double step_size = 0.1;
+			ray_x += ray_dx * step_size;
+			ray_y += ray_dy * step_size;
 			continue;
 		}
 		dof++;
