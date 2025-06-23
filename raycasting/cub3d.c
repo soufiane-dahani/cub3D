@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/23 13:58:41 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/23 14:04:55 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void cast_rays(t_game *game)
 	{
 		// double ray_angle = normalize_angle(game->start_angle + (i * angle_step)) + game->player_angle;
 		double ray_angle = game->start_angle + (i * angle_step);
-		normalize_angle(ray_angle);
+		ray_angle = normalize_angle(ray_angle);
 		cast_ray(game, ray_angle, i);
 	}
 	draw_map_walls(game);
