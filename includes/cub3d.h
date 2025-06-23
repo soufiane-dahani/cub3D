@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/21 20:44:31 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/23 16:11:59 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +185,5 @@ void draw_map_walls(t_game *game);
 void draw_map_bg(t_game *game);
 // load textures
 void load_textures(t_game *game);
-
+void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 #endif

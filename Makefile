@@ -18,7 +18,7 @@ OBJ = $(SRC:.c=.o)
 MINILIBX = minilibx-linux/libmlx.a
 
 # Rules
-all: $(TARGET) banner clean
+all: $(TARGET) banner
 
 $(TARGET): $(OBJ) $(MINILIBX)
 	$(CC) $(CFLAGS) $(OBJ) $(MINILIBX) -o $(TARGET) -lm -lXext -lX11
