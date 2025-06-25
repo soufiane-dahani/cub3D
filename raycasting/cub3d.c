@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/23 18:51:33 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:50:52 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,11 @@ void cast_rays(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
+int mouse_hook(int button, int x, int y, t_game *vars)
+{
+	
+	return (0);
+}
 void raycasting(t_game *game)
 {
 
@@ -180,5 +185,7 @@ void raycasting(t_game *game)
 	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
 	// mlx_loop_hook(game->mlx, loop_hook, game);
 	mlx_hook(game->win, 17, 0, mlx_loop_end, game->mlx);
+	mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
+	// mlx_mouse_hook(game->win, mouse_hook, game);
 	mlx_loop(game->mlx);
 }
