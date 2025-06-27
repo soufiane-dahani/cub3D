@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/23 16:11:59 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/27 16:54:24 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -33,6 +34,8 @@
 #define TILE_SIZE 64
 #define SCREEN_WIDTH 1024
 #define MAP_HEIGHT 512
+
+#define MAX_KEYS 256
 
 typedef struct s_list
 {
@@ -186,4 +189,9 @@ void draw_map_bg(t_game *game);
 // load textures
 void load_textures(t_game *game);
 void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
+long current_millis();
+
+int key_release(int keycode, t_game *game);
+int key_press(int keycode, t_game *game);
+int game_loop(void *param);
 #endif

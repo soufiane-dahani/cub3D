@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/25 20:50:52 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/27 17:07:51 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,12 @@ void cast_ray(t_game *game, double ray_angle, int i)
 
 void cast_rays(t_game *game)
 {
+	static long last_update = 0;
+	long now = current_millis();
+	if (now - last_update < 16)
+		return (0);
 	// draw_background(game);
 	draw_background_2(game);
-
 	double angle_step = game->fov / game->num_rays;
 	draw_map_bg(game);
 	game->start_angle = game->player_angle - (game->fov / 2);
@@ -141,11 +144,60 @@ void cast_rays(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
-int mouse_hook(int button, int x, int y, t_game *vars)
+void rotate_vector(double *px, double *py, double angle)
 {
-	
+	double old_x;
+	double cos_a;
+	double sin_a;
+
+	old_x = *px;
+	cos_a = cos(angle);
+	sin_a = sin(angle);
+	*px = old_x * cos_a - *py * sin_a;
+	*py = old_x * sin_a + *py * cos_a;
+}
+
+long current_millis()
+{
+	struct timeval t;
+	gettimeofday(&t, NULL);
+	return t.tv_sec * 1000 + t.tv_usec / 1000;
+}
+
+int mouse_hook(int x, int y, void *param)
+{
+	static int last_x = -1;
+	t_game *game = (t_game *)param;
+
+	if (last_x == -1)
+	{
+		last_x = x;
+		return (0);
+	}
+	static long last_update = 0;
+	long now = current_millis();
+
+	int delta_x = x - last_x;
+	last_x = x; // update for next frame
+
+	if (abs(delta_x) > 1 && (now - last_update > 16)) // 60 FPS = ~16ms
+	{
+		double sensitivity = 0.015;
+		double angle = delta_x * sensitivity;
+
+		game->player_angle += angle;
+		game->player_angle = normalize_angle(game->player_angle);
+
+		game->pdx = cos(game->player_angle);
+		game->pdy = sin(game->player_angle);
+
+		last_update = now;
+		cast_rays(game);
+	}
+
 	return (0);
 }
+
 void raycasting(t_game *game)
 {
 
@@ -184,8 +236,10 @@ void raycasting(t_game *game)
 	cast_rays(game);
 	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
 	// mlx_loop_hook(game->mlx, loop_hook, game);
-	mlx_hook(game->win, 17, 0, mlx_loop_end, game->mlx);
 	mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
+	mlx_loop_hook(game->mlx, key_hook, game);
+
+	mlx_hook(game->win, 17, 0, mlx_loop_end, game->mlx);
 	// mlx_mouse_hook(game->win, mouse_hook, game);
 	mlx_loop(game->mlx);
 }
