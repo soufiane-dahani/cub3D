@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/06/27 17:07:51 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/06/27 17:09:10 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void cast_rays(t_game *game)
 	static long last_update = 0;
 	long now = current_millis();
 	if (now - last_update < 16)
-		return (0);
+		return;
 	// draw_background(game);
 	draw_background_2(game);
 	double angle_step = game->fov / game->num_rays;
