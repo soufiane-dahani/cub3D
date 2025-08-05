@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/20 16:00:54 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/05 16:57:22 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void	check_count(t_game *game)
 		while (game->map_section[row][col] != '\n')
 		{
 			player_count += validate_map_char(game->map_section[row][col],
-					game,
-					row,
-					col);
+					game, row, col);
 			col++;
 		}
+		if (col >= 32 || row > 33)
+			handle_init_errors(5);
 		row++;
 	}
 	if (player_count != 1)

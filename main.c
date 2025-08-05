@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/27 16:54:31 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/05 16:26:11 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void handle_init_errors(int error_type)
 	else if (error_type == 4)
 		ft_putstr_fd("Error: \nUndefined char\n", 2);
 	else if (error_type == 5)
-		ft_putstr_fd("Error: \nNo player found\n", 2);
+		ft_putstr_fd("Error: \nNo player found or map is big\n", 2);
 	else if (error_type == 6)
 		ft_putstr_fd("Error: \nMap not closed\n", 2);
 	exit(1);
