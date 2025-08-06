@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/05 16:57:22 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:37:04 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	map_section(t_game *game)
 	set_up_map(game);
 	game->max_len = 0;
 	check_count(game);
+	check_count_of_doors(game);
 	prepare_map(game);
 	flood_fill(game->map_copy, game->player_y, game->player_x);
 	set_player_direction(game);

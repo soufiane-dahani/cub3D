@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/05 15:24:59 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/05 17:06:58 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int key_hook(int keycode, t_game *game)
 		int new_tile_x = (int)(new_x / TILE_SIZE);
 		int new_tile_y = (int)(new_y / TILE_SIZE);
 		if (is_move_valid(game, new_x, new_y) &&
-				new_x < SCREEN_WIDTH - TILE_SIZE &&
+				new_x < TILE_SIZE &&
 				game->map_section[new_tile_y][new_tile_x] != '1')
 		{
 			game->player_x = new_x;
