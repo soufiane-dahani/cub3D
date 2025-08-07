@@ -94,7 +94,7 @@ void try_open_doors(t_game *game)
 void update_doors(t_game *game, double delta_time)
 {
 	int i = 0;
-	while( i < game->num_doors)
+	while (i < game->num_doors)
 	{
 		if (game->doors[i].timer > 0)
 			game->doors[i].timer -= delta_time;
