@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/27 16:54:24 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/07 16:54:50 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <sys/time.h>
 
@@ -154,20 +155,20 @@ int ft_strcmp(const char *s1, const char *s2);
 int is_config_identifier(char *line);
 void handle_texture_line(char *line, char **texture, int *count);
 void handle_color_line(char *line, t_game *game, int type,
-											 int *count);
+					   int *count);
 void process_no_so(t_game *game, int *config_count, char *line,
-									 int *flags);
+				   int *flags);
 int process_config_lines(t_game *game, int *config_flags);
 void validate_configuration_lines(t_game *game);
 void set_up_map(t_game *game);
 void flood_fill(char **map, int y, int x);
 void set_player_direction(t_game *game);
 void process_door(t_game *game, int *config_count, char *line,
-									int *flags);
+				  int *flags);
 void process_anim(t_game *game, int *config_count, char *line,
-									int *flags);
+				  int *flags);
 void process_key(t_game *game, int *config_count, char *line,
-								 int *flags);
+				 int *flags);
 
 // RayCasting
 void init_window(t_game *game);
@@ -176,7 +177,7 @@ double normalize_angle(double angle);
 void raycasting(t_game *game);
 void put_pixel(char *data, int x, int y, int color, int line_length);
 void draw_tile(t_game *game, void *mlx, void *win, int x,
-							 int y, int size, int color);
+			   int y, int size, int color);
 int key_hook(int keycode, t_game *game);
 int is_move_valid(t_game *game, int new_x, int new_y);
 void draw_background(t_game *game);
@@ -190,6 +191,11 @@ void draw_map_bg(t_game *game);
 void load_textures(t_game *game);
 void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 long current_millis();
+
+// Texture utilities
+int get_texture_color(t_texture *texture, int x, int y);
+t_texture *get_wall_texture(t_game *game, int side, int step_x, int step_y);
+double get_wall_x(t_game *game, double ray_x, double ray_y, int side);
 
 int key_release(int keycode, t_game *game);
 int key_press(int keycode, t_game *game);

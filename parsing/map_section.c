@@ -3,36 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   map_section.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/20 16:00:54 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/05 18:01:57 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	validate_map_char(char c, t_game *game, int row, int col)
+static int validate_map_char(char c, t_game *game, int row, int col)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		game->player_x = col;
-		game->player_y = row;
+		game->player_x = col + 1;
+		game->player_y = row + 1;
 		game->player_char = c;
 		return (1);
 	}
-	else if (c != '0' && c != '1' && c != ' ' && c != 'D' && c != 'O'
-		&& c != 'K' && c != 'A')
+	else if (c != '0' && c != '1' && c != ' ' && c != 'D' && c != 'O' && c != 'K' && c != 'A')
 		handle_init_errors(4);
 	return (0);
 }
 
-static void	check_count(t_game *game)
+static void check_count(t_game *game)
 {
-	int	row;
-	int	col;
-	int	player_count;
-	int	len;
+	int row;
+	int col;
+	int player_count;
+	int len;
 
 	row = 0;
 	player_count = 0;
@@ -45,9 +44,9 @@ static void	check_count(t_game *game)
 		while (game->map_section[row][col] != '\n')
 		{
 			player_count += validate_map_char(game->map_section[row][col],
-					game,
-					row,
-					col);
+											  game,
+											  row,
+											  col);
 			col++;
 		}
 		row++;
@@ -56,10 +55,10 @@ static void	check_count(t_game *game)
 		handle_init_errors(5);
 }
 
-static void	fill_new_line(char *new_line, char *old_line, int max_len)
+static void fill_new_line(char *new_line, char *old_line, int max_len)
 {
-	int	j;
-	int	len;
+	int j;
+	int len;
 
 	j = 0;
 	len = ft_strlen(old_line);
@@ -80,12 +79,12 @@ static void	fill_new_line(char *new_line, char *old_line, int max_len)
 	new_line[j] = '\0';
 }
 
-static void	prepare_map(t_game *game)
+static void prepare_map(t_game *game)
 {
-	int		i;
-	int		max_len;
-	char	*new_line;
-	char	*copy_line;
+	int i;
+	int max_len;
+	char *new_line;
+	char *copy_line;
 
 	i = 0;
 	max_len = game->max_len;
@@ -102,9 +101,9 @@ static void	prepare_map(t_game *game)
 	game->map_copy[i] = NULL;
 }
 
-void	map_section(t_game *game)
+void map_section(t_game *game)
 {
-	int	i;
+	int i;
 
 	set_up_map(game);
 	game->max_len = 0;
