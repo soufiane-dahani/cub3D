@@ -37,7 +37,6 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 	for (int i = 0; i <= steps; i++)
 	{
 		put_pixels(game, (int)x, (int)y, color);
-
 		x += x_inc;
 		y += y_inc;
 	}
