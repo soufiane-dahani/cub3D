@@ -218,11 +218,11 @@ void cast_ray(t_game *game, double ray_angle, int i)
 	}
 
 	// Draw ray on minimap (scaled down)
-	double end_x = game->player_x + distance * ray_dx;
-	double end_y = game->player_y + distance * ray_dy;
-	draw_line(game, ((int)(game->player_x + (TILE_SIZE / 4) / 2) / 4),
-			  ((int)(game->player_y + (TILE_SIZE / 4) / 2)) / 4,
-			  (int)end_x / 4, (int)end_y / 4, 0xFF0000);
+	// double end_x = game->player_x + distance * ray_dx;
+	// double end_y = game->player_y + distance * ray_dy;
+	// draw_line(game, ((int)(game->player_x + (TILE_SIZE / 4) / 2) / 4),
+	// 		  ((int)(game->player_y + (TILE_SIZE / 4) / 2)) / 4,
+	// 		  (int)end_x / 4, (int)end_y / 4, 0xFF0000);
 }
 
 void cast_rays(t_game *game)
@@ -246,19 +246,6 @@ void cast_rays(t_game *game)
 	draw_map_walls(game);
 	draw_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-}
-
-void rotate_vector(double *px, double *py, double angle)
-{
-	double old_x;
-	double cos_a;
-	double sin_a;
-
-	old_x = *px;
-	cos_a = cos(angle);
-	sin_a = sin(angle);
-	*px = old_x * cos_a - *py * sin_a;
-	*py = old_x * sin_a + *py * cos_a;
 }
 
 long current_millis()

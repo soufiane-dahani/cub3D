@@ -12,14 +12,9 @@
 
 #include "cub3d.h"
 
+
 int key_hook(int keycode, t_game *game)
 {
-	static long last_update = 0;
-	long now = current_millis();
-
-	if (now - last_update < 16) // ~60 FPS cap (adjustable)
-		return (0);				// skip this frame
-
 	if (keycode == 65307)
 	{
 		ft_malloc(0, FT_CLEAR);
@@ -30,13 +25,7 @@ int key_hook(int keycode, t_game *game)
 		double strafe_angle = game->player_angle + M_PI_2;
 		double new_x = game->player_x + cos(strafe_angle) * 5;
 		double new_y = game->player_y + sin(strafe_angle) * 5;
-		int new_tile_x = (int)(new_x / TILE_SIZE);
-		int new_tile_y = (int)(new_y / TILE_SIZE);
-		if (is_move_valid(game, new_x, new_y) &&
-			new_x > TILE_SIZE && new_x < SCREEN_WIDTH - TILE_SIZE &&
-			new_y > TILE_SIZE && new_y < MAP_HEIGHT - TILE_SIZE &&
-			new_tile_y >= 0 && new_tile_x >= 0 &&
-			game->map_section[new_tile_y][new_tile_x] != '1')
+		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
@@ -48,13 +37,7 @@ int key_hook(int keycode, t_game *game)
 		double strafe_angle = game->player_angle - M_PI_2;
 		double new_x = game->player_x + cos(strafe_angle) * 5;
 		double new_y = game->player_y + sin(strafe_angle) * 5;
-		int new_tile_x = (int)(new_x / TILE_SIZE);
-		int new_tile_y = (int)(new_y / TILE_SIZE);
-		if (is_move_valid(game, new_x, new_y) &&
-			new_x > TILE_SIZE && new_x < SCREEN_WIDTH - TILE_SIZE &&
-			new_y > TILE_SIZE && new_y < MAP_HEIGHT - TILE_SIZE &&
-			new_tile_y >= 0 && new_tile_x >= 0 &&
-			game->map_section[new_tile_y][new_tile_x] != '1')
+		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
@@ -65,11 +48,7 @@ int key_hook(int keycode, t_game *game)
 	{
 		double new_x = game->player_x + game->pdx * 5;
 		double new_y = game->player_y + game->pdy * 5;
-		int new_tile_x = (int)(new_x / TILE_SIZE);
-		int new_tile_y = (int)(new_y / TILE_SIZE);
-		if (is_move_valid(game, new_x, new_y) &&
-			new_y > TILE_SIZE &&
-			game->map_section[new_tile_y][new_tile_x] != '1')
+		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
@@ -80,11 +59,7 @@ int key_hook(int keycode, t_game *game)
 	{
 		double new_x = game->player_x - game->pdx * 5;
 		double new_y = game->player_y - game->pdy * 5;
-		int new_tile_x = (int)(new_x / TILE_SIZE);
-		int new_tile_y = (int)(new_y / TILE_SIZE);
-		if (is_move_valid(game, new_x, new_y) &&
-			new_y > TILE_SIZE &&
-			game->map_section[new_tile_y][new_tile_x] != '1')
+		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
 			game->player_y = new_y;
