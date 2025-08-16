@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void define_player_angle(t_game *game)
+void	define_player_angle(t_game *game)
 {
 	if (game->player_char == 'N')
 		game->player_angle = 3 * M_PI / 2;
@@ -24,11 +24,11 @@ void define_player_angle(t_game *game)
 		game->player_angle = M_PI;
 }
 
-double normalize_angle(double angle)
+double	normalize_angle(double angle)
 {
 	while (angle < 0)
 		angle += 2 * M_PI;
 	while (angle >= 2 * M_PI)
 		angle -= 2 * M_PI;
-	return angle;
+	return (angle);
 }

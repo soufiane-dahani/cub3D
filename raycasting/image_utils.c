@@ -12,20 +12,23 @@
 
 #include "cub3d.h"
 
-void put_pixel(char *data, int x, int y, int color, int line_length)
+void	put_pixel(char *data, int x, int y, int color, int line_length)
 {
-	int offset = y * line_length + x * 4;
-	data[offset + 0] = color & 0xFF;		 // Blue
-	data[offset + 1] = (color >> 8) & 0xFF;	 // Green
+	int	offset;
+
+	offset = y * line_length + x * 4;
+	data[offset + 0] = color & 0xFF;         // Blue
+	data[offset + 1] = (color >> 8) & 0xFF;  // Green
 	data[offset + 2] = (color >> 16) & 0xFF; // Red
 }
 
-void draw_tile(t_game *game, void *mlx, void *win, int x, int y, int size, int color)
+void	draw_tile(t_game *game, void *mlx, void *win, int x, int y, int size,
+		int color)
 {
+	char	*data;
+
 	int bpp, line_length, endian;
-
-	char *data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
-
+	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
@@ -33,12 +36,13 @@ void draw_tile(t_game *game, void *mlx, void *win, int x, int y, int size, int c
 	}
 }
 
-void calculate_tile_position(t_game *game)
+void	calculate_tile_position(t_game *game)
 {
-	int i;
-	int j;
-	int max = 0;
+	int	i;
+	int	j;
+	int	max;
 
+	max = 0;
 	i = 0;
 	while (game->map_section[i])
 	{
@@ -47,7 +51,7 @@ void calculate_tile_position(t_game *game)
 		{
 			j++;
 		}
-		if ( max < j)
+		if (max < j)
 			max = j;
 		i++;
 	}

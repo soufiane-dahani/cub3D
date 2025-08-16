@@ -12,9 +12,19 @@
 
 #include "cub3d.h"
 
-
-int key_hook(int keycode, t_game *game)
+int	key_hook(int keycode, t_game *game)
 {
+	double	strafe_angle;
+	double	new_x;
+	double	new_y;
+	double	strafe_angle;
+	double	new_x;
+	double	new_y;
+	double	new_x;
+	double	new_y;
+	double	new_x;
+	double	new_y;
+
 	if (keycode == 65307)
 	{
 		ft_malloc(0, FT_CLEAR);
@@ -22,9 +32,9 @@ int key_hook(int keycode, t_game *game)
 	}
 	else if (keycode == 100) // D
 	{
-		double strafe_angle = game->player_angle + M_PI_2;
-		double new_x = game->player_x + cos(strafe_angle) * 5;
-		double new_y = game->player_y + sin(strafe_angle) * 5;
+		strafe_angle = game->player_angle + M_PI_2;
+		new_x = game->player_x + cos(strafe_angle) * 5;
+		new_y = game->player_y + sin(strafe_angle) * 5;
 		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
@@ -34,9 +44,9 @@ int key_hook(int keycode, t_game *game)
 	}
 	else if (keycode == 97) // A
 	{
-		double strafe_angle = game->player_angle - M_PI_2;
-		double new_x = game->player_x + cos(strafe_angle) * 5;
-		double new_y = game->player_y + sin(strafe_angle) * 5;
+		strafe_angle = game->player_angle - M_PI_2;
+		new_x = game->player_x + cos(strafe_angle) * 5;
+		new_y = game->player_y + sin(strafe_angle) * 5;
 		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
@@ -46,8 +56,8 @@ int key_hook(int keycode, t_game *game)
 	}
 	else if (keycode == 119) // W
 	{
-		double new_x = game->player_x + game->pdx * 5;
-		double new_y = game->player_y + game->pdy * 5;
+		new_x = game->player_x + game->pdx * 5;
+		new_y = game->player_y + game->pdy * 5;
 		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
@@ -57,8 +67,8 @@ int key_hook(int keycode, t_game *game)
 	}
 	else if (keycode == 115) // S
 	{
-		double new_x = game->player_x - game->pdx * 5;
-		double new_y = game->player_y - game->pdy * 5;
+		new_x = game->player_x - game->pdx * 5;
+		new_y = game->player_y - game->pdy * 5;
 		if (is_move_valid(game, new_x, new_y))
 		{
 			game->player_x = new_x;
