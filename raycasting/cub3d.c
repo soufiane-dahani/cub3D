@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/16 13:43:43 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/16 13:46:26 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,12 +222,6 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 		put_pixels(game, i, y, color);
 		tex_pos += step;
 	}
-	// Draw ray on minimap (scaled down)
-	// double end_x = game->player_x + distance * ray_dx;
-	// double end_y = game->player_y + distance * ray_dy;
-	// draw_line(game, ((int)(game->player_x + (TILE_SIZE / 4) / 2) / 4),
-	// 			((int)(game->player_y + (TILE_SIZE / 4) / 2)) / 4,
-	// 			(int)end_x / 4, (int)end_y / 4, 0xFF0000);
 }
 
 void	cast_rays(t_game *game)
