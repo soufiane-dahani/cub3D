@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/05 17:02:33 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/16 13:44:27 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 int	key_hook(int keycode, t_game *game)
 {
 	double	strafe_angle;
-	double	new_x;
-	double	new_y;
-	double	strafe_angle;
-	double	new_x;
-	double	new_y;
-	double	new_x;
-	double	new_y;
 	double	new_x;
 	double	new_y;
 

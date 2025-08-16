@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/16 13:35:30 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/16 13:43:43 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,8 +247,6 @@ void	cast_rays(t_game *game)
 	game->start_angle = game->player_angle - (game->fov / 2);
 	for (int i = 0; i < game->num_rays; i++)
 	{
-		// double ray_angle = normalize_angle(game->start_angle + (i
-					* angle_step)) + game->player_angle;
 		ray_angle = game->start_angle + (i * angle_step);
 		ray_angle = normalize_angle(ray_angle);
 		cast_ray(game, ray_angle, i);
@@ -329,8 +327,6 @@ int	mouse_hook(int x, int y, void *param)
 
 void	raycasting(t_game *game)
 {
-	printf("player_x: %f\n", game->player_x);
-	printf("player_y: %f\n", game->player_y);
 	calculate_tile_position(game);
 	define_player_angle(game);
 	game->player_x = (game->player_x * TILE_SIZE) + 16 + (16 / 2);
@@ -338,36 +334,20 @@ void	raycasting(t_game *game)
 	init_window(game);
 	draw_map(game);
 	draw_player(game);
-	printf("Player char: %c | Angle: %f\n", game->player_char,
-		game->player_angle);
-	// printf("player_char: %c\n", game->player_char);
-	// printf("dir_x: %f\n", game->dir_x);
-	// printf("dir_y: %f\n", game->dir_y);
-	// printf("plane_x: %f\n", game->plane_x);
-	// printf("plane_y: %f\n", game->plane_y);
 	game->fov = M_PI / 3; // 60 degrees
 	game->player_angle = normalize_angle(game->player_angle);
-	game->pdx = cos(game->player_angle);
-		// Player delta x: The distance the ray has to travel to cross one square on the map in the X or Y direction.
+	game->pdx = cos(game->player_angle); // Player delta x: The distance the ray has to travel to cross one square on the map in the X or Y direction.
 	game->pdy = sin(game->player_angle); // Player delta y
 	game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
 	game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
 	game->num_rays = SCREEN_WIDTH;
-	// printf("Player FOV Range: (%.6f, %.6f)\n", game->end_angle,
-		game->start_angle);
-	// printf("Player FOV: (%f, %f)\n", game->start_angle, game->end_angle);
-	// printf("Player angle: %f\n", game->player_angle);
-	// printf("Number of rays: %d\n", game->num_rays);
 	load_textures(game);
 	cast_rays(game);
 	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
-	// mlx_loop_hook(game->mlx, loop_hook, game);
 	mlx_mouse_hide(game->mlx, game->win);
-	// Position mouse at center of window initially
 	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
 	mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
 	mlx_loop_hook(game->mlx, key_hook, game);
 	mlx_hook(game->win, 17, 0, mlx_loop_end, game->mlx);
-	// mlx_mouse_hook(game->win, mouse_hook, game);
 	mlx_loop(game->mlx);
 }
