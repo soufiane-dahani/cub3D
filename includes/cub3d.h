@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 10:04:17 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 10:56:46 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ typedef struct s_game
 	char *west_texture;
 	char *east_texture;
 	char *door_closed;
-	char *door_open;
-	char *key;
+	char *anim_3;
+	char *anim_2;
 	char *anim_0;
 	char *anim_1;
 
@@ -99,8 +99,8 @@ typedef struct s_game
 	t_texture we_texture;
 	t_texture ea_texture;
 	t_texture door_closed_texture;
-	t_texture door_open_texture;
-	t_texture key_texture;
+	t_texture anim_3_texture;
+	t_texture anim_2_texture;
 	t_texture anim_0_texture;
 	t_texture anim_1_texture;
 	t_door	doors[4];
