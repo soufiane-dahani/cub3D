@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/16 13:46:26 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/17 17:03:01 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,17 @@ void	draw_vertical_line(t_game *game, int x, int y_start, int y_end,
 
 void	draw_background_2(t_game *game)
 {
-	int	floor_color;
-	int	ceiling_color;
 
 	int x, y;
-	floor_color = 0x222222;
-	ceiling_color = 0x444444;
 	for (y = 0; y < MAP_HEIGHT / 2; y++)
 	{
 		for (x = 0; x < SCREEN_WIDTH; x++)
-			put_pixels(game, x, y, ceiling_color);
+			put_pixels(game, x, y, game->ceiling);
 	}
 	for (y = MAP_HEIGHT / 2; y < MAP_HEIGHT; y++)
 	{
 		for (x = 0; x < SCREEN_WIDTH; x++)
-			put_pixels(game, x, y, floor_color);
+			put_pixels(game, x, y, game->floor);
 	}
 }
 
@@ -325,7 +321,6 @@ void	raycasting(t_game *game)
 	define_player_angle(game);
 	game->player_x = (game->player_x * TILE_SIZE) + 16 + (16 / 2);
 	game->player_y = (game->player_y * TILE_SIZE) + 16 + (16 / 2);
-	init_window(game);
 	draw_map(game);
 	draw_player(game);
 	game->fov = M_PI / 3; // 60 degrees

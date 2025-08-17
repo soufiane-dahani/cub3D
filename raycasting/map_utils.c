@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/17 13:35:30 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 17:05:45 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	draw_background(t_game *game)
 void	draw_player(t_game *game)
 {
 	int		red;
-	int		green;
 	char	*data;
 	int		player_w;
 	int		player_h;
@@ -39,7 +38,6 @@ void	draw_player(t_game *game)
 	int		py;
 
 	red = 0xFF0000;
-	green = 0x00FF00;
 	int bpp, line_length, endian;
 	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
 	player_w = (TILE_SIZE / 4) / 4;
@@ -137,7 +135,7 @@ void	draw_map_bg(t_game *game)
 		{
 			if (game->map_section[i][j] != '1')
 				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 8), i
-					* (TILE_SIZE / 8), (TILE_SIZE / 8), 0x000000);
+					* (TILE_SIZE / 8), (TILE_SIZE / 8), game->ceiling);
 			x += (TILE_SIZE / 8);
 		}
 		y += (TILE_SIZE / 8);

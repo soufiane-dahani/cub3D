@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/17 10:42:31 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 17:03:21 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main(int ac, char **av)
 	t_game *game;
 
 	game = ft_malloc(sizeof(t_game), FT_ALLOC);
+	init_window(game);
 	if (ac != 2)
 		handle_init_errors(1);
 	else if (parse_map(av[1], game) == -1)
