@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:23:13 by zbakour           #+#    #+#             */
-/*   Updated: 2025/06/17 15:21:08 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/17 13:35:11 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	init_window(t_game *game)
 		return (ft_putstr_fd("Error creating window\n", 2));
 	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, MAP_HEIGHT);
 
-	int bits_per_pixel;
-	int size_line;
-	int endian;
-	char *data = mlx_get_data_addr(game->img, &bits_per_pixel, &size_line,
-			&endian);
-	int gray = 0x808080;
-	for (int y = 0; y < MAP_HEIGHT; y++)
-		for (int x = 0; x < SCREEN_WIDTH; x++)
-			put_pixel(data, x, y, gray, size_line);
+	// int bits_per_pixel;
+	// int size_line;
+	// int endian;
+	// char *data = mlx_get_data_addr(game->img, &bits_per_pixel, &size_line,
+	// 		&endian);
+	// int gray = 0x808080;
+	// for (int y = 0; y < MAP_HEIGHT; y++)
+	// 	for (int x = 0; x < SCREEN_WIDTH; x++)
+	// 		put_pixel(data, x, y, gray, size_line);
 
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
