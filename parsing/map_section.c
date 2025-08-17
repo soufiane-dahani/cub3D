@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/06 12:08:18 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 11:20:49 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,6 @@ void	map_section(t_game *game)
 	flood_fill(game->map_copy, game->player_y, game->player_x);
 	set_player_direction(game);
 	i = 0;
-	// while (game->map_copy[i] != NULL)
-	// {
-	// 	printf("%s", game->map_copy[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// printf("\n\n");
 	while (game->map_section[i] != NULL)
 	{
 		printf("%s", game->map_section[i]);
