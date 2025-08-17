@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 10:57:29 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 11:08:27 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	process_door(t_game *game, int *config_count, char *line, int *flags)
 		flags[6] = 1;
 		handle_texture_line(line, &game->door_closed, config_count);
 	}
-	else if (!ft_strncmp(line, "anim_3 ", 7))
+	else if (!ft_strncmp(line, "ANIM_3 ", 7))
 	{
 		if (flags[7])
 			handle_init_errors(3);
