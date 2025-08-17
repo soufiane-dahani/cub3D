@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/17 19:50:54 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 21:01:34 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,20 +320,21 @@ int	mouse_hook(int x, int y, void *param)
 	return (0);
 }
 
-int	render_next_frame(void *game)
+int	render_next_frame(void *param)
 {
-    (t_game *)game;
-
-   	static long	last_update = 0;
+	t_game		*game;
+	static long	last_update = 0;
 	long		now;
 	double		angle_step;
 	double		ray_angle;
 
+	game = (t_game *)param;
 	now = current_millis();
 	if (now - last_update < 80)
-		return 1;
-    cast_rays(game);
-
+		return (1);
+	last_update = now;
+	cast_rays(game);
+	return (0);
 }
 
 

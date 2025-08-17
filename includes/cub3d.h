@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 19:51:51 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 21:04:00 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ typedef struct s_door {
 } t_door;
 
 typedef struct s_anim {
-    int current_frame;   // 0 = idle, 1-3 = anim frames
-    int playing;         // 1 = animating, 0 = idle
-    int frame_delay;     // frames to wait before switching
-    int frame_counter;   // counter for delay
+    int current_frame;
+    int playing;
+    double frame_delay;
+    double frame_counter;
 } t_anim;
 
  
@@ -126,7 +126,7 @@ typedef struct s_game
 	t_door	doors[4];
 	t_anim      anim;
 	t_texture anim_textures[4];
-	void *frames[4];
+	// void *frames[4];
 	int		num_doors;
 	
 	// Player info

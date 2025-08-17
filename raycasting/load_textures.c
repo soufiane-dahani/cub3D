@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 10:46:47 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 20:52:19 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 21:07:56 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void load_textures(t_game *game)
 	
     game->anim.current_frame = 0;
     game->anim.playing = 0;
-    game->anim.frame_delay = 10; 
+    game->anim.frame_delay = 0.9; 
     game->anim.frame_counter = 0;
 }
