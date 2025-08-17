@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 11:43:42 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:36:28 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	check_count_of_doors(t_game *game)
 	while (game->map_section[row] != NULL)
 	{
 		col = 0;
-		while (game->map_section[row][col] != '\n')
+		while (game->map_section[row][col] && game->map_section[row][col]
+			&& game->map_section[row][col] != '\n')
 		{
 			if (game->map_section[row][col] == 'D')
 				game->num_doors++;
