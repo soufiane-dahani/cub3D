@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 13:11:27 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 16:05:23 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <sys/time.h>
+
+#define ESC_KEY 65307
+#define D_KEY 100
+#define A_KEY 97
+#define W_KEY 119
+#define S_KEY 115
+#define RIGHT_ARROW 65363
+#define LEFT_ARROW 65361
+#define MOVE_SPEED 5
+#define ROTATION_SPEED 0.05
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846

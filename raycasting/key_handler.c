@@ -6,84 +6,90 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/17 13:12:40 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 16:20:11 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_hook(int keycode, t_game *game)
+static void	handle_strafe_movement(t_game *game, double direction)
 {
 	double	strafe_angle;
 	double	new_x;
 	double	new_y;
 
-	if (keycode == 65307)
+	strafe_angle = game->player_angle + direction;
+	new_x = game->player_x + cos(strafe_angle) * MOVE_SPEED;
+	new_y = game->player_y + sin(strafe_angle) * MOVE_SPEED;
+	if (is_move_valid(game, new_x, new_y))
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+		cast_rays(game);
+	}
+}
+
+static void	handle_forward_backward(t_game *game, int direction)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = game->player_x + game->pdx * MOVE_SPEED * direction;
+	new_y = game->player_y + game->pdy * MOVE_SPEED * direction;
+	if (is_move_valid(game, new_x, new_y))
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+		cast_rays(game);
+	}
+	else
+	{
+		if (is_move_valid(game, new_x, game->player_y))
+		{
+			game->player_x = new_x;
+			cast_rays(game);
+		}
+		else if (is_move_valid(game, game->player_x, new_y))
+		{
+			game->player_y = new_y;
+			cast_rays(game);
+		}
+	}
+}
+
+static void	handle_rotation(t_game *game, double rotation)
+{
+	game->player_angle += rotation;
+	game->player_angle = normalize_angle(game->player_angle);
+	game->pdx = cos(game->player_angle);
+	game->pdy = sin(game->player_angle);
+	cast_rays(game);
+}
+
+static void	handle_movement_keys(int keycode, t_game *game)
+{
+	if (keycode == D_KEY)
+		handle_strafe_movement(game, M_PI_2);
+	else if (keycode == A_KEY)
+		handle_strafe_movement(game, -M_PI_2);
+	else if (keycode == W_KEY)
+		handle_forward_backward(game, 1);
+	else if (keycode == S_KEY)
+		handle_forward_backward(game, -1);
+	else if (keycode == RIGHT_ARROW)
+		handle_rotation(game, ROTATION_SPEED);
+	else if (keycode == LEFT_ARROW)
+		handle_rotation(game, -ROTATION_SPEED);
+}
+
+int	key_hook(int keycode, t_game *game)
+{
+	if (keycode == ESC_KEY)
 	{
 		ft_malloc(0, FT_CLEAR);
 		exit(0);
 	}
-	else if (keycode == 100) // D
-	{
-		strafe_angle = game->player_angle + M_PI_2;
-		new_x = game->player_x + cos(strafe_angle) * 5;
-		new_y = game->player_y + sin(strafe_angle) * 5;
-		if (is_move_valid(game, new_x, new_y))
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-			cast_rays(game);
-		}
-	}
-	else if (keycode == 97) // A
-	{
-		strafe_angle = game->player_angle - M_PI_2;
-		new_x = game->player_x + cos(strafe_angle) * 5;
-		new_y = game->player_y + sin(strafe_angle) * 5;
-		if (is_move_valid(game, new_x, new_y))
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-			cast_rays(game);
-		}
-	}
-	else if (keycode == 119) // W
-	{
-		new_x = game->player_x + game->pdx * 5;
-		new_y = game->player_y + game->pdy * 5;
-		if (is_move_valid(game, new_x, new_y))
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-			cast_rays(game);
-		}
-	}
-	else if (keycode == 115) // S
-	{
-		new_x = game->player_x - game->pdx * 5;
-		new_y = game->player_y - game->pdy * 5;
-		if (is_move_valid(game, new_x, new_y))
-		{
-			game->player_x = new_x;
-			game->player_y = new_y;
-			cast_rays(game);
-		}
-	}
-	else if (keycode == 65363) // Right Arrow
-	{
-		game->player_angle += 0.05;
-		game->player_angle = normalize_angle(game->player_angle);
-		game->pdx = cos(game->player_angle);
-		game->pdy = sin(game->player_angle);
-		cast_rays(game);
-	}
-	else if (keycode == 65361) // Left Arrow
-	{
-		game->player_angle -= 0.05;
-		game->player_angle = normalize_angle(game->player_angle);
-		game->pdx = cos(game->player_angle);
-		game->pdy = sin(game->player_angle);
-		cast_rays(game);
-	}
+	else
+		handle_movement_keys(keycode, game);
 	return (0);
 }
