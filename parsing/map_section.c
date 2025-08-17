@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 15:40:25 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:45:29 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,7 @@ static int	validate_map_char(char c, t_game *game, int row, int col)
 
 static void	check_count(t_game *game)
 {
-	int	row;
-	int	col;
-	int	player_count;
-	int	len;
-
+	int (row), (col), (player_count), (len);
 	row = 0;
 	player_count = 0;
 	while (game->map_section[row] != NULL)
@@ -47,9 +43,7 @@ static void	check_count(t_game *game)
 			&& game->map_section[row][col] != '\n')
 		{
 			player_count += validate_map_char(game->map_section[row][col],
-					game,
-					row,
-					col);
+					game, row, col);
 			col++;
 		}
 		if (col >= 32 || row > 33)
