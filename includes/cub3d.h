@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/07 16:54:50 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/17 13:11:27 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ typedef struct s_texture
 	int endian;
 } t_texture;
 
+typedef struct s_door {
+    int x;
+    int y;
+    int is_open;
+} t_door;
+
+
 typedef struct s_game
 {
 	// MiniLibX
@@ -72,6 +79,8 @@ typedef struct s_game
 	// Colors
 	int floor_color[3];
 	int ceiling_color[3];
+	char hex_floor[8];
+	char hex_ceiling[8];
 
 	// Filepaths for XPMs (optional if loading from string earlier)
 	char *north_texture;
@@ -79,8 +88,8 @@ typedef struct s_game
 	char *west_texture;
 	char *east_texture;
 	char *door_closed;
-	char *door_open;
-	char *key;
+	char *anim_3;
+	char *anim_2;
 	char *anim_0;
 	char *anim_1;
 
@@ -90,11 +99,13 @@ typedef struct s_game
 	t_texture we_texture;
 	t_texture ea_texture;
 	t_texture door_closed_texture;
-	t_texture door_open_texture;
-	t_texture key_texture;
+	t_texture anim_3_texture;
+	t_texture anim_2_texture;
 	t_texture anim_0_texture;
 	t_texture anim_1_texture;
-
+	t_door	doors[4];
+	int		num_doors;
+	
 	// Player info
 	float player_x; // player x pos on arr
 	float player_y; // player y pos on arr
@@ -200,4 +211,8 @@ double get_wall_x(t_game *game, double ray_x, double ray_y, int side);
 int key_release(int keycode, t_game *game);
 int key_press(int keycode, t_game *game);
 int game_loop(void *param);
+void	check_count_of_doors(t_game *game);
+void change_to_hex(t_game *game);
+void add_door(t_game *game, int x, int y, int index);
+
 #endif

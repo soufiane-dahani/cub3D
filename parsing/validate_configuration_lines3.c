@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/19 19:39:06 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 11:08:27 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	process_door(t_game *game, int *config_count, char *line, int *flags)
 		flags[6] = 1;
 		handle_texture_line(line, &game->door_closed, config_count);
 	}
-	else if (!ft_strncmp(line, "DOOR_OPEN ", 10))
+	else if (!ft_strncmp(line, "ANIM_3 ", 7))
 	{
 		if (flags[7])
 			handle_init_errors(3);
 		flags[7] = 1;
-		handle_texture_line(line, &game->door_open, config_count);
+		handle_texture_line(line, &game->anim_3, config_count);
 	}
 }
 
@@ -50,11 +50,11 @@ void	process_anim(t_game *game, int *config_count, char *line, int *flags)
 
 void	process_key(t_game *game, int *config_count, char *line, int *flags)
 {
-	if (!ft_strncmp(line, "KEY ", 4))
+	if (!ft_strncmp(line, "ANIM_2 ", 7))
 	{
 		if (flags[10])
 			handle_init_errors(3);
 		flags[10] = 1;
-		handle_texture_line(line, &game->key, config_count);
+		handle_texture_line(line, &game->anim_2, config_count);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_configuration_lines2.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/17 11:07:27 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	is_config_identifier(char *line)
 		|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3)
 		|| !ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2)
 		|| !ft_strncmp(line, "DOOR_CLOSED ", 12) || !ft_strncmp(line,
-			"DOOR_OPEN ", 10) || !ft_strncmp(line, "KEY ", 4)
+			"ANIM_3 ", 7) || !ft_strncmp(line, "ANIM_2 ", 7)
 		|| !ft_strncmp(line, "ANIM_0 ", 7) || !ft_strncmp(line, "ANIM_1 ", 7))
 		return (1);
 	return (0);

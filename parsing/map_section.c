@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_section.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/05 18:01:57 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/17 13:11:17 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static void check_count(t_game *game)
 		while (game->map_section[row][col] != '\n')
 		{
 			player_count += validate_map_char(game->map_section[row][col],
-											  game,
-											  row,
-											  col);
+					game, row, col);
 			col++;
 		}
+		if (col >= 32 || row > 33)
+			handle_init_errors(5);
 		row++;
 	}
 	if (player_count != 1)
@@ -108,17 +108,11 @@ void map_section(t_game *game)
 	set_up_map(game);
 	game->max_len = 0;
 	check_count(game);
+	check_count_of_doors(game);
 	prepare_map(game);
 	flood_fill(game->map_copy, game->player_y, game->player_x);
 	set_player_direction(game);
 	i = 0;
-	// while (game->map_copy[i] != NULL)
-	// {
-	// 	printf("%s", game->map_copy[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// printf("\n\n");
 	while (game->map_section[i] != NULL)
 	{
 		printf("%s", game->map_section[i]);

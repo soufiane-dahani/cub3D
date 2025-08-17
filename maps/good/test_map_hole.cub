@@ -4,8 +4,8 @@ SO textures/south.xpm
 WE textures/west.xpm
 
 DOOR_CLOSED textures/bonus/door_closed.xpm
-DOOR_OPEN textures/bonus/door_open.xpm
-KEY         textures/bonus/key.xpm
+ANIM_3  textures/bonus/anim_3.xpm
+ANIM_2          textures/bonus/anim_2.xpm
 ANIM_0      textures/bonus/anim_0.xpm
 ANIM_1      textures/bonus/anim_1.xpm
 
