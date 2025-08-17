@@ -12,6 +12,7 @@ SRC = raycasting/cub3d.c libft/ft_split.c libft/ft_strjoin.c libft/ft_strlen.c l
 	 raycasting/raycasting_utils.c raycasting/load_textures.c \
 	 raycasting/mlx_init.c raycasting/image_utils.c raycasting/key_handler.c \
 	 raycasting/map_utils.c  raycasting/movement.c raycasting/doors.c \
+	 raycasting/texture_utils.c
 
 
 OBJ = $(SRC:.c=.o)
