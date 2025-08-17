@@ -12,6 +12,15 @@
 
 #include "cub3d.h"
 
+
+long	current_millis(void)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
+}
+
 void	put_pixels(t_game *game, int x, int y, int color)
 {
 	char	*data;
@@ -222,14 +231,14 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 
 void	cast_rays(t_game *game)
 {
-	static long	last_update = 0;
-	long		now;
+	// static long	last_update = 0;
+	// long		now;
 	double		angle_step;
 	double		ray_angle;
 
-	now = current_millis();
-	if (now - last_update < 16)
-		return ;
+	// now = current_millis();
+	// if (now - last_update < 16)
+	// 	return ;
 	// draw_background(game);
 	update_animation(game);
 	draw_background_2(game);
@@ -248,13 +257,7 @@ void	cast_rays(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
-long	current_millis(void)
-{
-	struct timeval	t;
 
-	gettimeofday(&t, NULL);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000);
-}
 
 int	mouse_hook(int x, int y, void *param)
 {
@@ -310,12 +313,29 @@ int	mouse_hook(int x, int y, void *param)
 		game->player_angle = normalize_angle(game->player_angle);
 		game->pdx = cos(game->player_angle);
 		game->pdy = sin(game->player_angle);
-		cast_rays(game);
+		// cast_rays(game);
 		last_update = now;
 	}
 	last_x = confined_x;
 	return (0);
 }
+
+int	render_next_frame(void *game)
+{
+    (t_game *)game;
+
+   	static long	last_update = 0;
+	long		now;
+	double		angle_step;
+	double		ray_angle;
+
+	now = current_millis();
+	if (now - last_update < 80)
+		return 1;
+    cast_rays(game);
+
+}
+
 
 void	raycasting(t_game *game)
 {
@@ -333,12 +353,13 @@ void	raycasting(t_game *game)
 	game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
 	game->num_rays = SCREEN_WIDTH;
 	load_textures(game);
-	cast_rays(game);
+	// cast_rays(game);
 	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
 	mlx_mouse_hide(game->mlx, game->win);
 	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
 	mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
 	mlx_loop_hook(game->mlx, key_hook, game);
 	mlx_hook(game->win, 17, 0, mlx_loop_end, game->mlx);
+	mlx_loop_hook(game->mlx, render_next_frame, game);
 	mlx_loop(game->mlx);
 }

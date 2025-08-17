@@ -25,7 +25,7 @@ static void	handle_strafe_movement(t_game *game, double direction)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		cast_rays(game);
+		// cast_rays(game);
 	}
 }
 
@@ -40,19 +40,19 @@ static void	handle_forward_backward(t_game *game, int direction)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		cast_rays(game);
+		// cast_rays(game);
 	}
 	else
 	{
 		if (is_move_valid(game, new_x, game->player_y))
 		{
 			game->player_x = new_x;
-			cast_rays(game);
+			// cast_rays(game);
 		}
 		else if (is_move_valid(game, game->player_x, new_y))
 		{
 			game->player_y = new_y;
-			cast_rays(game);
+			// cast_rays(game);
 		}
 	}
 }
@@ -63,7 +63,7 @@ static void	handle_rotation(t_game *game, double rotation)
 	game->player_angle = normalize_angle(game->player_angle);
 	game->pdx = cos(game->player_angle);
 	game->pdy = sin(game->player_angle);
-	cast_rays(game);
+	// cast_rays(game);
 }
 
 static void	handle_movement_keys(int keycode, t_game *game)
@@ -90,6 +90,7 @@ static void	handle_movement_keys(int keycode, t_game *game)
 
 int	key_hook(int keycode, t_game *game)
 {
+
 	if (keycode == ESC_KEY)
 	{
 		ft_malloc(0, FT_CLEAR);
@@ -97,6 +98,8 @@ int	key_hook(int keycode, t_game *game)
 	}
 	else
 		handle_movement_keys(keycode, game);
+
+
 	return (0);
 }
 void render_animation(t_game *game)
@@ -115,6 +118,7 @@ void render_animation(t_game *game)
         }
     }
 }
+
 void update_animation(t_game *game)
 {
     if (!game->anim.playing)
