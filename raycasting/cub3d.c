@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/17 17:03:01 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 19:50:54 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ void	cast_rays(t_game *game)
 	if (now - last_update < 16)
 		return ;
 	// draw_background(game);
+	update_animation(game);
 	draw_background_2(game);
 	angle_step = game->fov / game->num_rays;
 	draw_map_bg(game);
@@ -243,6 +244,7 @@ void	cast_rays(t_game *game)
 	}
 	draw_map_walls(game);
 	draw_player(game);
+	render_animation(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 

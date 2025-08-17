@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 16:47:04 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 19:51:51 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include <sys/time.h>
 
 #define ESC_KEY 65307
+#define SPACE_KEY 32
 #define D_KEY 100
 #define A_KEY 97
 #define W_KEY 119
@@ -71,6 +72,15 @@ typedef struct s_door {
     int is_open;
 } t_door;
 
+typedef struct s_anim {
+    int current_frame;   // 0 = idle, 1-3 = anim frames
+    int playing;         // 1 = animating, 0 = idle
+    int frame_delay;     // frames to wait before switching
+    int frame_counter;   // counter for delay
+} t_anim;
+
+ 
+
 
 typedef struct s_game
 {
@@ -114,6 +124,9 @@ typedef struct s_game
 	t_texture anim_0_texture;
 	t_texture anim_1_texture;
 	t_door	doors[4];
+	t_anim      anim;
+	t_texture anim_textures[4];
+	void *frames[4];
 	int		num_doors;
 	
 	// Player info
@@ -224,5 +237,9 @@ int game_loop(void *param);
 void	check_count_of_doors(t_game *game);
 void change_to_hex(t_game *game);
 void add_door(t_game *game, int x, int y, int index);
+
+void update_animation(t_game *game);
+void render_animation(t_game *game);
+void put_pixels(t_game *game, int x, int y, int color);
 
 #endif
