@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/06 12:10:13 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 10:13:44 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int main(int ac, char **av)
 		handle_init_errors(1);
 	else if (parse_map(av[1], game) == -1)
 		handle_init_errors(2);
+	change_to_hex(game);
 	raycasting(game);
 	ft_malloc(0, FT_CLEAR);
 	return (0);

@@ -27,6 +27,7 @@ void	check_count_of_doors(t_game *game)
 				game->num_doors++;
 			col++;
 		}
+		row++;
 	}
 	if (game->num_doors > 4)
 		handle_init_errors(6);
@@ -112,3 +113,4 @@ int is_door_open(t_game *game, int x, int y)
     }
     return 0;
 }
+

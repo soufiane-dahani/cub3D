@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/06 12:08:30 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/17 10:04:17 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_game
 	// Colors
 	int floor_color[3];
 	int ceiling_color[3];
+	char hex_floor[8];
+	char hex_ceiling[8];
 
 	// Filepaths for XPMs (optional if loading from string earlier)
 	char *north_texture;
@@ -205,5 +207,7 @@ int key_release(int keycode, t_game *game);
 int key_press(int keycode, t_game *game);
 int game_loop(void *param);
 void	check_count_of_doors(t_game *game);
+void change_to_hex(t_game *game);
+void add_door(t_game *game, int x, int y, int index);
 
 #endif
