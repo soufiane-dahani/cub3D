@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/18 09:16:42 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:04:35 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int	get_color(int rgb[3])
 {
@@ -72,4 +72,37 @@ void	update_animation(t_game *game)
 			game->anim.playing = 0;
 		}
 	}
+}
+void cleanup_game(t_game *game)
+{
+    if (!game) return;
+
+    // Destroy all textures
+    t_texture *textures[] = {
+        &game->no_texture,
+        &game->so_texture,
+        &game->we_texture,
+        &game->ea_texture,
+        &game->door_closed_texture,
+        &game->anim_0_texture,
+        &game->anim_1_texture,
+        &game->anim_2_texture,
+        &game->anim_3_texture
+    };
+
+    for (int i = 0; i < 9; i++)
+        if (textures[i]->img)
+            mlx_destroy_image(game->mlx, textures[i]->img);
+
+    // Destroy window
+    if (game->win)
+        mlx_destroy_window(game->mlx, game->win);
+    ft_malloc(0, FT_CLEAR);
+}
+
+int	close_window(t_game *game)
+{
+    cleanup_game(game);
+    exit(0);
+    return (0);
 }

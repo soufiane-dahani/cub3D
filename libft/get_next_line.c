@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:52:22 by sodahani          #+#    #+#             */
-/*   Updated: 2025/05/01 15:15:17 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:06:51 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/get_next_line.h"
 
 static char	*ft_fill_line_buffer(int fd, char *remains, char *buffer)
 {

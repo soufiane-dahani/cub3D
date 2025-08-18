@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/19 15:50:39 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:04:42 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 t_list	*mem_alloc(size_t size)
 {

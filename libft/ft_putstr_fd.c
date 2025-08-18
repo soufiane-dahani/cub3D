@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:46:43 by sodahani          #+#    #+#             */
-/*   Updated: 2025/06/12 14:10:43 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/18 10:06:03 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	ft_putstr_fd(char *str, int fd)
 {

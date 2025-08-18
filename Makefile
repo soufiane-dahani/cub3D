@@ -1,8 +1,7 @@
-# Compiler and flags
-CC = cc
-CFLAGS =  -Iincludes -g3 #-Wall -Wextra -Werror
 
-# Project files
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
 TARGET = cub3D
 SRC = raycasting/cub3d.c libft/ft_split.c libft/ft_strjoin.c libft/ft_strlen.c libft/ft_lstadd_back.c libft/ft_lstclear.c \
 	 libft/ft_lstnew.c parsing/malloc.c libft/ft_strncmp.c main.c parsing/map.c libft/ft_putstr_fd.c \
@@ -18,7 +17,6 @@ SRC = raycasting/cub3d.c libft/ft_split.c libft/ft_strjoin.c libft/ft_strlen.c l
 OBJ = $(SRC:.c=.o)
 MINILIBX = minilibx-linux/libmlx.a
 
-# Rules
 all: $(TARGET) 
 
 $(TARGET): $(OBJ) $(MINILIBX)

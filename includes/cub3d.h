@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/18 09:13:02 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 09:45:12 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,5 +243,7 @@ void update_animation(t_game *game);
 void render_animation(t_game *game);
 void put_pixels(t_game *game, int x, int y, int color);
 int	mouse_hook(int x, int y, void *param);
+void cleanup_game(t_game *game);
+int	close_window(t_game *game);
 
 #endif

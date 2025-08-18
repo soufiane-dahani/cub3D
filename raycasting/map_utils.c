@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/17 17:05:45 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:04:15 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	draw_background(t_game *game)
 {

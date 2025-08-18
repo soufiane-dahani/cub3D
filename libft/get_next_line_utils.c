@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:52:27 by sodahani          #+#    #+#             */
-/*   Updated: 2025/04/30 15:46:52 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:06:57 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/get_next_line.h"
 
 char	*ft_strchr(const char *s, int c)
 {

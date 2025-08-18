@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/18 08:58:28 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:05:35 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 
 long	current_millis(void)
@@ -263,8 +263,8 @@ int	render_next_frame(void *param)
 	t_game		*game;
 	static long	last_update = 0;
 	long		now;
-	double		angle_step;
-	double		ray_angle;
+	// double		angle_step;
+	// double		ray_angle;
 
 	game = (t_game *)param;
 	now = current_millis();
@@ -276,29 +276,36 @@ int	render_next_frame(void *param)
 }
 
 
-void	raycasting(t_game *game)
+void raycasting(t_game *game)
 {
-	calculate_tile_position(game);
-	define_player_angle(game);
-	game->player_x = (game->player_x * TILE_SIZE) + 16 + (16 / 2);
-	game->player_y = (game->player_y * TILE_SIZE) + 16 + (16 / 2);
-	draw_map(game);
-	draw_player(game);
-	game->fov = M_PI / 3; // 60 degrees
-	game->player_angle = normalize_angle(game->player_angle);
-	game->pdx = cos(game->player_angle); // Player delta x: The distance the ray has to travel to cross one square on the map in the X or Y direction.
-	game->pdy = sin(game->player_angle); // Player delta y
-	game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
-	game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
-	game->num_rays = SCREEN_WIDTH;
-	load_textures(game);
-	// cast_rays(game);
-	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
-	mlx_mouse_hide(game->mlx, game->win);
-	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
-	mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
-	mlx_loop_hook(game->mlx, key_hook, game);
-	mlx_hook(game->win, 17, 0, mlx_loop_end, game->mlx);
-	mlx_loop_hook(game->mlx, render_next_frame, game);
-	mlx_loop(game->mlx);
+    calculate_tile_position(game);
+    define_player_angle(game);
+    game->player_x = (game->player_x * TILE_SIZE) + 16 + (16 / 2);
+    game->player_y = (game->player_y * TILE_SIZE) + 16 + (16 / 2);
+
+    draw_map(game);
+    draw_player(game);
+
+    game->fov = M_PI / 3;
+    game->player_angle = normalize_angle(game->player_angle);
+    game->pdx = cos(game->player_angle);
+    game->pdy = sin(game->player_angle);
+    game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
+    game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
+    game->num_rays = SCREEN_WIDTH;
+
+    load_textures(game);
+    cast_rays(game);
+
+    mlx_hook(game->win, 2, 1L << 0, key_hook, game);
+    mlx_mouse_hide(game->mlx, game->win);
+    mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
+    mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
+
+    mlx_hook(game->win, 17, 0, close_window, game); // safe close
+
+    mlx_loop_hook(game->mlx, render_next_frame, game);
+
+    mlx_loop(game->mlx);
 }
+

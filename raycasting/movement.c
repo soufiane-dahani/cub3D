@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:10 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/16 13:48:13 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/18 10:04:22 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int	is_move_valid(t_game *game, int new_x, int new_y)
 {

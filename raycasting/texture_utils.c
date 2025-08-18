@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:50:00 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/08 16:51:55 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/18 10:13:48 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 // Get color from texture at specific coordinates
 int	get_texture_color(t_texture *texture, int x, int y)
@@ -48,6 +48,7 @@ t_texture	*get_wall_texture(t_game *game, int side, int step_x, int step_y)
 double	get_wall_x(t_game *game, double ray_x, double ray_y, int side)
 {
 	double	wall_x;
+	(void )game;
 
 	if (side == 0) // Vertical wall (hit on x-side)
 		wall_x = (ray_y / TILE_SIZE) - floor(ray_y / TILE_SIZE);

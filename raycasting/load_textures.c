@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 10:46:47 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 21:07:56 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:04:10 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	load_single_texture(void *mlx, t_texture *tex, char *path,
 		char *error_msg)

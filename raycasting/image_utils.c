@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   image_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:26 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/05 18:06:44 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/18 10:13:05 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	put_pixel(char *data, int x, int y, int color, int line_length)
 {
@@ -26,6 +26,8 @@ void	draw_tile(t_game *game, void *mlx, void *win, int x, int y, int size,
 		int color)
 {
 	char	*data;
+	(void ) mlx;
+	(void ) win;
 
 	int bpp, line_length, endian;
 	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);

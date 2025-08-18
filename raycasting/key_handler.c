@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/17 21:12:48 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:04:04 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 static void	handle_strafe_movement(t_game *game, double direction)
 {
@@ -93,7 +93,8 @@ int	key_hook(int keycode, t_game *game)
 
 	if (keycode == ESC_KEY)
 	{
-		ft_malloc(0, FT_CLEAR);
+		cleanup_game(game);
+		// ft_malloc(0, FT_CLEAR);
 		exit(0);
 	}
 	else

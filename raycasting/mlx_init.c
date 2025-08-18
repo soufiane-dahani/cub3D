@@ -6,11 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:23:13 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/17 13:35:11 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 10:04:18 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	init_window(t_game *game)
 {
