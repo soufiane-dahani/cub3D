@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/18 10:07:30 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:52:06 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	game = ft_malloc(sizeof(t_game), FT_ALLOC);
+	if (!game)
+    	return (0);
+	ft_memset(game, 0, sizeof(t_game));
 	init_window(game);
 	if (ac != 2)
 		handle_init_errors(1);
