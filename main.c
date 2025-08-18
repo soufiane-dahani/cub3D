@@ -6,13 +6,13 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/17 20:50:05 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 09:15:54 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void handle_init_errors(int error_type)
+void	handle_init_errors(int error_type)
 {
 	ft_malloc(0, FT_CLEAR);
 	if (error_type == 1)
@@ -32,10 +32,43 @@ void handle_init_errors(int error_type)
 	exit(1);
 }
 
-
-int main(int ac, char **av)
+static int	reset_mouse_position(t_game *game, int *last_x)
 {
-	t_game *game;
+	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
+	*last_x = SCREEN_WIDTH / 2;
+	return (0);
+}
+
+static void	update_player_angle(t_game *game, int delta_x)
+{
+	game->player_angle += delta_x * MOUSE_SENSITIVITY;
+	game->player_angle = normalize_angle(game->player_angle);
+	game->pdx = cos(game->player_angle);
+	game->pdy = sin(game->player_angle);
+	cast_rays(game);
+}
+
+int	mouse_hook(int x, int y, void *param)
+{
+	t_game		*game;
+	static int	last_x = SCREEN_WIDTH / 2;
+	long		now;
+	int			delta_x;
+
+	game = (t_game *)param;
+	now = current_millis();
+	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= MAP_HEIGHT)
+		return (reset_mouse_position(game, &last_x));
+	delta_x = x - last_x;
+	if (delta_x != 0)
+		update_player_angle(game, delta_x);
+	last_x = x;
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_game	*game;
 
 	game = ft_malloc(sizeof(t_game), FT_ALLOC);
 	init_window(game);

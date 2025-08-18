@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/17 21:04:00 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 09:13:02 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include <sys/time.h>
 
 #define ESC_KEY 65307
+#define MOUSE_SENSITIVITY 0.015
 #define SPACE_KEY 32
 #define D_KEY 100
 #define A_KEY 97
@@ -241,5 +242,6 @@ void add_door(t_game *game, int x, int y, int index);
 void update_animation(t_game *game);
 void render_animation(t_game *game);
 void put_pixels(t_game *game, int x, int y, int color);
+int	mouse_hook(int x, int y, void *param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/17 21:01:34 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/18 08:58:28 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,68 +257,6 @@ void	cast_rays(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
-
-
-int	mouse_hook(int x, int y, void *param)
-{
-	t_game		*game;
-	static long	last_update = 0;
-	static int	last_x = SCREEN_WIDTH / 2;
-	long		now;
-	int			confined_x;
-	int			confined_y;
-	int			moved_mouse;
-	int			delta_x;
-	double		sensitivity;
-	double		angle;
-
-	game = (t_game *)param;
-	now = current_millis();
-	// Confine mouse to window boundaries
-	confined_x = x;
-	confined_y = y;
-	moved_mouse = 0;
-	if (x < 0)
-	{
-		confined_x = 0;
-		moved_mouse = 1;
-	}
-	else if (x >= SCREEN_WIDTH)
-	{
-		confined_x = SCREEN_WIDTH - 1;
-		moved_mouse = 1;
-	}
-	if (y < 0)
-	{
-		confined_y = 0;
-		moved_mouse = 1;
-	}
-	else if (y >= MAP_HEIGHT)
-	{
-		confined_y = MAP_HEIGHT - 1;
-		moved_mouse = 1;
-	}
-	// Move mouse back to boundaries if it went outside
-	if (moved_mouse)
-	{
-		mlx_mouse_move(game->mlx, game->win, confined_x, confined_y);
-		return (0);
-	}
-	delta_x = confined_x - last_x;
-	if (delta_x != 0 && (now - last_update > 16)) // ~60 FPS
-	{
-		sensitivity = 0.015;
-		angle = delta_x * sensitivity;
-		game->player_angle += angle;
-		game->player_angle = normalize_angle(game->player_angle);
-		game->pdx = cos(game->player_angle);
-		game->pdy = sin(game->player_angle);
-		// cast_rays(game);
-		last_update = now;
-	}
-	last_x = confined_x;
-	return (0);
-}
 
 int	render_next_frame(void *param)
 {
