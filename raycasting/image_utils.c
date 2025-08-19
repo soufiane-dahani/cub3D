@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:26 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 20:18:55 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:26:35 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ void	calculate_tile_position(t_game *game)
 	{
 		j = 0;
 		while (game->map_section[i][j])
-		{
 			j++;
-		}
 		if (max < j)
 			max = j;
 		i++;
