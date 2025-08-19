@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/18 10:04:04 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:16:16 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	handle_strafe_movement(t_game *game, double direction)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		// cast_rays(game);
 	}
 }
 
@@ -40,20 +39,13 @@ static void	handle_forward_backward(t_game *game, int direction)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
-		// cast_rays(game);
 	}
 	else
 	{
 		if (is_move_valid(game, new_x, game->player_y))
-		{
 			game->player_x = new_x;
-			// cast_rays(game);
-		}
 		else if (is_move_valid(game, game->player_x, new_y))
-		{
 			game->player_y = new_y;
-			// cast_rays(game);
-		}
 	}
 }
 
@@ -63,7 +55,6 @@ static void	handle_rotation(t_game *game, double rotation)
 	game->player_angle = normalize_angle(game->player_angle);
 	game->pdx = cos(game->player_angle);
 	game->pdy = sin(game->player_angle);
-	// cast_rays(game);
 }
 
 static void	handle_movement_keys(int keycode, t_game *game)
@@ -90,17 +81,12 @@ static void	handle_movement_keys(int keycode, t_game *game)
 
 int	key_hook(int keycode, t_game *game)
 {
-
 	if (keycode == ESC_KEY)
 	{
 		cleanup_game(game);
-		// ft_malloc(0, FT_CLEAR);
 		exit(0);
 	}
 	else
 		handle_movement_keys(keycode, game);
-
-
 	return (0);
 }
-

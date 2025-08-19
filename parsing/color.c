@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/18 20:14:41 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:44:18 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	render_animation(t_game *game)
 
 	frame = &game->anim_textures[game->anim.current_frame];
 	start_x = (SCREEN_WIDTH - frame->width) / 2;
-	start_y = MAP_HEIGHT - frame->height;
+	start_y = SCREEN_HEIGHT - frame->height;
 	y = 0;
 	while (y < frame->height)
 	{

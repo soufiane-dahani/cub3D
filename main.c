@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 16:40:02 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:45:59 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	handle_init_errors(int error_type)
 
 static int	reset_mouse_position(t_game *game, int *last_x)
 {
-	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
+	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	*last_x = SCREEN_WIDTH / 2;
 	return (0);
 }
@@ -58,9 +58,9 @@ int	mouse_hook(int x, int y, void *param)
 
 	game = (t_game *)param;
 	now = current_millis();
-	if (now - last_update < 45)
+	if (now - last_update < 65)
 		return (1);
-	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= MAP_HEIGHT)
+	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 		return (reset_mouse_position(game, &last_x));
 	delta_x = x - last_x;
 	if (delta_x != 0)
