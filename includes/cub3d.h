@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 18:50:18 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 19:59:39 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,41 @@ typedef struct s_anim {
     double frame_delay;
     double frame_counter;
 } t_anim;
+
+typedef struct s_ray_data
+{
+	double	ray_dx;
+	double	ray_dy;
+	double	map_x;
+	double	map_y;
+	int		map_x_int;
+	int		map_y_int;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	bool	hit;
+	int		side;
+	bool	is_door;
+	double	distance;
+	double	wall_x;
+	double	screen_distance;
+	double	wall_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_y;
+} t_ray_data;
+
+typedef struct s_line
+{
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	color;
+} t_line;
 
  
 
@@ -222,9 +257,16 @@ void cast_rays(t_game *game);
 void calculate_tile_position(t_game *game);
 void draw_map_walls(t_game *game);
 void draw_map_bg(t_game *game);
+void init_ray_vars(t_ray_data *ray, double ray_angle, t_game *game);
+void calc_step_and_side_dist(t_ray_data *ray);
+void perform_dda(t_ray_data *ray, t_game *game);
+void calc_distance_and_wall_x(t_ray_data *ray);
+void draw_textured_line(t_game *game, t_ray_data *ray, int col);
+void draw_line(t_game *game, t_line line);
+void draw_vertical_line(t_game *game, t_line line);
+void draw_background_2(t_game *game);
 // load textures
 void load_textures(t_game *game);
-void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 long current_millis();
 
 // Texture utilities
