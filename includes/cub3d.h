@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 19:59:39 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:12:35 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,14 @@ typedef struct s_line
 	int	y1;
 	int	color;
 } t_line;
+
+typedef struct s_bounds
+{
+	int	left;
+	int	right;
+	int	top;
+	int	bottom;
+} t_bounds;
 
  
 

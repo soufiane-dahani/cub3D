@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:44:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 19:59:39 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:05:38 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	draw_line(t_game *game, t_line line)
 	float	dx;
 	float	dy;
 	float	steps;
-	float	x_inc;
-	float	y_inc;
 	float	x;
 	float	y;
 	int		i;
@@ -29,16 +27,14 @@ void	draw_line(t_game *game, t_line line)
 		steps = fabs(dx);
 	else
 		steps = fabs(dy);
-	x_inc = dx / steps;
-	y_inc = dy / steps;
 	x = line.x0;
 	y = line.y0;
 	i = 0;
 	while (i <= steps)
 	{
 		put_pixels(game, (int)x, (int)y, line.color);
-		x += x_inc;
-		y += y_inc;
+		x += dx / steps;
+		y += dy / steps;
 		i++;
 	}
 }
