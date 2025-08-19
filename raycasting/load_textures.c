@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 10:46:47 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/18 10:04:10 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 06:37:30 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ void load_textures(t_game *game)
     load_single_texture(game->mlx, &game->we_texture, game->west_texture, "Failed to load west texture\n");
     load_single_texture(game->mlx, &game->ea_texture, game->east_texture, "Failed to load east texture\n");
     load_single_texture(game->mlx, &game->door_closed_texture, game->door_closed, "Failed to load door_closed texture\n");
-
     load_single_texture(game->mlx, &game->anim_textures[0], game->anim_0, "Failed to load anim_0 texture\n");
     load_single_texture(game->mlx, &game->anim_textures[1], game->anim_1, "Failed to load anim_1 texture\n");
     load_single_texture(game->mlx, &game->anim_textures[2], game->anim_2, "Failed to load anim_2 texture\n");
     load_single_texture(game->mlx, &game->anim_textures[3], game->anim_3, "Failed to load anim_3 texture\n");
-	
     game->anim.current_frame = 0;
     game->anim.playing = 0;
     game->anim.frame_delay = 0.9; 

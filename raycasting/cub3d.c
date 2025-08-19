@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/18 10:05:35 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 06:36:47 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,7 +302,7 @@ void raycasting(t_game *game)
     mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
     mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
 
-    mlx_hook(game->win, 17, 0, close_window, game); // safe close
+    mlx_hook(game->win, 17, 0, close_window, game);
 
     mlx_loop_hook(game->mlx, render_next_frame, game);
 
