@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 08:52:20 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:09:19 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	flood_fill(char **map, int y, int x)
 		return ;
 	else if (c == 'X' || c == '\0')
 		handle_init_errors(6);
-	else if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D')
+	else if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == 'D')
 		map[y][x] = 'V';
 	flood_fill(map, y - 1, x);
 	flood_fill(map, y + 1, x);
