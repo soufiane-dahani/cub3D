@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 16:40:02 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:44:18 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	handle_init_errors(int error_type)
 
 static int	reset_mouse_position(t_game *game, int *last_x)
 {
-	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
+	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	*last_x = SCREEN_WIDTH / 2;
 	return (0);
 }
@@ -60,7 +60,7 @@ int	mouse_hook(int x, int y, void *param)
 	now = current_millis();
 	if (now - last_update < 45)
 		return (1);
-	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= MAP_HEIGHT)
+	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 		return (reset_mouse_position(game, &last_x));
 	delta_x = x - last_x;
 	if (delta_x != 0)

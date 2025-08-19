@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 18:32:24 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:44:18 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_background(t_game *game)
 
 	data = mlx_get_data_addr(game->img, &bits_per_pixel, &size_line, &endian);
 	y = 0;
-	while (y < MAP_HEIGHT)
+	while (y < SCREEN_HEIGHT)
 	{
 		x = 0;
 		while (x < SCREEN_WIDTH)
@@ -45,7 +45,7 @@ void	draw_player(t_game *game)
 	player_w = (TILE_SIZE / 4) / 4;
 	px = game->player_x / 8;
 	py = game->player_y / 8;
-	if (py > TILE_SIZE / 8 && py < MAP_HEIGHT)
+	if (py > TILE_SIZE / 8 && py < SCREEN_HEIGHT)
 		draw_tile(game, game->mlx, game->win, px, py, player_w / 2, 0xFF0000);
 }
 

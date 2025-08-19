@@ -100,7 +100,7 @@ if ((side == 0 && ray_dx > 0) || (side == 1 && ray_dy < 0))
 ```c
 // Calculate how much to increase texture coordinate per screen pixel
 double step = (double)texture->height / wall_height;
-double tex_pos = (draw_start - MAP_HEIGHT / 2 + wall_height / 2) * step;
+double tex_pos = (draw_start - SCREEN_HEIGHT / 2 + wall_height / 2) * step;
 
 // For each pixel in the wall stripe
 for (int y = draw_start; y <= draw_end; y++)

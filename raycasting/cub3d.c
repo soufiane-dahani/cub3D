@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/19 18:42:06 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:44:18 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	put_pixels(t_game *game, int x, int y, int color)
 
 	int bpp, line_length, endian;
 	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
-	if (x >= 0 && x <= SCREEN_WIDTH && y >= 0 && y <= MAP_HEIGHT)
+	if (x >= 0 && x <= SCREEN_WIDTH && y >= 0 && y <= SCREEN_HEIGHT)
 	{
 		offset = (y * line_length) + (x * (bpp / 8));
 		*(unsigned int *)(data + offset) = color;
@@ -70,7 +70,7 @@ void	draw_vertical_line(t_game *game, int x, int y_start, int y_end,
 	y = y_start;
 	while (y <= y_end)
 	{
-		if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < MAP_HEIGHT)
+		if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
 			put_pixels(game, x, y, color);
 		y++;
 	}
@@ -82,7 +82,7 @@ void	draw_background_2(t_game *game)
 	int	y;
 	
 	y = 0;
-	while(y < MAP_HEIGHT / 2)
+	while(y < SCREEN_HEIGHT / 2)
 	{
 		x = 0;
 		while (x < SCREEN_WIDTH)
@@ -92,8 +92,8 @@ void	draw_background_2(t_game *game)
 		}
 		y++;
 	}
-	y = MAP_HEIGHT / 2;
-	while (y < MAP_HEIGHT)
+	y = SCREEN_HEIGHT / 2;
+	while (y < SCREEN_HEIGHT)
 	{
 		x = 0;
 		while(x < SCREEN_WIDTH)
@@ -225,13 +225,13 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 	distance *= cos(ray_angle - game->player_angle);
 	screen_distance = SCREEN_WIDTH / (2.0 * tan(game->fov / 2.0));
 	wall_height = (TILE_SIZE * screen_distance) / distance;
-	draw_start = (MAP_HEIGHT / 2) - (wall_height / 2);
-	draw_end = (MAP_HEIGHT / 2) + (wall_height / 2);
+	draw_start = (SCREEN_HEIGHT / 2) - (wall_height / 2);
+	draw_end = (SCREEN_HEIGHT / 2) + (wall_height / 2);
 	// Clamp to screen bounds
 	if (draw_start < 0)
 		draw_start = 0;
-	if (draw_end >= MAP_HEIGHT)
-		draw_end = MAP_HEIGHT - 1;
+	if (draw_end >= SCREEN_HEIGHT)
+		draw_end = SCREEN_HEIGHT - 1;
 	// Get the appropriate texture
 	texture = get_wall_texture(game, side, step_x, step_y);
 	// Calculate texture x coordinate
@@ -245,7 +245,7 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 		tex_x = texture->width - 1;
 	// Calculate texture step and starting position
 	step = (double)texture->height / wall_height;
-	tex_pos = (draw_start - MAP_HEIGHT / 2 + wall_height / 2) * step;
+	tex_pos = (draw_start - SCREEN_HEIGHT / 2 + wall_height / 2) * step;
 	// Draw textured vertical line
 	for (int y = draw_start; y <= draw_end; y++)
 	{
@@ -303,7 +303,6 @@ int	render_next_frame(void *param)
 	return (0);
 }
 
-
 void raycasting(t_game *game)
 {
     calculate_tile_position(game);
@@ -323,7 +322,7 @@ void raycasting(t_game *game)
     load_textures(game);
     mlx_hook(game->win, 2, 1L << 0, key_hook, game);
     mlx_mouse_hide(game->mlx, game->win);
-    mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
+    mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
     mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
     mlx_hook(game->win, 17, 0, close_window, game);
     mlx_loop_hook(game->mlx, render_next_frame, game);
