@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 18:44:18 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:51:12 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,15 @@ void	draw_player(t_game *game)
 	px = game->player_x / 8;
 	py = game->player_y / 8;
 	if (py > TILE_SIZE / 8 && py < SCREEN_HEIGHT)
-		draw_tile(game, game->mlx, game->win, px, py, player_w / 2, 0xFF0000);
+		draw_tile(game, px, py, player_w / 2, 0xFF0000);
 }
 
 static	void draw_wall_or_door(t_game *game, int i, int j)
 {
 	if (game->map_section[i][j] == '1')
-				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 8), i
-					* (TILE_SIZE / 8), (TILE_SIZE / 8), 0xFFFF00);
+				draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE / 8), 0xFFFF00);
 	else if (game->map_section[i][j] == 'D')
-		draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 8), i
-			* (TILE_SIZE / 8), (TILE_SIZE / 8), 0x00FF00);
+		draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE / 8), 0x00FF00);
 }
 
 void	draw_map_walls(t_game *game)
@@ -100,8 +98,7 @@ void	draw_map_bg(t_game *game)
 		while (j < game->map_width)
 		{
 			if (game->map_section[i][j] != '1')
-				draw_tile(game, game->mlx, game->win, j * (TILE_SIZE / 8), i
-					* (TILE_SIZE / 8), (TILE_SIZE / 8), game->ceiling);
+				draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE / 8), game->ceiling);
 			x += (TILE_SIZE / 8);
 			j++;
 		}

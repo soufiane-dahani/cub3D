@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:26 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/18 10:13:05 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:50:28 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,14 @@ void	put_pixel(char *data, int x, int y, int color, int line_length)
 	int	offset;
 
 	offset = y * line_length + x * 4;
-	data[offset + 0] = color & 0xFF;         // Blue
-	data[offset + 1] = (color >> 8) & 0xFF;  // Green
-	data[offset + 2] = (color >> 16) & 0xFF; // Red
+	data[offset + 0] = color & 0xFF;
+	data[offset + 1] = (color >> 8) & 0xFF;
+	data[offset + 2] = (color >> 16) & 0xFF;
 }
 
-void	draw_tile(t_game *game, void *mlx, void *win, int x, int y, int size,
-		int color)
+void	draw_tile(t_game *game, int x, int y, int size, int color)
 {
 	char	*data;
-	(void ) mlx;
-	(void ) win;
 
 	int bpp, line_length, endian;
 	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);

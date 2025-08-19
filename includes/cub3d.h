@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 18:46:29 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:50:18 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,7 @@ void define_player_angle(t_game *game);
 double normalize_angle(double angle);
 void raycasting(t_game *game);
 void put_pixel(char *data, int x, int y, int color, int line_length);
-void draw_tile(t_game *game, void *mlx, void *win, int x,
-			   int y, int size, int color);
+void draw_tile(t_game *game, int x, int y, int size, int color);
 int key_hook(int keycode, t_game *game);
 int is_move_valid(t_game *game, int new_x, int new_y);
 void draw_background(t_game *game);
