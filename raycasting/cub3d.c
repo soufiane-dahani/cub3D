@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/19 20:19:49 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:43:43 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	cast_rays(t_game *game)
 	double	ray_angle;
 	int		i;
 
-	update_animation(game);
 	draw_background_2(game);
 	angle_step = game->fov / game->num_rays;
 	draw_map_bg(game);
@@ -95,6 +94,8 @@ int	render_next_frame(void *param)
 		return (1);
 	last_update = now;
 	cast_rays(game);
+		update_animation(game);
+
 	return (0);
 }
 
