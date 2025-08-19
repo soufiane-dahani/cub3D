@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/18 10:03:54 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 08:57:29 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_count_of_doors(t_game *game)
 		row++;
 	}
 	if (game->num_doors > 4)
-		handle_init_errors(6);
+		handle_init_errors(7);
 }
 
 void	init_doors(t_game *game)
