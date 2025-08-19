@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 08:52:55 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:40:02 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,21 @@ int	mouse_hook(int x, int y, void *param)
 	t_game		*game;
 	static int	last_x = SCREEN_WIDTH / 2;
 	long		now;
+	static long	last_update = 0;
 	int			delta_x;
 
 	game = (t_game *)param;
 	now = current_millis();
+	if (now - last_update < 45)
+		return (1);
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= MAP_HEIGHT)
 		return (reset_mouse_position(game, &last_x));
 	delta_x = x - last_x;
 	if (delta_x != 0)
+	{
+		last_update = now;
 		update_player_angle(game, delta_x);
+	}
 	last_x = x;
 	return (0);
 }

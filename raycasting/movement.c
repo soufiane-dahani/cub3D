@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:10 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/18 10:04:22 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 17:00:17 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	is_move_valid(t_game *game, int new_x, int new_y)
 	tile_y1 = top / TILE_SIZE;
 	tile_x2 = right / TILE_SIZE;
 	tile_y2 = bottom / TILE_SIZE;
-	if (game->map_section[tile_y1][tile_x1] == '1'
-		|| game->map_section[tile_y1][tile_x2] == '1'
-		|| game->map_section[tile_y2][tile_x1] == '1'
-		|| game->map_section[tile_y2][tile_x2] == '1')
+	if ( ( game->map_section[tile_y1][tile_x1] == '1' || game->map_section[tile_y1][tile_x1] == 'D')
+		|| (game->map_section[tile_y1][tile_x2] == '1' || game->map_section[tile_y1][tile_x2] == 'D')
+		|| (game->map_section[tile_y2][tile_x1] == '1' || game->map_section[tile_y2][tile_x1] == 'D')
+		|| (game->map_section[tile_y2][tile_x2] == '1' || game->map_section[tile_y2][tile_x2] == 'D'))
 		return (0);
 	return (1);
 }

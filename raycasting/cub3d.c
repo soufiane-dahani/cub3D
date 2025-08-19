@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/19 06:36:47 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:58:24 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 long	current_millis(void)
 {
@@ -147,6 +146,7 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 	// Perform DDA
 	hit = false;
 	int side; // 0 = vertical wall, 1 = horizontal wall
+	bool is_door = false;
 	while (!hit)
 	{
 		// Jump to next map square, either in x-direction, or in y-direction
@@ -167,8 +167,18 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 			|| map_y_int >= game->map_height)
 			return ; // Hit boundary
 		if (game->map_section[map_y_int][map_x_int] == '1')
+		{
 			hit = true;
+			
+		}
+		else if ( game->map_section[map_y_int][map_x_int] == 'D')
+		{
+			is_door = true;
+			hit = true;
+		}
 	}
+
+	
 	// Calculate distance to wall
 	double wall_x; // Calculate texture coordinate before distance conversion
 	if (side == 0) // Vertical wall
@@ -185,6 +195,10 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 		wall_x = map_x + distance * ray_dx;
 		wall_x = wall_x - floor(wall_x);
 	}
+	
+	if (is_door)
+		side = -99;
+	
 	// Convert back to pixel coordinates
 	distance *= TILE_SIZE;
 	// Fish-eye fix
@@ -231,25 +245,22 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 
 void	cast_rays(t_game *game)
 {
-	// static long	last_update = 0;
-	// long		now;
 	double		angle_step;
 	double		ray_angle;
+	int			i;
 
-	// now = current_millis();
-	// if (now - last_update < 16)
-	// 	return ;
-	// draw_background(game);
 	update_animation(game);
 	draw_background_2(game);
 	angle_step = game->fov / game->num_rays;
 	draw_map_bg(game);
 	game->start_angle = game->player_angle - (game->fov / 2);
-	for (int i = 0; i < game->num_rays; i++)
+	i = 0;
+	while (i < game->num_rays)
 	{
 		ray_angle = game->start_angle + (i * angle_step);
 		ray_angle = normalize_angle(ray_angle);
 		cast_ray(game, ray_angle, i);
+		i++;
 	}
 	draw_map_walls(game);
 	draw_player(game);
@@ -257,14 +268,11 @@ void	cast_rays(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
-
 int	render_next_frame(void *param)
 {
 	t_game		*game;
 	static long	last_update = 0;
 	long		now;
-	// double		angle_step;
-	// double		ray_angle;
 
 	game = (t_game *)param;
 	now = current_millis();
@@ -282,10 +290,8 @@ void raycasting(t_game *game)
     define_player_angle(game);
     game->player_x = (game->player_x * TILE_SIZE) + 16 + (16 / 2);
     game->player_y = (game->player_y * TILE_SIZE) + 16 + (16 / 2);
-
     draw_map(game);
     draw_player(game);
-
     game->fov = M_PI / 3;
     game->player_angle = normalize_angle(game->player_angle);
     game->pdx = cos(game->player_angle);
@@ -293,19 +299,13 @@ void raycasting(t_game *game)
     game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
     game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
     game->num_rays = SCREEN_WIDTH;
-
     load_textures(game);
-    cast_rays(game);
-
     mlx_hook(game->win, 2, 1L << 0, key_hook, game);
     mlx_mouse_hide(game->mlx, game->win);
     mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, MAP_HEIGHT / 2);
     mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
-
     mlx_hook(game->win, 17, 0, close_window, game);
-
     mlx_loop_hook(game->mlx, render_next_frame, game);
-
     mlx_loop(game->mlx);
 }
 

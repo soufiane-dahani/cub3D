@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:50:00 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/18 10:13:48 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:50:43 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ t_texture	*get_wall_texture(t_game *game, int side, int step_x, int step_y)
 			return (&game->ea_texture); // East wall
 		else
 			return (&game->we_texture); // West wall
+	}
+	else if (side == -99)
+	{	
+		return (&game->door_closed_texture); // South wall
 	}
 	else // Horizontal wall (hit on y-side)
 	{
