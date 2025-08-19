@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 18:25:30 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:32:24 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,21 @@ void	draw_background(t_game *game)
 	int		size_line;
 	int		endian;
 	char	*data;
+	int		y;
+	int		x;
 
 	data = mlx_get_data_addr(game->img, &bits_per_pixel, &size_line, &endian);
-	for (int y = 0; y < MAP_HEIGHT; y++)
-		for (int x = 0; x < SCREEN_WIDTH; x++)
+	y = 0;
+	while (y < MAP_HEIGHT)
+	{
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
 			put_pixel(data, x, y, 0x808080, size_line);
+			x++;
+		}
+		y++;	
+	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 

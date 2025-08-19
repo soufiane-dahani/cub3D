@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/19 18:07:49 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:42:06 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 	float	y_inc;
 	float	x;
 	float	y;
+	int		i;
 
 	dx = x1 - x0;
 	dy = y1 - y0;
@@ -51,37 +52,56 @@ void	draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 	y_inc = dy / steps;
 	x = x0;
 	y = y0;
-	for (int i = 0; i <= steps; i++)
+	i = 0;
+	while (i <= steps)
 	{
 		put_pixels(game, (int)x, (int)y, color);
 		x += x_inc;
 		y += y_inc;
+		i++;
 	}
 }
 
 void	draw_vertical_line(t_game *game, int x, int y_start, int y_end,
 		int color)
 {
-	for (int y = y_start; y <= y_end; y++)
+	int y;
+
+	y = y_start;
+	while (y <= y_end)
 	{
 		if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < MAP_HEIGHT)
 			put_pixels(game, x, y, color);
+		y++;
 	}
 }
 
 void	draw_background_2(t_game *game)
 {
-
-	int x, y;
-	for (y = 0; y < MAP_HEIGHT / 2; y++)
+	int	x;
+	int	y;
+	
+	y = 0;
+	while(y < MAP_HEIGHT / 2)
 	{
-		for (x = 0; x < SCREEN_WIDTH; x++)
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
 			put_pixels(game, x, y, game->ceiling);
+			x++;
+		}
+		y++;
 	}
-	for (y = MAP_HEIGHT / 2; y < MAP_HEIGHT; y++)
+	y = MAP_HEIGHT / 2;
+	while (y < MAP_HEIGHT)
 	{
-		for (x = 0; x < SCREEN_WIDTH; x++)
+		x = 0;
+		while(x < SCREEN_WIDTH)
+		{
 			put_pixels(game, x, y, game->floor);
+			x++;
+		}
+		y++;
 	}
 }
 
