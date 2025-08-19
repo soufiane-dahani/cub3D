@@ -31,16 +31,16 @@ void	draw_background(t_game *game)
 			put_pixel(data, x, y, 0x808080, size_line);
 			x++;
 		}
-		y++;	
+		y++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
 void	draw_player(t_game *game)
 {
-	int		player_w;
-	int		px;
-	int		py;
+	int	player_w;
+	int	px;
+	int	py;
 
 	player_w = (TILE_SIZE / 4) / 4;
 	px = game->player_x / 8;
@@ -49,20 +49,22 @@ void	draw_player(t_game *game)
 		draw_tile(game, px, py, player_w / 2, 0xFF0000);
 }
 
-static	void draw_wall_or_door(t_game *game, int i, int j)
+static void	draw_wall_or_door(t_game *game, int i, int j)
 {
 	if (game->map_section[i][j] == '1')
-				draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE / 8), 0xFFFF00);
+		draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE
+				/ 8), 0xFFFF00);
 	else if (game->map_section[i][j] == 'D')
-		draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE / 8), 0x00FF00);
+		draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE
+				/ 8), 0x00FF00);
 }
 
 void	draw_map_walls(t_game *game)
 {
-	int		x;
-	int		y;
-	int 	i;
-	int 	j;
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
 	x = 0;
 	y = 0;
@@ -70,7 +72,7 @@ void	draw_map_walls(t_game *game)
 	while (i < game->map_height)
 	{
 		j = 0;
-		while ( j < game->map_width)
+		while (j < game->map_width)
 		{
 			draw_wall_or_door(game, i, j);
 			x += TILE_SIZE;
@@ -84,11 +86,11 @@ void	draw_map_walls(t_game *game)
 
 void	draw_map_bg(t_game *game)
 {
-	int		x;
-	int		y;
-	int 	i;
-	int		j;
-	
+	int	x;
+	int	y;
+	int	i;
+	int	j;
+
 	x = 0;
 	y = 0;
 	i = 0;
@@ -98,7 +100,8 @@ void	draw_map_bg(t_game *game)
 		while (j < game->map_width)
 		{
 			if (game->map_section[i][j] != '1')
-				draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE / 8), game->ceiling);
+				draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8),
+					(TILE_SIZE / 8), game->ceiling);
 			x += (TILE_SIZE / 8);
 			j++;
 		}

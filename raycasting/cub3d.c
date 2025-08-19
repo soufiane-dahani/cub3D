@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by obarais           #+#    #+#             */
-/*   Updated: 2025/08/19 19:58:28 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:19:49 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	cast_ray(t_game *game, double ray_angle, int i)
 
 void	cast_rays(t_game *game)
 {
-	double		angle_step;
-	double		ray_angle;
-	int			i;
+	double	angle_step;
+	double	ray_angle;
+	int		i;
 
 	update_animation(game);
 	draw_background_2(game);
@@ -104,7 +104,6 @@ static void	init_player(t_game *game)
 	define_player_angle(game);
 	game->player_x = (game->player_x * TILE_SIZE) - TILE_SIZE / 2;
 	game->player_y = (game->player_y * TILE_SIZE) - TILE_SIZE / 2;
-	printf("player: (x: %f, y: %f)\n", game->player_x, game->player_y);
 	draw_player(game);
 }
 

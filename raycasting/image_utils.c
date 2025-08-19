@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:26 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 18:50:28 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:18:55 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,21 @@ void	put_pixel(char *data, int x, int y, int color, int line_length)
 void	draw_tile(t_game *game, int x, int y, int size, int color)
 {
 	char	*data;
+	int		i;
+	int		j;
 
 	int bpp, line_length, endian;
 	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
-	for (int i = 0; i < size; i++)
+	i = 0;
+	while (i < size)
 	{
-		for (int j = 0; j < size; j++)
+		j = 0;
+		while (j < size)
+		{
 			put_pixel(data, x + i, y + j, color, line_length);
+			j++;
+		}
+		i++;
 	}
 }
 

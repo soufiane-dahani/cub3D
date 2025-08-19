@@ -44,9 +44,8 @@ static int	check_tile_collisions(t_game *game, t_bounds bounds)
 	tile_y1 = bounds.top / TILE_SIZE;
 	tile_x2 = bounds.right / TILE_SIZE;
 	tile_y2 = bounds.bottom / TILE_SIZE;
-	if (is_tile_blocked(game, tile_x1, tile_y1)
-		|| is_tile_blocked(game, tile_x2, tile_y1)
-		|| is_tile_blocked(game, tile_x1, tile_y2)
+	if (is_tile_blocked(game, tile_x1, tile_y1) || is_tile_blocked(game,
+			tile_x2, tile_y1) || is_tile_blocked(game, tile_x1, tile_y2)
 		|| is_tile_blocked(game, tile_x2, tile_y2))
 		return (0);
 	return (1);

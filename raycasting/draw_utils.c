@@ -41,12 +41,12 @@ void	draw_line(t_game *game, t_line line)
 
 void	draw_vertical_line(t_game *game, t_line line)
 {
-	int y;
+	int	y;
 
 	y = line.y0;
 	while (y <= line.y1)
 	{
-		if (line.x0 >= 0 && line.x0 < SCREEN_WIDTH && y >= 0 
+		if (line.x0 >= 0 && line.x0 < SCREEN_WIDTH && y >= 0
 			&& y < SCREEN_HEIGHT)
 			put_pixels(game, line.x0, y, line.color);
 		y++;
@@ -93,8 +93,8 @@ void	draw_textured_line(t_game *game, t_ray_data *ray, int col)
 
 	texture = get_wall_texture(game, ray->side, ray->step_x, ray->step_y);
 	tex_x = (int)(ray->wall_x * texture->width);
-	if ((ray->side == 0 && ray->ray_dx > 0)
-		|| (ray->side == 1 && ray->ray_dy < 0))
+	if ((ray->side == 0 && ray->ray_dx > 0) || (ray->side == 1
+			&& ray->ray_dy < 0))
 		tex_x = texture->width - tex_x - 1;
 	if (tex_x < 0)
 		tex_x = 0;

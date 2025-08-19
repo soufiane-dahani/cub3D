@@ -91,15 +91,15 @@ void	calc_distance_and_wall_x(t_ray_data *ray)
 {
 	if (ray->side == 0)
 	{
-		ray->distance = (ray->map_x_int - ray->map_x
-				+ (1 - ray->step_x) / 2) / ray->ray_dx;
+		ray->distance = (ray->map_x_int - ray->map_x + (1 - ray->step_x) / 2)
+			/ ray->ray_dx;
 		ray->wall_x = ray->map_y + ray->distance * ray->ray_dy;
 		ray->wall_x = ray->wall_x - floor(ray->wall_x);
 	}
 	else
 	{
-		ray->distance = (ray->map_y_int - ray->map_y
-				+ (1 - ray->step_y) / 2) / ray->ray_dy;
+		ray->distance = (ray->map_y_int - ray->map_y + (1 - ray->step_y) / 2)
+			/ ray->ray_dy;
 		ray->wall_x = ray->map_x + ray->distance * ray->ray_dx;
 		ray->wall_x = ray->wall_x - floor(ray->wall_x);
 	}

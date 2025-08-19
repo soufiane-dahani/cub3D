@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 20:09:59 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:16:16 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ int	key_hook(int keycode, t_game *game)
 		handle_movement_keys(keycode, game);
 	return (0);
 }
-

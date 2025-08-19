@@ -36,7 +36,7 @@ t_texture	*get_wall_texture(t_game *game, int side, int step_x, int step_y)
 			return (&game->we_texture); // West wall
 	}
 	else if (side == -99)
-	{	
+	{
 		return (&game->door_closed_texture); // South wall
 	}
 	else // Horizontal wall (hit on y-side)
@@ -52,8 +52,8 @@ t_texture	*get_wall_texture(t_game *game, int side, int step_x, int step_y)
 double	get_wall_x(t_game *game, double ray_x, double ray_y, int side)
 {
 	double	wall_x;
-	(void )game;
 
+	(void)game;
 	if (side == 0) // Vertical wall (hit on x-side)
 		wall_x = (ray_y / TILE_SIZE) - floor(ray_y / TILE_SIZE);
 	else // Horizontal wall (hit on y-side)
