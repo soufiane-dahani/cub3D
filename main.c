@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 08:21:38 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/19 08:28:23 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ static void	update_player_angle(t_game *game, int delta_x)
 int	mouse_hook(int x, int y, void *param)
 {
 	t_game		*game;
-	static int	last_x;
+	static int	last_x = SCREEN_WIDTH / 2;
 	long		now;
 	int			delta_x;
 
-	last_x = SCREEN_WIDTH / 2;
 	game = (t_game *)param;
 	now = current_millis();
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= MAP_HEIGHT)
