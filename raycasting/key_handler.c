@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 20:16:16 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/20 08:50:43 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ static void	handle_strafe_movement(t_game *game, double direction)
 	{
 		game->player_x = new_x;
 		game->player_y = new_y;
+	}
+	else
+	{
+		if (is_move_valid(game, new_x, game->player_y))
+			game->player_x = new_x;
+		else if (is_move_valid(game, game->player_x, new_y))
+			game->player_y = new_y;
 	}
 }
 
