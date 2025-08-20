@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/20 09:01:07 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:03:46 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,46 +30,6 @@ void	handle_init_errors(int error_type)
 	else if (error_type == 7)
 		ft_putstr_fd("Error: \ntoo manny doors\n", 2);
 	exit(1);
-}
-
-static int	reset_mouse_position(t_game *game, int *last_x)
-{
-	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-	*last_x = SCREEN_WIDTH / 2;
-	return (0);
-}
-
-static void	update_player_angle(t_game *game, int delta_x)
-{
-	game->player_angle += delta_x * MOUSE_SENSITIVITY;
-	game->player_angle = normalize_angle(game->player_angle);
-	game->pdx = cos(game->player_angle);
-	game->pdy = sin(game->player_angle);
-	cast_rays(game);
-}
-
-int	mouse_hook(int x, int y, void *param)
-{
-	t_game		*game;
-	static int	last_x = SCREEN_WIDTH / 2;
-	long		now;
-	static long	last_update = 0;
-	int			delta_x;
-
-	game = (t_game *)param;
-	now = current_millis();
-	if (now - last_update < 65)
-		return (1);
-	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
-		return (reset_mouse_position(game, &last_x));
-	delta_x = x - last_x;
-	if (delta_x != 0)
-	{
-		last_update = now;
-		update_player_angle(game, delta_x);
-	}
-	last_x = x;
-	return (0);
 }
 
 int	main(int ac, char **av)
