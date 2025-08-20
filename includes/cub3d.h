@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 20:12:35 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/20 09:04:29 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,5 +295,8 @@ void put_pixels(t_game *game, int x, int y, int color);
 int	mouse_hook(int x, int y, void *param);
 void cleanup_game(t_game *game);
 int	close_window(t_game *game);
+void	init_doors(t_game *game);
+void	try_open_doors(t_game *game);
+
 
 #endif

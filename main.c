@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 20:45:59 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/20 09:01:07 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int ac, char **av)
 		handle_init_errors(2);
 	init_window(game);
 	change_to_hex(game);
+	init_doors(game);
 	raycasting(game);
 	close_window(game);
 	return (0);

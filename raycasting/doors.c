@@ -6,34 +6,11 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 08:57:29 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/20 10:14:51 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	check_count_of_doors(t_game *game)
-{
-	int	row;
-	int	col;
-
-	game->num_doors = 0;
-	row = 0;
-	while (game->map_section[row] != NULL)
-	{
-		col = 0;
-		while (game->map_section[row][col] && game->map_section[row][col]
-			&& game->map_section[row][col] != '\n')
-		{
-			if (game->map_section[row][col] == 'D')
-				game->num_doors++;
-			col++;
-		}
-		row++;
-	}
-	if (game->num_doors > 4)
-		handle_init_errors(7);
-}
 
 void	init_doors(t_game *game)
 {
@@ -69,24 +46,40 @@ void	add_door(t_game *game, int x, int y, int index)
 	door->is_open = 0;
 }
 
+void	update_doors(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (!game->doors[i].is_open)
+			game->map_section[game->doors[i].x][game->doors[i].y] = 'D';
+		else
+			game->map_section[game->doors[i].x][game->doors[i].y] = '0';
+		i++;
+	}
+}
+
 void	try_open_doors(t_game *game)
 {
-	int	px;
-	int	py;
-	int	i;
-	int	dx;
-	int	dy;
-
-	px = (int)game->player_x;
-	py = (int)game->player_y;
+	int (px), (py), (i), (dx), (dy);
+	px = (int)(game->player_x / TILE_SIZE);
+	py = (int)(game->player_y / TILE_SIZE);
 	i = 0;
 	while (i < game->num_doors)
 	{
 		dx = game->doors[i].x;
 		dy = game->doors[i].y;
-		if (abs(dx - px) + abs(dy - py) == 1)
+		if (abs(dx - px) <= 1 && abs(dy - py) == 1)
 		{
 			game->doors[i].is_open = !game->doors[i].is_open;
+			update_doors(game);
+			if (is_move_valid(game, game->player_x + 10, game->player_y + 10))
+			{
+				game->player_x += 10;
+				game->player_y += 10;
+			}
 			break ;
 		}
 		i++;

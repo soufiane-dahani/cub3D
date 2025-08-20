@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 18:44:18 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/20 09:53:39 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,27 @@ void	update_animation(t_game *game)
 			game->anim.playing = 0;
 		}
 	}
+}
+
+void	check_count_of_doors(t_game *game)
+{
+	int	row;
+	int	col;
+
+	game->num_doors = 0;
+	row = 0;
+	while (game->map_section[row] != NULL)
+	{
+		col = 0;
+		while (game->map_section[row][col] && game->map_section[row][col]
+			&& game->map_section[row][col] != '\n')
+		{
+			if (game->map_section[row][col] == 'D')
+				game->num_doors++;
+			col++;
+		}
+		row++;
+	}
+	if (game->num_doors > 4)
+		handle_init_errors(7);
 }
