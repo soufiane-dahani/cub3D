@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/20 10:14:51 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/20 13:36:31 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	update_doors(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < game->num_doors)
 	{
 		if (!game->doors[i].is_open)
 			game->map_section[game->doors[i].x][game->doors[i].y] = 'D';
@@ -63,39 +63,23 @@ void	update_doors(t_game *game)
 
 void	try_open_doors(t_game *game)
 {
-	int (px), (py), (i), (dx), (dy);
-	px = (int)(game->player_x / TILE_SIZE);
-	py = (int)(game->player_y / TILE_SIZE);
+	int	px;
+	int	py;
+	int	i;
+
+
+    px = (int)(game->player_x / TILE_SIZE);
+    py = (int)(game->player_y / TILE_SIZE);
 	i = 0;
 	while (i < game->num_doors)
 	{
-		dx = game->doors[i].x;
-		dy = game->doors[i].y;
-		if (abs(dx - px) <= 1 && abs(dy - py) == 1)
+		if (abs(game->doors[i].x - py) + abs(game->doors[i].y - px) == 1)
 		{
 			game->doors[i].is_open = !game->doors[i].is_open;
 			update_doors(game);
-			if (is_move_valid(game, game->player_x + 10, game->player_y + 10))
-			{
-				game->player_x += 10;
-				game->player_y += 10;
-			}
 			break ;
 		}
 		i++;
 	}
 }
 
-int	is_door_open(t_game *game, int x, int y)
-{
-	int	i;
-
-	i = 0;
-	while (i < game->num_doors)
-	{
-		if (game->doors[i].x == x && game->doors[i].y == y)
-			return (game->doors[i].is_open);
-		i++;
-	}
-	return (0);
-}

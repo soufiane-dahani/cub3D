@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/20 09:15:16 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:14:46 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	key_hook(int keycode, t_game *game)
 		cleanup_game(game);
 		exit(0);
 	}
-	else if(keycode == 102 )
+	else if(keycode == F_KEY )
 		try_open_doors(game);
 	else
 		handle_movement_keys(keycode, game);

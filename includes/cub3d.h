@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/20 09:04:29 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:14:42 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define MOUSE_SENSITIVITY 0.015
 #define SPACE_KEY 32
 #define D_KEY 100
+#define F_KEY 102
 #define A_KEY 97
 #define W_KEY 119
 #define S_KEY 115
@@ -129,11 +130,9 @@ typedef struct s_bounds
 
 typedef struct s_game
 {
-	// MiniLibX
 	void *mlx;
 	void *win;
 
-	// Map and file
 	char **map;
 	char **map_section;
 	char **map_copy;
@@ -141,13 +140,11 @@ typedef struct s_game
 	int map_start_index;
 	int max_len;
 
-	// Colors
 	int floor_color[3];
 	int ceiling_color[3];
 	int floor;
 	int ceiling;
 
-	// Filepaths for XPMs (optional if loading from string earlier)
 	char *north_texture;
 	char *south_texture;
 	char *west_texture;
@@ -157,8 +154,6 @@ typedef struct s_game
 	char *anim_2;
 	char *anim_0;
 	char *anim_1;
-
-	// Config
 	t_texture no_texture;
 	t_texture so_texture;
 	t_texture we_texture;
@@ -171,20 +166,16 @@ typedef struct s_game
 	t_door	doors[4];
 	t_anim      anim;
 	t_texture anim_textures[4];
-	// void *frames[4];
 	int		num_doors;
 	
-	// Player info
-	float player_x; // player x pos on arr
-	float player_y; // player y pos on arr
+	float player_x;
+	float player_y;
 
 	char player_char;
 	float dir_x;
 	float dir_y;
 	float plane_x;
 	float plane_y;
-
-	// Rendering and raycasting
 	int map_width;
 	int map_height;
 	double start_angle;
