@@ -67,8 +67,8 @@ typedef struct s_texture
 	int				bpp;
 	int				line_len;
 	int				endian;
-	int 			x;
-	int 			y;
+	int				x;
+	int				y;
 	int				size;
 	int				color;
 }					t_texture;
@@ -133,14 +133,14 @@ typedef struct s_bounds
 
 typedef struct s_texture_line
 {
-	t_texture	*texture;
-	
-	int			tex_x;
-	double		step;
-	double		tex_pos;
-	int			y;
-	int			col;
-} t_texture_line;
+	t_texture		*texture;
+
+	int				tex_x;
+	double			step;
+	double			tex_pos;
+	int				y;
+	int				col;
+}					t_texture_line;
 
 typedef struct s_game
 {
@@ -260,8 +260,6 @@ void				init_window(t_game *game);
 void				define_player_angle(t_game *game);
 double				normalize_angle(double angle);
 void				raycasting(t_game *game);
-void				put_pixel(char *data, int x, int y, int color,
-						int line_length);
 void				draw_tile(t_game *game, t_texture *texture);
 int					key_hook(int keycode, t_game *game);
 int					is_move_valid(t_game *game, int new_x, int new_y);
@@ -307,11 +305,11 @@ void				cleanup_game(t_game *game);
 int					close_window(t_game *game);
 void				init_doors(t_game *game);
 void				try_open_doors(t_game *game);
-void	get_player_tile_pos(t_game *game, int *player_tile_x,
-		int *player_tile_y);
+void				get_player_tile_pos(t_game *game, int *player_tile_x,
+						int *player_tile_y);
 void				init_player(t_game *game);
 void				init_game_params(t_game *game);
 void				setup_hooks(t_game *game);
 
-void	my_mlx_pixel_put(t_texture *data, int x, int y, int color);	
+void				my_mlx_pixel_put(t_texture *data, int x, int y, int color);
 #endif
