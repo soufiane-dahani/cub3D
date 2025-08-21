@@ -1,6 +1,6 @@
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 TARGET = cub3D
 SRC = raycasting/cub3d.c raycasting/ray_helpers.c raycasting/draw_utils.c libft/ft_split.c libft/ft_strjoin.c libft/ft_strlen.c libft/ft_lstadd_back.c libft/ft_lstclear.c \

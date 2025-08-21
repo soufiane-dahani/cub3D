@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 14:18:31 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/21 16:38:46 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ typedef struct s_texture
 	int				bpp;
 	int				line_len;
 	int				endian;
+	int 			x;
+	int 			y;
+	int				size;
+	int				color;
 }					t_texture;
 
 typedef struct s_door
@@ -258,7 +262,7 @@ double				normalize_angle(double angle);
 void				raycasting(t_game *game);
 void				put_pixel(char *data, int x, int y, int color,
 						int line_length);
-void				draw_tile(t_game *game, int x, int y, int size, int color);
+void				draw_tile(t_game *game, t_texture *texture);
 int					key_hook(int keycode, t_game *game);
 int					is_move_valid(t_game *game, int new_x, int new_y);
 void				draw_background(t_game *game);
@@ -308,4 +312,6 @@ void	get_player_tile_pos(t_game *game, int *player_tile_x,
 void				init_player(t_game *game);
 void				init_game_params(t_game *game);
 void				setup_hooks(t_game *game);
+
+void	my_mlx_pixel_put(t_texture *data, int x, int y, int color);	
 #endif

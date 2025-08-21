@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 13:01:36 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:33:06 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,29 @@
 
 static void	draw_wall_or_door(t_game *game, int pos[4])
 {
+	t_texture	texture;
+
+	texture.x = pos[1] * (TILE_SIZE / 8);
+	texture.y = pos[0] * (TILE_SIZE / 8);
+	texture.size = TILE_SIZE / 8;
 	if (pos[2] < 0 || pos[2] >= game->map_height || pos[3] < 0
 		|| pos[3] >= game->map_width)
 	{
-		draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
-			(TILE_SIZE / 8), 0x000000);
+		texture.color = 0x000000;
+		draw_tile(game, &texture);
 		return ;
 	}
 	if (game->map_section[pos[2]][pos[3]] == '1')
-		draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
-			(TILE_SIZE / 8), 0xFFFF00);
+	{
+		texture.color = 0xFFFF00;
+		draw_tile(game, &texture);
+	}
 	else if (game->map_section[pos[2]][pos[3]] == 'D'
-		|| game->map_section[pos[2]][pos[3]] == 'O')
-		draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
-			(TILE_SIZE / 8), 0x00FF00);
+			|| game->map_section[pos[2]][pos[3]] == 'O')
+	{
+		texture.color = 0x00FF00;
+		draw_tile(game, &texture);
+	}
 }
 
 void	get_player_tile_pos(t_game *game, int *player_tile_x,

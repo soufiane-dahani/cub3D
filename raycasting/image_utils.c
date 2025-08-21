@@ -3,40 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   image_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:26 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 20:26:35 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/21 16:45:36 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	put_pixel(char *data, int x, int y, int color, int line_length)
+void	my_mlx_pixel_put(t_texture *data, int x, int y, int color)
 {
-	int	offset;
+	char	*dst;
 
-	offset = y * line_length + x * 4;
-	data[offset + 0] = color & 0xFF;
-	data[offset + 1] = (color >> 8) & 0xFF;
-	data[offset + 2] = (color >> 16) & 0xFF;
+	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
+	*(unsigned int *)dst = color;
 }
 
-void	draw_tile(t_game *game, int x, int y, int size, int color)
+void	draw_tile(t_game *game, t_texture *texture)
 {
-	char	*data;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	int bpp, line_length, endian;
-	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
+	texture->addr = mlx_get_data_addr(game->img, &texture->bpp,
+			&texture->line_len, &texture->endian);
 	i = 0;
-	while (i < size)
+	while (i < texture->size)
 	{
 		j = 0;
-		while (j < size)
+		while (j < texture->size)
 		{
-			put_pixel(data, x + i, y + j, color, line_length);
+			my_mlx_pixel_put(texture, texture->x + j, texture->y + i,
+				texture->color);
 			j++;
 		}
 		i++;
