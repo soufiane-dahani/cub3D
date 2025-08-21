@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 14:03:40 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/21 14:18:31 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,17 @@ typedef struct s_bounds
 	int				top;
 	int				bottom;
 }					t_bounds;
+
+typedef struct s_texture_line
+{
+	t_texture	*texture;
+	
+	int			tex_x;
+	double		step;
+	double		tex_pos;
+	int			y;
+	int			col;
+} t_texture_line;
 
 typedef struct s_game
 {
