@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 10:09:29 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/21 17:16:12 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	read_map_lines(t_game *game)
 		if (c == '\n')
 			n++;
 	}
-	game->map = ft_malloc(sizeof(char *) * (n + 1), FT_ALLOC);
+	game->map = ft_malloc(sizeof(char *) * (n + 2), FT_ALLOC);
 	game->map[0] = get_next_line(game->fd2);
 	if (!game->map[0])
 	{
