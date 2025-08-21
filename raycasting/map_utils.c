@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/20 17:52:46 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:25:56 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,19 @@ void	draw_background(t_game *game)
 	int		size_line;
 	int		endian;
 	char	*data;
-	int		y;
-	int		x;
+	int		coord[2];
 
 	data = mlx_get_data_addr(game->img, &bits_per_pixel, &size_line, &endian);
-	y = 0;
-	while (y < SCREEN_HEIGHT)
+	coord[1] = 0;
+	while (coord[1] < SCREEN_HEIGHT)
 	{
-		x = 0;
-		while (x < SCREEN_WIDTH)
+		coord[0] = 0;
+		while (coord[0] < SCREEN_WIDTH)
 		{
-			put_pixel(data, x, y, 0x808080, size_line);
-			x++;
+			put_pixel(data, coord[0], coord[1], 0x808080, size_line);
+			coord[0]++;
 		}
-		y++;
+		coord[1]++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
@@ -43,70 +42,110 @@ void	draw_player(t_game *game)
 	int	py;
 
 	player_w = (TILE_SIZE / 4) / 4;
-	px = game->player_x / 8;
-	py = game->player_y / 8;
+	px = 5 * (TILE_SIZE / 8);
+	py = 5 * (TILE_SIZE / 8);
 	if (py > TILE_SIZE / 8 && py < SCREEN_HEIGHT)
 		draw_tile(game, px, py, player_w / 2, 0xFF0000);
 }
 
-static void	draw_wall_or_door(t_game *game, int i, int j)
+static void	draw_wall_or_door(t_game *game, int pos[4])
 {
-	if (game->map_section[i][j] == '1')
-		draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE
-				/ 8), 0xFFFF00);
-	else if (game->map_section[i][j] == 'D')
-		draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8), (TILE_SIZE
-				/ 8), 0x00FF00);
+	if (pos[2] < 0 || pos[2] >= game->map_height || pos[3] < 0
+		|| pos[3] >= game->map_width)
+	{
+		draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
+			(TILE_SIZE / 8), 0x000000);
+		return ;
+	}
+	if (game->map_section[pos[2]][pos[3]] == '1')
+		draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
+			(TILE_SIZE / 8), 0xFFFF00);
+	else if (game->map_section[pos[2]][pos[3]] == 'D')
+		draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
+			(TILE_SIZE / 8), 0x00FF00);
+}
+
+static void	get_player_tile_pos(t_game *game, int *player_tile_x,
+		int *player_tile_y)
+{
+	*player_tile_x = (game->player_x / 8) / (TILE_SIZE / 8);
+	*player_tile_y = (game->player_y / 8) / (TILE_SIZE / 8);
+}
+
+static void	draw_wall_loop(t_game *game, int player_pos[2])
+{
+	int	screen_coord[2];
+	int	pos[4];
+
+	screen_coord[0] = 0;
+	while (screen_coord[0] < 11)
+	{
+		screen_coord[1] = 0;
+		while (screen_coord[1] < 11)
+		{
+			pos[0] = screen_coord[0];
+			pos[1] = screen_coord[1];
+			pos[2] = player_pos[1] - 5 + screen_coord[0];
+			pos[3] = player_pos[0] - 5 + screen_coord[1];
+			draw_wall_or_door(game, pos);
+			screen_coord[1]++;
+		}
+		screen_coord[0]++;
+	}
 }
 
 void	draw_map_walls(t_game *game)
 {
-	int	x;
-	int	y;
-	int	i;
-	int	j;
+	int	player_pos[2];
 
-	x = 0;
-	y = 0;
-	i = 0;
-	while (i < game->map_height)
-	{
-		j = 0;
-		while (j < game->map_width)
-		{
-			draw_wall_or_door(game, i, j);
-			x += TILE_SIZE;
-			j++;
-		}
-		y += TILE_SIZE;
-		i++;
-	}
+	get_player_tile_pos(game, &player_pos[0], &player_pos[1]);
+	draw_wall_loop(game, player_pos);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+}
+
+static void	draw_bg_tile(t_game *game, int pos[4])
+{
+	if (pos[2] >= 0 && pos[2] < game->map_height && pos[3] >= 0
+		&& pos[3] < game->map_width)
+	{
+		if (game->map_section[pos[2]][pos[3]] != '1')
+			draw_tile(game, pos[1] * (TILE_SIZE / 8),
+				pos[0] * (TILE_SIZE / 8), (TILE_SIZE / 8), game->ceiling);
+	}
+	else
+	{
+		draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
+			(TILE_SIZE / 8), 0x000000);
+	}
+}
+
+static void	draw_bg_loop(t_game *game, int player_pos[2])
+{
+	int	screen_coord[2];
+	int	pos[4];
+
+	screen_coord[0] = 0;
+	while (screen_coord[0] < 11)
+	{
+		screen_coord[1] = 0;
+		while (screen_coord[1] < 11)
+		{
+			pos[0] = screen_coord[0];
+			pos[1] = screen_coord[1];
+			pos[2] = player_pos[1] - 5 + screen_coord[0];
+			pos[3] = player_pos[0] - 5 + screen_coord[1];
+			draw_bg_tile(game, pos);
+			screen_coord[1]++;
+		}
+		screen_coord[0]++;
+	}
 }
 
 void	draw_map_bg(t_game *game)
 {
-	int	x;
-	int	y;
-	int	i;
-	int	j;
+	int	player_pos[2];
 
-	x = 0;
-	y = 0;
-	i = 0;
-	while (i < game->map_height)
-	{
-		j = 0;
-		while (j < game->map_width)
-		{
-			if (game->map_section[i][j] != '1')
-				draw_tile(game, j * (TILE_SIZE / 8), i * (TILE_SIZE / 8),
-					(TILE_SIZE / 8), game->ceiling);
-			x += (TILE_SIZE / 8);
-			j++;
-		}
-		y += (TILE_SIZE / 8);
-		i++;
-	}
+	get_player_tile_pos(game, &player_pos[0], &player_pos[1]);
+	draw_bg_loop(game, player_pos);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
