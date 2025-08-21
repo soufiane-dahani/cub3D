@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 10:07:57 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:58:07 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,5 +292,7 @@ void				cleanup_game(t_game *game);
 int					close_window(t_game *game);
 void				init_doors(t_game *game);
 void				try_open_doors(t_game *game);
+void	get_player_tile_pos(t_game *game, int *player_tile_x,
+		int *player_tile_y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/20 17:23:45 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:47:26 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	update_doors(t_game *game)
 		if (!game->doors[i].is_open)
 			game->map_section[game->doors[i].x][game->doors[i].y] = 'D';
 		else
-			game->map_section[game->doors[i].x][game->doors[i].y] = '0';
+			game->map_section[game->doors[i].x][game->doors[i].y] = 'O';
 		i++;
 	}
 }
