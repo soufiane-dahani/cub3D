@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/21 10:28:10 by sodahani         ###   ########.fr       */
+/*   Created: 2025/08/21 13:56:16 by zbakour           #+#    #+#             */
+/*   Updated: 2025/08/21 13:59:35 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/cub3d.h"
-
-long	current_millis(void)
-{
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000);
-}
-
-void	put_pixels(t_game *game, int x, int y, int color)
-{
-	char	*data;
-	int		offset;
-	int		bpp;
-	int		line_length;
-	int		endian;
-
-	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
-	if (x >= 0 && x <= SCREEN_WIDTH && y >= 0 && y <= SCREEN_HEIGHT)
-	{
-		offset = (y * line_length) + (x * (bpp / 8));
-		*(unsigned int *)(data + offset) = color;
-	}
-}
 
 void	cast_ray(t_game *game, double ray_angle, int i)
 {
@@ -81,54 +56,6 @@ void	cast_rays(t_game *game)
 	draw_player(game);
 	render_animation(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-}
-
-int	render_next_frame(void *param)
-{
-	t_game		*game;
-	static long	last_update = 0;
-	long		now;
-
-	game = (t_game *)param;
-	now = current_millis();
-	if (now - last_update < 80)
-		return (1);
-	last_update = now;
-	cast_rays(game);
-		update_animation(game);
-
-	return (0);
-}
-
-static void	init_player(t_game *game)
-{
-	calculate_tile_position(game);
-	define_player_angle(game);
-	game->player_x = (game->player_x * TILE_SIZE) - TILE_SIZE / 2;
-	game->player_y = (game->player_y * TILE_SIZE) - TILE_SIZE / 2;
-	draw_player(game);
-}
-
-static void	init_game_params(t_game *game)
-{
-	game->fov = M_PI / 3;
-	game->player_angle = normalize_angle(game->player_angle);
-	game->pdx = cos(game->player_angle);
-	game->pdy = sin(game->player_angle);
-	game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
-	game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
-	game->num_rays = SCREEN_WIDTH;
-	load_textures(game);
-}
-
-static void	setup_hooks(t_game *game)
-{
-	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
-	mlx_mouse_hide(game->mlx, game->win);
-	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-	mlx_hook(game->win, 6, 1L << 6, mouse_hook, game);
-	mlx_hook(game->win, 17, 0, close_window, game);
-	mlx_loop_hook(game->mlx, render_next_frame, game);
 }
 
 void	raycasting(t_game *game)

@@ -100,7 +100,7 @@ int	key_hook(int keycode, t_game *game)
 		cleanup_game(game);
 		exit(0);
 	}
-	else if(keycode == F_KEY )
+	else if (keycode == F_KEY)
 		try_open_doors(game);
 	else
 		handle_movement_keys(keycode, game);

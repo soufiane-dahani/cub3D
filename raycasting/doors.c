@@ -65,15 +65,15 @@ void	try_open_doors(t_game *game)
 {
 	float	px;
 	float	py;
-	int	i;
+	int		i;
 
-
-    px = (game->player_x / TILE_SIZE);
-    py = (game->player_y / TILE_SIZE);
+	px = (game->player_x / TILE_SIZE);
+	py = (game->player_y / TILE_SIZE);
 	i = 0;
 	while (i < game->num_doors)
 	{
-		if (abs(game->doors[i].x - (int) py) + abs(game->doors[i].y - (int) px) == 1)
+		if (abs(game->doors[i].x - (int)py) + abs(game->doors[i].y
+				- (int)px) == 1)
 		{
 			game->doors[i].is_open = !game->doors[i].is_open;
 			update_doors(game);
@@ -82,4 +82,3 @@ void	try_open_doors(t_game *game)
 		i++;
 	}
 }
-

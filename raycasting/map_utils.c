@@ -54,8 +54,8 @@ static void	draw_bg_tile(t_game *game, int pos[4])
 		&& pos[3] < game->map_width)
 	{
 		if (game->map_section[pos[2]][pos[3]] != '1')
-			draw_tile(game, pos[1] * (TILE_SIZE / 8),
-				pos[0] * (TILE_SIZE / 8), (TILE_SIZE / 8), game->ceiling);
+			draw_tile(game, pos[1] * (TILE_SIZE / 8), pos[0] * (TILE_SIZE / 8),
+				(TILE_SIZE / 8), game->ceiling);
 	}
 	else
 	{

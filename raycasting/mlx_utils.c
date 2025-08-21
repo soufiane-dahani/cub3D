@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_init.c                                         :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 21:23:13 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/21 14:00:11 by zbakour          ###   ########.fr       */
+/*   Created: 2025/08/21 13:57:52 by zbakour           #+#    #+#             */
+/*   Updated: 2025/08/21 13:58:10 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	init_window(t_game *game)
+void	put_pixels(t_game *game, int x, int y, int color)
 {
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (ft_putstr_fd("Error initializing MLX\n", 2));
-	game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
-	if (!game->win)
-		return (ft_putstr_fd("Error creating window\n", 2));
-	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	char	*data;
+	int		offset;
+	int		bpp;
+	int		line_length;
+	int		endian;
+
+	data = mlx_get_data_addr(game->img, &bpp, &line_length, &endian);
+	if (x >= 0 && x <= SCREEN_WIDTH && y >= 0 && y <= SCREEN_HEIGHT)
+	{
+		offset = (y * line_length) + (x * (bpp / 8));
+		*(unsigned int *)(data + offset) = color;
+	}
 }
