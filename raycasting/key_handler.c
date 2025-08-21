@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:52:30 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/20 11:14:46 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:41:43 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ static void	handle_forward_backward(t_game *game, int direction)
 			game->player_x = new_x;
 		else if (is_move_valid(game, game->player_x, new_y))
 			game->player_y = new_y;
+		else
+		{
+			if (is_move_valid(game, new_x - 20, game->player_y))
+				game->player_x = new_x - 20;
+			else if (is_move_valid(game, game->player_x, new_y - 20))
+				game->player_y = new_y - 20;
+		}
 	}
 }
 

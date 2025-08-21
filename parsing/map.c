@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/18 10:04:53 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/21 10:09:29 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,19 @@ char	*extract_path(char *str)
 
 void	read_map_lines(t_game *game)
 {
-	int	i;
+	int		i;
+	char	c;
+	int		n;
 
+	n = 0;
 	i = 0;
-	game->map = ft_malloc(sizeof(char *) * MAX_LINES, FT_ALLOC);
-	game->map[0] = get_next_line(game->fd);
+	while (read(game->fd, &c, 1))
+	{
+		if (c == '\n')
+			n++;
+	}
+	game->map = ft_malloc(sizeof(char *) * (n + 1), FT_ALLOC);
+	game->map[0] = get_next_line(game->fd2);
 	if (!game->map[0])
 	{
 		ft_putstr_fd("error: \nMap is empty\n", 2);
@@ -64,7 +72,7 @@ void	read_map_lines(t_game *game)
 	while (game->map[i] != NULL)
 	{
 		i++;
-		game->map[i] = get_next_line(game->fd);
+		game->map[i] = get_next_line(game->fd2);
 	}
 	validate_configuration_lines(game);
 }
@@ -78,7 +86,8 @@ int	parse_map(const char *file_path, t_game *game)
 		return (-1);
 	}
 	game->fd = open(file_path, O_RDONLY);
-	if (game->fd == -1)
+	game->fd2 = open(file_path, O_RDONLY);
+	if (game->fd == -1 || game->fd2 == -1)
 	{
 		perror("open failed");
 		return (-1);
