@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 16:38:46 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/22 18:25:05 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ typedef struct s_game
 	t_texture		anim_2_texture;
 	t_texture		anim_0_texture;
 	t_texture		anim_1_texture;
-	t_door			doors[4];
+	t_door			doors[100];
 	t_anim			anim;
 	t_texture		anim_textures[4];
 	int				num_doors;

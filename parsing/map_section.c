@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 10:17:12 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/22 18:43:41 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	validate_map_char(char c, t_game *game, int row, int col)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		game->player_x = col + 1;
-		game->player_y = row + 1;
+		game->player_x = col;
+		game->player_y = row;
 		game->player_char = c;
 		return (1);
 	}
@@ -105,8 +105,10 @@ void	map_section(t_game *game)
 	set_up_map(game);
 	game->max_len = 0;
 	check_count(game);
-	check_count_of_doors(game);
 	prepare_map(game);
 	flood_fill(game->map_copy, game->player_y, game->player_x);
 	set_player_direction(game);
+	check_count_of_doors(game);
+	game->player_x++;
+	game->player_y++;
 }
