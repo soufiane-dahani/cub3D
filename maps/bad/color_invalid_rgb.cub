@@ -3,6 +3,12 @@ SO textures/test/south.xpm
 WE textures/test/west.xpm
 EA textures/test/east.xpm
 
+DOOR_CLOSED textures/bonus/door_closed.xpm
+ANIM_3  textures/bonus/anim_3.xpm
+ANIM_2          textures/bonus/anim_2.xpm
+ANIM_0      textures/bonus/anim_0.xpm
+ANIM_1      textures/bonus/anim_1.xpm
+
 F 20,20,-20
 C 200,200,200
 
