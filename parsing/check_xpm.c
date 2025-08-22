@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/19 15:05:51 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:11:55 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int	search_xpm(char *file_path)
 void	check_xpm(t_game *game)
 {
 	if (!search_xpm(game->north_texture) || !search_xpm(game->east_texture)
-		|| !search_xpm(game->west_texture) || !search_xpm(game->south_texture))
+		|| !search_xpm(game->west_texture) || !search_xpm(game->south_texture)
+	|| !search_xpm(game->door_closed) || !search_xpm(game->anim_0)
+	|| !search_xpm(game->anim_1)|| !search_xpm(game->anim_2)
+	|| !search_xpm(game->anim_3))
 	{
 		ft_putstr_fd("Error: \nInvalid .xpm texture file extension\n", 2);
 		ft_malloc(0, FT_CLEAR);
