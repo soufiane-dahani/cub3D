@@ -6,34 +6,11 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:44:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/21 14:20:24 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/23 15:51:41 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	draw_line(t_game *game, t_line line)
-{
-	float	dx;
-	float	dy;
-	float	steps;
-	int		i;
-
-	dx = line.x1 - line.x0;
-	dy = line.y1 - line.y0;
-	if (fabs(dx) > fabs(dy))
-		steps = fabs(dx);
-	else
-		steps = fabs(dy);
-	i = 0;
-	while (i <= steps)
-	{
-		put_pixels(game, (int)line.x0, (int)line.y0, line.color);
-		line.x0 += dx / steps;
-		line.y0 += dy / steps;
-		i++;
-	}
-}
 
 void	draw_vertical_line(t_game *game, t_line line)
 {

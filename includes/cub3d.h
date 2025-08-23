@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/23 15:33:22 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:52:07 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,6 @@ typedef struct s_game
 	int				map_width;
 	int				map_height;
 	double			start_angle;
-	double			end_angle;
 	int				num_rays;
 	double			ray_angle;
 	double			player_angle;
@@ -275,7 +274,6 @@ void				calc_step_and_side_dist(t_ray_data *ray);
 void				perform_dda(t_ray_data *ray, t_game *game);
 void				calc_distance_and_wall_x(t_ray_data *ray);
 void				draw_textured_line(t_game *game, t_ray_data *ray, int col);
-void				draw_line(t_game *game, t_line line);
 void				draw_vertical_line(t_game *game, t_line line);
 void				draw_background_2(t_game *game);
 // load textures
@@ -311,5 +309,5 @@ void				init_game_params(t_game *game);
 void				setup_hooks(t_game *game);
 
 void				my_mlx_pixel_put(t_texture *data, int x, int y, int color);
-int	is_valid_door(t_game *game);
+int					is_valid_door(t_game *game);
 #endif

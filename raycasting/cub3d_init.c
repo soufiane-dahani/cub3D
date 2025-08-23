@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:58:51 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/21 14:04:29 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/23 15:52:34 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_game_params(t_game *game)
 	game->pdx = cos(game->player_angle);
 	game->pdy = sin(game->player_angle);
 	game->start_angle = normalize_angle(game->player_angle - (game->fov / 2));
-	game->end_angle = normalize_angle(game->player_angle + (game->fov / 2));
 	game->num_rays = SCREEN_WIDTH;
 	load_textures(game);
 }
