@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/21 12:47:26 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:07:31 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,22 @@ void	try_open_doors(t_game *game)
 	float	px;
 	float	py;
 	int		i;
+	int		door_opened;
 
 	px = (game->player_x / TILE_SIZE);
 	py = (game->player_y / TILE_SIZE);
 	i = 0;
+	door_opened = 0;
 	while (i < game->num_doors)
 	{
 		if (abs(game->doors[i].x - (int)py) + abs(game->doors[i].y
 				- (int)px) == 1)
 		{
 			game->doors[i].is_open = !game->doors[i].is_open;
-			update_doors(game);
-			break ;
+			door_opened = 1;
 		}
 		i++;
 	}
+	if (door_opened)
+		update_doors(game);
 }
