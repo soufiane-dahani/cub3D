@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:42:18 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/21 10:21:19 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:41:05 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	handle_init_errors(int error_type)
 		ft_putstr_fd("Error: \nMap not closed\n", 2);
 	else if (error_type == 7)
 		ft_putstr_fd("Error: \ntoo manny doors\n", 2);
+	else if (error_type == 8)
+		ft_putstr_fd("Error: \nThe place of doors invalid \
+			(behind a wall)\n", 2);
 	exit(1);
 }
 

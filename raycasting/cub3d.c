@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 13:56:16 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/23 13:54:49 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:25:06 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	cast_rays(t_game *game)
 
 	draw_background_2(game);
 	angle_step = game->fov / game->num_rays;
-	//draw_map_bg(game);
+	draw_map_bg(game);
 	game->start_angle = game->player_angle - (game->fov / 2);
 	i = 0;
 	while (i < game->num_rays)

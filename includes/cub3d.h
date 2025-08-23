@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/23 07:54:30 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:33:22 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <unistd.h>
 
 # define ESC_KEY 65307
-# define MOUSE_SENSITIVITY 0.015
+# define MOUSE_SENSITIVITY 0.005
 # define SPACE_KEY 32
 # define D_KEY 100
 # define F_KEY 102
@@ -311,4 +311,5 @@ void				init_game_params(t_game *game);
 void				setup_hooks(t_game *game);
 
 void				my_mlx_pixel_put(t_texture *data, int x, int y, int color);
+int	is_valid_door(t_game *game);
 #endif
