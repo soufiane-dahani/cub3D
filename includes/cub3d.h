@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/23 15:52:07 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/23 18:04:54 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,8 +284,6 @@ long				current_millis(void);
 int					get_texture_color(t_texture *texture, int x, int y);
 t_texture			*get_wall_texture(t_game *game, int side, int step_x,
 						int step_y);
-double				get_wall_x(t_game *game, double ray_x, double ray_y,
-						int side);
 
 int					key_release(int keycode, t_game *game);
 int					key_press(int keycode, t_game *game);

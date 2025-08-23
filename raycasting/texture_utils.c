@@ -6,7 +6,7 @@
 /*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:50:00 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/19 20:25:44 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/23 18:05:01 by zbakour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,4 @@ t_texture	*get_wall_texture(t_game *game, int side, int step_x, int step_y)
 		else
 			return (&game->no_texture);
 	}
-}
-
-double	get_wall_x(t_game *game, double ray_x, double ray_y, int side)
-{
-	double	wall_x;
-
-	(void)game;
-	if (side == 0)
-		wall_x = (ray_y / TILE_SIZE) - floor(ray_y / TILE_SIZE);
-	else
-		wall_x = (ray_x / TILE_SIZE) - floor(ray_x / TILE_SIZE);
-	return (wall_x);
 }
