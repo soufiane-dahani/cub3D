@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/22 18:43:41 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/23 07:59:33 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	check_count(t_game *game)
 					game, row, col);
 			col++;
 		}
-		if (col >= 1000 || row > 1000)
+		if (col >= 2147483640  || row >= 2147483640)
 			handle_init_errors(5);
 		row++;
 	}

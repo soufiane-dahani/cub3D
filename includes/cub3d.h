@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/22 18:25:05 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/23 07:54:30 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 
 # define FT_ALLOC 1
 # define FT_CLEAR 0
-# define MAX_LINES 100
 
 # define TILE_SIZE 64
 # define SCREEN_WIDTH 1024
