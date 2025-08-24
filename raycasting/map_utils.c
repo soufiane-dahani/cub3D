@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:49:02 by zbakour           #+#    #+#             */
-/*   Updated: 2025/08/21 16:39:15 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:31:19 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	draw_player(t_game *game)
 	t_texture	texture;
 
 	player_w = (TILE_SIZE / 4) / 4;
-	px = 5 * (TILE_SIZE / 8);
-	py = 5 * (TILE_SIZE / 8);
+	px = 5 * (TILE_SIZE / 8) + (int)fmod((game->player_x / 8), 4);
+	py = 5 * (TILE_SIZE / 8) + (int)fmod((game->player_y / 8), 4);
 	if (py > TILE_SIZE / 8 && py < SCREEN_HEIGHT)
 	{
 		texture.x = px;
@@ -104,5 +104,4 @@ void	draw_map_bg(t_game *game)
 
 	get_player_tile_pos(game, &player_pos[0], &player_pos[1]);
 	draw_bg_loop(game, player_pos);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }

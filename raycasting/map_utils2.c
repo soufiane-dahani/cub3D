@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/23 13:53:46 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:52:35 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static void	draw_wall_or_door(t_game *game, int pos[4])
 	texture.y = pos[0] * (TILE_SIZE / 8);
 	texture.size = TILE_SIZE / 8;
 	if (pos[2] < 0 || pos[2] >= game->map_height || pos[3] < 0
-		|| pos[3] >= game->map_width)
+		|| pos[3] >= game->map_width
+		|| game->map_section[pos[2]][pos[3]] == '0'
+		|| game->map_section[pos[2]][pos[3]] == game->player_char)
 	{
 		texture.color = 0x000000;
 		draw_tile(game, &texture);
@@ -28,13 +30,13 @@ static void	draw_wall_or_door(t_game *game, int pos[4])
 	}
 	if (game->map_section[pos[2]][pos[3]] == '1')
 	{
-		texture.color = 0xFFFF00;
+		texture.color = 0xFFFFFF;
 		draw_tile(game, &texture);
 	}
 	else if (game->map_section[pos[2]][pos[3]] == 'D'
 			|| game->map_section[pos[2]][pos[3]] == 'O')
 	{
-		texture.color = 0x00FF00;
+		texture.color = 0x1DAFF4;
 		draw_tile(game, &texture);
 	}
 }
@@ -74,5 +76,4 @@ void	draw_map_walls(t_game *game)
 
 	get_player_tile_pos(game, &player_pos[0], &player_pos[1]);
 	draw_wall_loop(game, player_pos);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
