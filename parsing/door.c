@@ -44,7 +44,7 @@ int	is_valid_door(t_game *game)
 void	check_top_row(char **map)
 {
 	int	j;
-	int len;
+	int	len;
 
 	len = ft_strlen(map[0]);
 	len--;
@@ -59,14 +59,14 @@ void	check_top_row(char **map)
 		if (map[0][j] != '1')
 			handle_init_errors(6);
 		j++;
-	}	
+	}
 }
 
 void	check_middle_rows(char **map)
 {
 	int	i;
 	int	j;
-	int len;
+	int	len;
 
 	i = 1;
 	while (map[i] != NULL)
@@ -88,7 +88,7 @@ void	check_middle_rows(char **map)
 void	check_bottom_row(char **map, int i)
 {
 	int	j;
-	int len;
+	int	len;
 
 	i--;
 	len = ft_strlen(map[i]);
@@ -104,12 +104,13 @@ void	check_bottom_row(char **map, int i)
 		if (map[i][j] != '1')
 			handle_init_errors(6);
 		j++;
-	}	
+	}
 }
 
 void	is_map_surrounded(t_game *game)
 {
 	int	i;
+
 	check_top_row(game->map_section);
 	check_middle_rows(game->map_section);
 	i = 0;

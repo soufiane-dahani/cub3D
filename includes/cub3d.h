@@ -308,7 +308,7 @@ void				setup_hooks(t_game *game);
 
 void				my_mlx_pixel_put(t_texture *data, int x, int y, int color);
 int					is_valid_door(t_game *game);
-void is_map_surrounded(t_game *game);
+void				is_map_surrounded(t_game *game);
 void				normalize_facing_vector(t_game *game, double *fx,
 						double *fy);
 void				update_doors(t_game *game);
