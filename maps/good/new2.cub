@@ -1,0 +1,27 @@
+NO textures/north.xpm
+EA textures/east.xpm
+SO textures/south.xpm
+WE textures/west.xpm
+
+DOOR_CLOSED textures/bonus/door_closed.xpm
+ANIM_3      textures/bonus/anim_3.xpm
+ANIM_2      textures/bonus/anim_2.xpm
+ANIM_0      textures/bonus/anim_0.xpm
+ANIM_1      textures/bonus/anim_1.xpm
+
+C 35,19,73
+F 15,6,40
+
+ 1111111111111111111111
+100000000000S00000000001
+ 1000000000000000000001
+  10000000000000000001
+   100000000000000001
+    1000000000000001
+     10000000000001
+      100000000001
+       1000000001
+        10000001
+         100001
+          1001
+           11

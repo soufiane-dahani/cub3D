@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/24 16:52:35 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:11:18 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	draw_wall_or_door(t_game *game, int pos[4])
 	texture.y = pos[0] * (TILE_SIZE / 8);
 	texture.size = TILE_SIZE / 8;
 	if (pos[2] < 0 || pos[2] >= game->map_height || pos[3] < 0
-		|| pos[3] >= game->map_width
+		|| pos[3] >= game->map_width || game->map_section[pos[2]][pos[3]] == 'X'
 		|| game->map_section[pos[2]][pos[3]] == '0'
 		|| game->map_section[pos[2]][pos[3]] == game->player_char)
 	{
