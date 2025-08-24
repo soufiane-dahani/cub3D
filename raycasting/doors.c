@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/24 11:28:27 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/24 11:55:42 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	normalize_facing_vector(t_game *game, double *fx, double *fy)
 	*fx = game->pdx;
 	*fy = game->pdy;
 	flen = sqrt(*fx * *fx + *fy * *fy);
-	if (flen > 1e-9)
+	if (flen > 0.000000001)
 	{
 		*fx /= flen;
 		*fy /= flen;
