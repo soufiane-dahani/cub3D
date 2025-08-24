@@ -7,7 +7,7 @@ SRC = raycasting/cub3d.c raycasting/ray_helpers.c raycasting/draw_utils.c libft/
 	 libft/ft_lstnew.c parsing/malloc.c libft/ft_strncmp.c main.c parsing/map.c libft/ft_putstr_fd.c \
 	 libft/get_next_line.c libft/get_next_line_utils.c libft/ft_atoi.c libft/ft_strtrim.c parsing/validate_configuration_lines.c \
 	 parsing/extract_number.c parsing/check_xpm.c parsing/map_section.c parsing/validate_configuration_lines2.c parsing/map_section2.c \
-	 parsing/validate_configuration_lines3.c parsing/color.c parsing/free.c parsing/door.c\
+	 parsing/validate_configuration_lines3.c parsing/color.c parsing/free.c parsing/door.c raycasting/doors_utils.c \
 	 raycasting/raycasting_utils.c raycasting/load_textures.c \
 	 raycasting/mlx_init.c raycasting/image_utils.c raycasting/key_handler.c \
 	 raycasting/map_utils.c  raycasting/movement.c raycasting/doors.c \

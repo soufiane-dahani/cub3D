@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:48:03 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/23 16:07:31 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/24 11:28:27 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,21 @@ void	update_doors(t_game *game)
 	}
 }
 
-void	try_open_doors(t_game *game)
+void	normalize_facing_vector(t_game *game, double *fx, double *fy)
 {
-	float	px;
-	float	py;
-	int		i;
-	int		door_opened;
+	double	flen;
 
-	px = (game->player_x / TILE_SIZE);
-	py = (game->player_y / TILE_SIZE);
-	i = 0;
-	door_opened = 0;
-	while (i < game->num_doors)
+	*fx = game->pdx;
+	*fy = game->pdy;
+	flen = sqrt(*fx * *fx + *fy * *fy);
+	if (flen > 1e-9)
 	{
-		if (abs(game->doors[i].x - (int)py) + abs(game->doors[i].y
-				- (int)px) == 1)
-		{
-			game->doors[i].is_open = !game->doors[i].is_open;
-			door_opened = 1;
-		}
-		i++;
+		*fx /= flen;
+		*fy /= flen;
 	}
-	if (door_opened)
-		update_doors(game);
+	else
+	{
+		*fx = cos(game->player_angle);
+		*fy = sin(game->player_angle);
+	}
 }

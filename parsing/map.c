@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/23 15:33:10 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/24 11:23:51 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ int	parse_map(const char *file_path, t_game *game)
 	read_map_lines(game);
 	map_section(game);
 	is_valid_door(game);
+	is_map_surrounded(game);
 	return (0);
 }

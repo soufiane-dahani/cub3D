@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbakour <zbakour@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/23 18:04:54 by zbakour          ###   ########.fr       */
+/*   Updated: 2025/08/24 11:29:57 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,4 +308,8 @@ void				setup_hooks(t_game *game);
 
 void				my_mlx_pixel_put(t_texture *data, int x, int y, int color);
 int					is_valid_door(t_game *game);
+void is_map_surrounded(t_game *game);
+void				normalize_facing_vector(t_game *game, double *fx,
+						double *fy);
+void				update_doors(t_game *game);
 #endif
