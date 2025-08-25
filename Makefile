@@ -1,6 +1,6 @@
 
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 TARGET = cub3D
 SRC = raycasting/cub3d.c raycasting/ray_helpers.c raycasting/draw_utils.c libft/ft_split.c libft/ft_strjoin.c libft/ft_strlen.c libft/ft_lstadd_back.c libft/ft_lstclear.c \
@@ -8,7 +8,7 @@ SRC = raycasting/cub3d.c raycasting/ray_helpers.c raycasting/draw_utils.c libft/
 	 libft/get_next_line.c libft/get_next_line_utils.c libft/ft_atoi.c libft/ft_strtrim.c parsing/validate_configuration_lines.c \
 	 parsing/extract_number.c parsing/check_xpm.c parsing/map_section.c parsing/validate_configuration_lines2.c parsing/map_section2.c \
 	 parsing/validate_configuration_lines3.c parsing/color.c parsing/free.c parsing/door.c raycasting/doors_utils.c \
-	 raycasting/raycasting_utils.c raycasting/load_textures.c \
+	 raycasting/raycasting_utils.c raycasting/load_textures.c parsing/map_section3.c\
 	 raycasting/mlx_init.c raycasting/image_utils.c raycasting/key_handler.c \
 	 raycasting/map_utils.c  raycasting/movement.c raycasting/doors.c \
 	 raycasting/texture_utils.c raycasting/mouse.c raycasting/map_utils2.c \

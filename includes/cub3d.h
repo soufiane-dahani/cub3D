@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/24 11:29:57 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/25 08:41:59 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ typedef struct s_game
 	char			**map;
 	char			**map_section;
 	char			**map_copy;
+	char			**map_section2;
 	int				fd;
 	int				fd2;
 	int				map_start_index;
@@ -312,4 +313,5 @@ void				is_map_surrounded(t_game *game);
 void				normalize_facing_vector(t_game *game, double *fx,
 						double *fy);
 void				update_doors(t_game *game);
+void				map_section3(t_game *game);
 #endif

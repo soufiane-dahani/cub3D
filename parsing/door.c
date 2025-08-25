@@ -6,7 +6,7 @@
 /*   By: sodahani <sodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:48:35 by sodahani          #+#    #+#             */
-/*   Updated: 2025/08/24 11:23:05 by sodahani         ###   ########.fr       */
+/*   Updated: 2025/08/25 08:45:58 by sodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,11 @@ void	is_map_surrounded(t_game *game)
 {
 	int	i;
 
-	check_top_row(game->map_section);
-	check_middle_rows(game->map_section);
+	map_section3(game);
+	check_top_row(game->map_section2);
+	check_middle_rows(game->map_section2);
 	i = 0;
-	while (game->map_section[i] != NULL)
+	while (game->map_section2[i] != NULL)
 		i++;
-	check_bottom_row(game->map_section, i);
+	check_bottom_row(game->map_section2, i);
 }
